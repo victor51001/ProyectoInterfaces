@@ -1,4 +1,4 @@
-﻿namespace InmoSolution
+﻿namespace WinFormsApp1
 {
     partial class Form1
     {
