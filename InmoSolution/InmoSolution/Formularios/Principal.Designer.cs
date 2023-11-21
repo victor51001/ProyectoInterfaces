@@ -80,27 +80,30 @@
             // lblUltima
             // 
             this.lblUltima.AutoSize = true;
-            this.lblUltima.Location = new System.Drawing.Point(707, 230);
+            this.lblUltima.Location = new System.Drawing.Point(530, 187);
+            this.lblUltima.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUltima.Name = "lblUltima";
-            this.lblUltima.Size = new System.Drawing.Size(145, 16);
+            this.lblUltima.Size = new System.Drawing.Size(114, 13);
             this.lblUltima.TabIndex = 2;
             this.lblUltima.Text = "Ultimas Transacciones";
             // 
             // lblInmuebles
             // 
             this.lblInmuebles.AutoSize = true;
-            this.lblInmuebles.Location = new System.Drawing.Point(0, 20);
+            this.lblInmuebles.Location = new System.Drawing.Point(0, 16);
+            this.lblInmuebles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInmuebles.Name = "lblInmuebles";
-            this.lblInmuebles.Size = new System.Drawing.Size(106, 16);
+            this.lblInmuebles.Size = new System.Drawing.Size(85, 13);
             this.lblInmuebles.TabIndex = 3;
             this.lblInmuebles.Text = "Total Inmuebles:";
             // 
             // txtbxInmuebles
             // 
-            this.txtbxInmuebles.Location = new System.Drawing.Point(186, 17);
+            this.txtbxInmuebles.Location = new System.Drawing.Point(140, 14);
+            this.txtbxInmuebles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtbxInmuebles.Name = "txtbxInmuebles";
             this.txtbxInmuebles.ReadOnly = true;
-            this.txtbxInmuebles.Size = new System.Drawing.Size(35, 22);
+            this.txtbxInmuebles.Size = new System.Drawing.Size(27, 20);
             this.txtbxInmuebles.TabIndex = 4;
             // 
             // groupBox1
@@ -112,9 +115,11 @@
             this.groupBox1.Controls.Add(this.txtbxEnVenta);
             this.groupBox1.Controls.Add(this.lblInmuebles);
             this.groupBox1.Controls.Add(this.txtbxInmuebles);
-            this.groupBox1.Location = new System.Drawing.Point(421, 68);
+            this.groupBox1.Location = new System.Drawing.Point(316, 55);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(229, 107);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(172, 87);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -122,35 +127,39 @@
             // lblAlquileres
             // 
             this.lblAlquileres.AutoSize = true;
-            this.lblAlquileres.Location = new System.Drawing.Point(0, 77);
+            this.lblAlquileres.Location = new System.Drawing.Point(0, 63);
+            this.lblAlquileres.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAlquileres.Name = "lblAlquileres";
-            this.lblAlquileres.Size = new System.Drawing.Size(104, 16);
+            this.lblAlquileres.Size = new System.Drawing.Size(82, 13);
             this.lblAlquileres.TabIndex = 7;
             this.lblAlquileres.Text = "Total Alquileres:";
             // 
             // txtbxAlquileres
             // 
-            this.txtbxAlquileres.Location = new System.Drawing.Point(186, 74);
+            this.txtbxAlquileres.Location = new System.Drawing.Point(140, 60);
+            this.txtbxAlquileres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtbxAlquileres.Name = "txtbxAlquileres";
             this.txtbxAlquileres.ReadOnly = true;
-            this.txtbxAlquileres.Size = new System.Drawing.Size(35, 22);
+            this.txtbxAlquileres.Size = new System.Drawing.Size(27, 20);
             this.txtbxAlquileres.TabIndex = 8;
             // 
             // lblEnVenta
             // 
             this.lblEnVenta.AutoSize = true;
-            this.lblEnVenta.Location = new System.Drawing.Point(0, 49);
+            this.lblEnVenta.Location = new System.Drawing.Point(0, 40);
+            this.lblEnVenta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEnVenta.Name = "lblEnVenta";
-            this.lblEnVenta.Size = new System.Drawing.Size(97, 16);
+            this.lblEnVenta.Size = new System.Drawing.Size(80, 13);
             this.lblEnVenta.TabIndex = 5;
             this.lblEnVenta.Text = "Total en Venta:";
             // 
             // txtbxEnVenta
             // 
-            this.txtbxEnVenta.Location = new System.Drawing.Point(186, 46);
+            this.txtbxEnVenta.Location = new System.Drawing.Point(140, 37);
+            this.txtbxEnVenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtbxEnVenta.Name = "txtbxEnVenta";
             this.txtbxEnVenta.ReadOnly = true;
-            this.txtbxEnVenta.Size = new System.Drawing.Size(35, 22);
+            this.txtbxEnVenta.Size = new System.Drawing.Size(27, 20);
             this.txtbxEnVenta.TabIndex = 6;
             // 
             // chart1
@@ -159,23 +168,25 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(143, 252);
+            this.chart1.Location = new System.Drawing.Point(107, 205);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
+            this.chart1.Size = new System.Drawing.Size(225, 244);
             this.chart1.TabIndex = 7;
             this.chart1.Text = "chart1";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(683, 278);
+            this.dataGridView1.Location = new System.Drawing.Point(512, 226);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(180, 122);
             this.dataGridView1.TabIndex = 8;
             // 
             // inicioToolStripMenuItem
@@ -387,24 +398,25 @@
             this.ayudaToolStripMenuItem});
             this.msPrincipal.Location = new System.Drawing.Point(0, 0);
             this.msPrincipal.Name = "msPrincipal";
-            this.msPrincipal.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.msPrincipal.Size = new System.Drawing.Size(970, 24);
+            this.msPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.msPrincipal.Size = new System.Drawing.Size(728, 24);
             this.msPrincipal.TabIndex = 6;
             this.msPrincipal.Text = "menuStrip1";
             // 
             // Principal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::InmoSolution.Properties.Resources.Principal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(970, 579);
+            this.ClientSize = new System.Drawing.Size(728, 470);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.msPrincipal);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblUltima);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Principal";
             this.Text = "Principal";
             this.groupBox1.ResumeLayout(false);
