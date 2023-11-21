@@ -57,7 +57,7 @@ namespace InmoSolution.Clases
         }
         public double CalcularNomina()
         {
-            double nomina = (this.SueldoBase + this.Comision) - ((this.SueldoBase + this.Comision)*IRPF)/100;
+            double nomina = (this.SueldoBase + this.Comision) - ((this.SueldoBase + this.Comision)/**IRPF*/)/100;
             return nomina;
         }
     }

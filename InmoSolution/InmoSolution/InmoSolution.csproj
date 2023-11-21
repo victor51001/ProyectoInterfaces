@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <PackageReference Include="MessagePack" Version="2.5.129" />
-    <PackageReference Include="System.Text.Json" Version="7.0.3" />
     <PackageReference Include="Tomlyn" Version="0.16.2" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.1" />
     <PackageReference Include="YamlDotNet" Version="13.7.1" />
