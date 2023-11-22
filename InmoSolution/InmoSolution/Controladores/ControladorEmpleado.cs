@@ -40,5 +40,35 @@ namespace InmoSolution.Controladores
             }
             catch (Exception) { }
         }
+
+        public static bool EsJefe(Usuario user)
+        {
+            foreach (Empleado emp in ListaEmpleados)
+            {
+                if (emp.Usuario.Id == user.Id)
+                {
+                    if (emp.Puesto == Puesto.Jefe)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool EsAdministrativo(Usuario user)
+        {
+            foreach (Empleado emp in ListaEmpleados)
+            {
+                if (emp.Usuario.Id == user.Id)
+                {
+                    if (emp.Puesto == Puesto.Administrativo)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

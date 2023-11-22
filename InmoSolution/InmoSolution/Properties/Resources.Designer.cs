@@ -63,6 +63,16 @@ namespace InmoSolution.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cambiar_contraseña {
+            get {
+                object obj = ResourceManager.GetObject("Cambiar_contraseña", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Crear_usuario {
             get {
                 object obj = ResourceManager.GetObject("Crear_usuario", resourceCulture);
@@ -83,9 +93,29 @@ namespace InmoSolution.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Lista_usuarios {
+            get {
+                object obj = ResourceManager.GetObject("Lista_usuarios", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Login {
             get {
                 object obj = ResourceManager.GetObject("Login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Modificar_usuarios {
+            get {
+                object obj = ResourceManager.GetObject("Modificar_usuarios", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

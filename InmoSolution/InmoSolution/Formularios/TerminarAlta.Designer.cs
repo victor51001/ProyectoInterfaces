@@ -37,7 +37,7 @@
             // lblPregunta
             // 
             lblPregunta.AutoSize = true;
-            lblPregunta.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPregunta.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblPregunta.Location = new Point(13, 84);
             lblPregunta.Margin = new Padding(4, 0, 4, 0);
             lblPregunta.Name = "lblPregunta";
@@ -48,7 +48,7 @@
             // bttnSi
             // 
             bttnSi.Cursor = Cursors.Hand;
-            bttnSi.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bttnSi.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             bttnSi.Location = new Point(33, 154);
             bttnSi.Margin = new Padding(4, 3, 4, 3);
             bttnSi.Name = "bttnSi";
@@ -62,7 +62,7 @@
             // 
             bttnNo.Cursor = Cursors.Hand;
             bttnNo.DialogResult = DialogResult.Cancel;
-            bttnNo.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bttnNo.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             bttnNo.Location = new Point(192, 154);
             bttnNo.Margin = new Padding(4, 3, 4, 3);
             bttnNo.Name = "bttnNo";
@@ -81,7 +81,7 @@
             BackgroundImage = InmoSolution.Properties.Resources.Terminar_alta;
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = bttnNo;
-            ClientSize = new Size(317, 235);
+            ClientSize = new Size(317, 245);
             Controls.Add(bttnNo);
             Controls.Add(bttnSi);
             Controls.Add(lblPregunta);

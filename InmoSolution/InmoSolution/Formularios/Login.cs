@@ -11,13 +11,6 @@ namespace InmoSolution
             InitializeComponent();
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            Color backColorSesion = Color.FromArgb(128, Color.WhiteSmoke);
-            lblSesion.BackColor = backColorSesion;
-            Color backColorLink = Color.FromArgb(156, Color.LightGoldenrodYellow);
-            lbllnkCrear.BackColor = backColorLink;
-        }
         private Boolean ValidaUsuario()
         {
             int posicion = ControladorUsuario.ListaUsuarios.FindIndex(x => x.Nombre == txtbxUsuario.Text.ToLower());
@@ -33,18 +26,18 @@ namespace InmoSolution
 
         private void lbllnkCrear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            NuevoUsuario frmNU = new NuevoUsuario();
-            frmNU.ShowDialog();
+            NuevoUsuario frmNuevoUsuario = new NuevoUsuario();
+            frmNuevoUsuario.ShowDialog();
         }
 
         private int vueltas = 0;
         private void bttnEntrar_Click(object sender, EventArgs e)
         {
-            if (ValidaUsuario())
+            if (ControladorUsuario.existeUsuario(txtbxUsuario.Text, txtbxClave.Text))
             {
                 txtbxUsuario.Clear();
                 txtbxClave.Clear();
-                Principal FrmP = new Principal();
+                Principal FrmP = new Principal(ControladorUsuario.GetUsuario(txtbxUsuario.Text));
                 FrmP.ShowDialog();
                 Close();
             }

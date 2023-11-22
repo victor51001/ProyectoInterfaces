@@ -9,6 +9,7 @@ namespace InmoSolution.Clases
     public enum Puesto
     {
         Administrador,
+        Administrativo,
         Agente,
         Jefe
     }

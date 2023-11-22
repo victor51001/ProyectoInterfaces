@@ -17,7 +17,7 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                string yamlString = File.ReadAllText("cliente.yml");
+                string yamlString = File.ReadAllText("clientes.yml");
                 var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
@@ -34,7 +34,7 @@ namespace InmoSolution.Controladores
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
                 string yamlString = serializer.Serialize(ListaClientes);
-                File.WriteAllText("cliente.yml", yamlString);
+                File.WriteAllText("clientes.yml", yamlString);
             }
             catch (Exception)
             { }

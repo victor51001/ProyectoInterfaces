@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="MessagePack" Version="2.5.129" />
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
     <PackageReference Include="Tomlyn" Version="0.16.2" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.1" />
     <PackageReference Include="YamlDotNet" Version="13.7.1" />
@@ -55,6 +57,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Formularios\Empleado\" />
   </ItemGroup>
 
 </Project>

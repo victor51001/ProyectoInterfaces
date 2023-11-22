@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Color backColorSesion = Color.FromArgb(128, Color.WhiteSmoke);
+            Color backColorLink = Color.FromArgb(156, Color.LightGoldenrodYellow);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             lblSesion = new Label();
             txtbxUsuario = new TextBox();
@@ -38,7 +40,7 @@
             // 
             // lblSesion
             // 
-            lblSesion.BackColor = Color.WhiteSmoke;
+            lblSesion.BackColor = backColorSesion;
             lblSesion.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold);
             lblSesion.ForeColor = SystemColors.ControlText;
             lblSesion.Location = new Point(113, 74);
@@ -73,7 +75,7 @@
             // lbllnkCrear
             // 
             lbllnkCrear.AutoSize = true;
-            lbllnkCrear.BackColor = Color.IndianRed;
+            lbllnkCrear.BackColor = backColorLink;
             lbllnkCrear.Cursor = Cursors.Hand;
             lbllnkCrear.ForeColor = SystemColors.ControlText;
             lbllnkCrear.Location = new Point(12, 311);
@@ -114,7 +116,6 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar sesion";
-            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

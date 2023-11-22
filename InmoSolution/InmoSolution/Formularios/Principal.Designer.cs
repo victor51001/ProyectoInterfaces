@@ -32,402 +32,394 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
-            this.lblUltima = new System.Windows.Forms.Label();
-            this.lblInmuebles = new System.Windows.Forms.Label();
-            this.txtbxInmuebles = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblAlquileres = new System.Windows.Forms.Label();
-            this.txtbxAlquileres = new System.Windows.Forms.TextBox();
-            this.lblEnVenta = new System.Windows.Forms.Label();
-            this.txtbxEnVenta = new System.Windows.Forms.TextBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.perfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buscarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ofertasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alquileresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaDeAlquileresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoAlquilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaDeEnVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoEnVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buscarInmuebleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.visitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaDeVisitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevaVisitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buscarVisitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaEmpleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buscarEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.msPrincipal = new System.Windows.Forms.MenuStrip();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.msPrincipal.SuspendLayout();
-            this.SuspendLayout();
+            lblUltima = new Label();
+            lblInmuebles = new Label();
+            txtbxInmuebles = new TextBox();
+            groupBox1 = new GroupBox();
+            lblAlquileres = new Label();
+            txtbxAlquileres = new TextBox();
+            lblEnVenta = new Label();
+            txtbxEnVenta = new TextBox();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            dataGridView1 = new DataGridView();
+            tsmiInicio = new ToolStripMenuItem();
+            tsmiPerfil = new ToolStripMenuItem();
+            tsmiCerrar = new ToolStripMenuItem();
+            tsmiClientes = new ToolStripMenuItem();
+            tsmiListaClientes = new ToolStripMenuItem();
+            tsmiNuevoCliente = new ToolStripMenuItem();
+            tsmiBuscarCliente = new ToolStripMenuItem();
+            tsmiInmuebles = new ToolStripMenuItem();
+            tsmiAlquileres = new ToolStripMenuItem();
+            tsmiListaAlquileres = new ToolStripMenuItem();
+            tsmiNuevoAlquiler = new ToolStripMenuItem();
+            tsmiEnVenta = new ToolStripMenuItem();
+            tsmiListaEnVenta = new ToolStripMenuItem();
+            tsmiNuevoEnVenta = new ToolStripMenuItem();
+            tsmiBuscarInmuebles = new ToolStripMenuItem();
+            tsmiListaVisitas = new ToolStripMenuItem();
+            listaDeVisitasToolStripMenuItem = new ToolStripMenuItem();
+            tsmiNuevaVisita = new ToolStripMenuItem();
+            tsmiBuscarVisita = new ToolStripMenuItem();
+            tsmiEmpleados = new ToolStripMenuItem();
+            tsmiListaEmpleados = new ToolStripMenuItem();
+            tsmiNuevoEmpleado = new ToolStripMenuItem();
+            tsmiBuscarEmpleado = new ToolStripMenuItem();
+            tsmiUsuarios = new ToolStripMenuItem();
+            listadoDeUsuariosToolStripMenuItem = new ToolStripMenuItem();
+            nuevoUsuarioToolStripMenuItem = new ToolStripMenuItem();
+            tsmiConfiguracion = new ToolStripMenuItem();
+            tsmiAyuda = new ToolStripMenuItem();
+            tsmiDocumentacion = new ToolStripMenuItem();
+            tsmiAcercaDe = new ToolStripMenuItem();
+            msPrincipal = new MenuStrip();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            msPrincipal.SuspendLayout();
+            SuspendLayout();
             // 
             // lblUltima
             // 
-            this.lblUltima.AutoSize = true;
-            this.lblUltima.Location = new System.Drawing.Point(530, 187);
-            this.lblUltima.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblUltima.Name = "lblUltima";
-            this.lblUltima.Size = new System.Drawing.Size(114, 13);
-            this.lblUltima.TabIndex = 2;
-            this.lblUltima.Text = "Ultimas Transacciones";
+            lblUltima.AutoSize = true;
+            lblUltima.Location = new Point(618, 216);
+            lblUltima.Margin = new Padding(2, 0, 2, 0);
+            lblUltima.Name = "lblUltima";
+            lblUltima.Size = new Size(123, 15);
+            lblUltima.TabIndex = 2;
+            lblUltima.Text = "Ultimas Transacciones";
             // 
             // lblInmuebles
             // 
-            this.lblInmuebles.AutoSize = true;
-            this.lblInmuebles.Location = new System.Drawing.Point(0, 16);
-            this.lblInmuebles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblInmuebles.Name = "lblInmuebles";
-            this.lblInmuebles.Size = new System.Drawing.Size(85, 13);
-            this.lblInmuebles.TabIndex = 3;
-            this.lblInmuebles.Text = "Total Inmuebles:";
+            lblInmuebles.AutoSize = true;
+            lblInmuebles.Location = new Point(0, 18);
+            lblInmuebles.Margin = new Padding(2, 0, 2, 0);
+            lblInmuebles.Name = "lblInmuebles";
+            lblInmuebles.Size = new Size(93, 15);
+            lblInmuebles.TabIndex = 3;
+            lblInmuebles.Text = "Total Inmuebles:";
             // 
             // txtbxInmuebles
             // 
-            this.txtbxInmuebles.Location = new System.Drawing.Point(140, 14);
-            this.txtbxInmuebles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtbxInmuebles.Name = "txtbxInmuebles";
-            this.txtbxInmuebles.ReadOnly = true;
-            this.txtbxInmuebles.Size = new System.Drawing.Size(27, 20);
-            this.txtbxInmuebles.TabIndex = 4;
+            txtbxInmuebles.Location = new Point(163, 16);
+            txtbxInmuebles.Margin = new Padding(2);
+            txtbxInmuebles.Name = "txtbxInmuebles";
+            txtbxInmuebles.ReadOnly = true;
+            txtbxInmuebles.Size = new Size(31, 23);
+            txtbxInmuebles.TabIndex = 4;
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.YellowGreen;
-            this.groupBox1.Controls.Add(this.lblAlquileres);
-            this.groupBox1.Controls.Add(this.txtbxAlquileres);
-            this.groupBox1.Controls.Add(this.lblEnVenta);
-            this.groupBox1.Controls.Add(this.txtbxEnVenta);
-            this.groupBox1.Controls.Add(this.lblInmuebles);
-            this.groupBox1.Controls.Add(this.txtbxInmuebles);
-            this.groupBox1.Location = new System.Drawing.Point(316, 55);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(172, 87);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            groupBox1.BackColor = Color.YellowGreen;
+            groupBox1.Controls.Add(lblAlquileres);
+            groupBox1.Controls.Add(txtbxAlquileres);
+            groupBox1.Controls.Add(lblEnVenta);
+            groupBox1.Controls.Add(txtbxEnVenta);
+            groupBox1.Controls.Add(lblInmuebles);
+            groupBox1.Controls.Add(txtbxInmuebles);
+            groupBox1.Location = new Point(369, 63);
+            groupBox1.Margin = new Padding(2);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(2);
+            groupBox1.Size = new Size(201, 100);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
             // 
             // lblAlquileres
             // 
-            this.lblAlquileres.AutoSize = true;
-            this.lblAlquileres.Location = new System.Drawing.Point(0, 63);
-            this.lblAlquileres.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblAlquileres.Name = "lblAlquileres";
-            this.lblAlquileres.Size = new System.Drawing.Size(82, 13);
-            this.lblAlquileres.TabIndex = 7;
-            this.lblAlquileres.Text = "Total Alquileres:";
+            lblAlquileres.AutoSize = true;
+            lblAlquileres.Location = new Point(0, 73);
+            lblAlquileres.Margin = new Padding(2, 0, 2, 0);
+            lblAlquileres.Name = "lblAlquileres";
+            lblAlquileres.Size = new Size(90, 15);
+            lblAlquileres.TabIndex = 7;
+            lblAlquileres.Text = "Total Alquileres:";
             // 
             // txtbxAlquileres
             // 
-            this.txtbxAlquileres.Location = new System.Drawing.Point(140, 60);
-            this.txtbxAlquileres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtbxAlquileres.Name = "txtbxAlquileres";
-            this.txtbxAlquileres.ReadOnly = true;
-            this.txtbxAlquileres.Size = new System.Drawing.Size(27, 20);
-            this.txtbxAlquileres.TabIndex = 8;
+            txtbxAlquileres.Location = new Point(163, 69);
+            txtbxAlquileres.Margin = new Padding(2);
+            txtbxAlquileres.Name = "txtbxAlquileres";
+            txtbxAlquileres.ReadOnly = true;
+            txtbxAlquileres.Size = new Size(31, 23);
+            txtbxAlquileres.TabIndex = 8;
             // 
             // lblEnVenta
             // 
-            this.lblEnVenta.AutoSize = true;
-            this.lblEnVenta.Location = new System.Drawing.Point(0, 40);
-            this.lblEnVenta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEnVenta.Name = "lblEnVenta";
-            this.lblEnVenta.Size = new System.Drawing.Size(80, 13);
-            this.lblEnVenta.TabIndex = 5;
-            this.lblEnVenta.Text = "Total en Venta:";
+            lblEnVenta.AutoSize = true;
+            lblEnVenta.Location = new Point(0, 46);
+            lblEnVenta.Margin = new Padding(2, 0, 2, 0);
+            lblEnVenta.Name = "lblEnVenta";
+            lblEnVenta.Size = new Size(83, 15);
+            lblEnVenta.TabIndex = 5;
+            lblEnVenta.Text = "Total en Venta:";
             // 
             // txtbxEnVenta
             // 
-            this.txtbxEnVenta.Location = new System.Drawing.Point(140, 37);
-            this.txtbxEnVenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtbxEnVenta.Name = "txtbxEnVenta";
-            this.txtbxEnVenta.ReadOnly = true;
-            this.txtbxEnVenta.Size = new System.Drawing.Size(27, 20);
-            this.txtbxEnVenta.TabIndex = 6;
+            txtbxEnVenta.Location = new Point(163, 43);
+            txtbxEnVenta.Margin = new Padding(2);
+            txtbxEnVenta.Name = "txtbxEnVenta";
+            txtbxEnVenta.ReadOnly = true;
+            txtbxEnVenta.Size = new Size(31, 23);
+            txtbxEnVenta.TabIndex = 6;
             // 
             // chart1
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(107, 205);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chart1.Name = "chart1";
+            chart1.Legends.Add(legend1);
+            chart1.Location = new Point(125, 237);
+            chart1.Margin = new Padding(2);
+            chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(225, 244);
-            this.chart1.TabIndex = 7;
-            this.chart1.Text = "chart1";
+            chart1.Series.Add(series1);
+            chart1.Size = new Size(262, 282);
+            chart1.TabIndex = 7;
+            chart1.Text = "chart1";
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(512, 226);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(180, 122);
-            this.dataGridView1.TabIndex = 8;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(597, 261);
+            dataGridView1.Margin = new Padding(2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 24;
+            dataGridView1.Size = new Size(210, 141);
+            dataGridView1.TabIndex = 8;
             // 
-            // inicioToolStripMenuItem
+            // tsmiInicio
             // 
-            this.inicioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.perfilToolStripMenuItem,
-            this.cerrarSesionToolStripMenuItem});
-            this.inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
-            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.inicioToolStripMenuItem.Text = "Inicio";
+            tsmiInicio.DropDownItems.AddRange(new ToolStripItem[] { tsmiPerfil, tsmiCerrar });
+            tsmiInicio.Name = "tsmiInicio";
+            tsmiInicio.Size = new Size(48, 20);
+            tsmiInicio.Text = "Inicio";
             // 
-            // perfilToolStripMenuItem
+            // tsmiPerfil
             // 
-            this.perfilToolStripMenuItem.Name = "perfilToolStripMenuItem";
-            this.perfilToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.perfilToolStripMenuItem.Text = "Perfil";
+            tsmiPerfil.Name = "tsmiPerfil";
+            tsmiPerfil.Size = new Size(142, 22);
+            tsmiPerfil.Text = "Perfil";
+            tsmiPerfil.Click += tsmiPerfil_Click;
             // 
-            // cerrarSesionToolStripMenuItem
+            // tsmiCerrar
             // 
-            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
+            tsmiCerrar.Name = "tsmiCerrar";
+            tsmiCerrar.Size = new Size(142, 22);
+            tsmiCerrar.Text = "Cerrar sesion";
+            tsmiCerrar.Click += tsmiCerrar_Click;
             // 
-            // clientesToolStripMenuItem
+            // tsmiClientes
             // 
-            this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaDeClientesToolStripMenuItem,
-            this.agregarClienteToolStripMenuItem,
-            this.buscarClienteToolStripMenuItem});
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.clientesToolStripMenuItem.Text = "Clientes";
+            tsmiClientes.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaClientes, tsmiNuevoCliente, tsmiBuscarCliente });
+            tsmiClientes.Name = "tsmiClientes";
+            tsmiClientes.Size = new Size(61, 20);
+            tsmiClientes.Text = "Clientes";
             // 
-            // listaDeClientesToolStripMenuItem
+            // tsmiListaClientes
             // 
-            this.listaDeClientesToolStripMenuItem.Name = "listaDeClientesToolStripMenuItem";
-            this.listaDeClientesToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.listaDeClientesToolStripMenuItem.Text = "Lista de Clientes";
+            tsmiListaClientes.Name = "tsmiListaClientes";
+            tsmiListaClientes.Size = new Size(159, 22);
+            tsmiListaClientes.Text = "Lista de Clientes";
             // 
-            // agregarClienteToolStripMenuItem
+            // tsmiNuevoCliente
             // 
-            this.agregarClienteToolStripMenuItem.Name = "agregarClienteToolStripMenuItem";
-            this.agregarClienteToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.agregarClienteToolStripMenuItem.Text = "Agregar Cliente";
+            tsmiNuevoCliente.Name = "tsmiNuevoCliente";
+            tsmiNuevoCliente.Size = new Size(159, 22);
+            tsmiNuevoCliente.Text = "Nuevo Cliente";
             // 
-            // buscarClienteToolStripMenuItem
+            // tsmiBuscarCliente
             // 
-            this.buscarClienteToolStripMenuItem.Name = "buscarClienteToolStripMenuItem";
-            this.buscarClienteToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.buscarClienteToolStripMenuItem.Text = "Buscar Cliente";
+            tsmiBuscarCliente.Name = "tsmiBuscarCliente";
+            tsmiBuscarCliente.Size = new Size(159, 22);
+            tsmiBuscarCliente.Text = "Buscar Cliente";
             // 
-            // ofertasToolStripMenuItem
+            // tsmiInmuebles
             // 
-            this.ofertasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alquileresToolStripMenuItem,
-            this.enVentaToolStripMenuItem,
-            this.buscarInmuebleToolStripMenuItem});
-            this.ofertasToolStripMenuItem.Name = "ofertasToolStripMenuItem";
-            this.ofertasToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.ofertasToolStripMenuItem.Text = "Inmuebles";
+            tsmiInmuebles.DropDownItems.AddRange(new ToolStripItem[] { tsmiAlquileres, tsmiEnVenta, tsmiBuscarInmuebles });
+            tsmiInmuebles.Name = "tsmiInmuebles";
+            tsmiInmuebles.Size = new Size(74, 20);
+            tsmiInmuebles.Text = "Inmuebles";
             // 
-            // alquileresToolStripMenuItem
+            // tsmiAlquileres
             // 
-            this.alquileresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaDeAlquileresToolStripMenuItem,
-            this.nuevoAlquilerToolStripMenuItem});
-            this.alquileresToolStripMenuItem.Name = "alquileresToolStripMenuItem";
-            this.alquileresToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.alquileresToolStripMenuItem.Text = "Alquileres";
+            tsmiAlquileres.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaAlquileres, tsmiNuevoAlquiler });
+            tsmiAlquileres.Name = "tsmiAlquileres";
+            tsmiAlquileres.Size = new Size(162, 22);
+            tsmiAlquileres.Text = "Alquileres";
             // 
-            // listaDeAlquileresToolStripMenuItem
+            // tsmiListaAlquileres
             // 
-            this.listaDeAlquileresToolStripMenuItem.Name = "listaDeAlquileresToolStripMenuItem";
-            this.listaDeAlquileresToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.listaDeAlquileresToolStripMenuItem.Text = "Lista de Alquileres";
+            tsmiListaAlquileres.Name = "tsmiListaAlquileres";
+            tsmiListaAlquileres.Size = new Size(169, 22);
+            tsmiListaAlquileres.Text = "Lista de Alquileres";
             // 
-            // nuevoAlquilerToolStripMenuItem
+            // tsmiNuevoAlquiler
             // 
-            this.nuevoAlquilerToolStripMenuItem.Name = "nuevoAlquilerToolStripMenuItem";
-            this.nuevoAlquilerToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.nuevoAlquilerToolStripMenuItem.Text = "Nuevo Alquiler";
+            tsmiNuevoAlquiler.Name = "tsmiNuevoAlquiler";
+            tsmiNuevoAlquiler.Size = new Size(169, 22);
+            tsmiNuevoAlquiler.Text = "Nuevo Alquiler";
             // 
-            // enVentaToolStripMenuItem
+            // tsmiEnVenta
             // 
-            this.enVentaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaDeEnVentaToolStripMenuItem,
-            this.nuevoEnVentaToolStripMenuItem});
-            this.enVentaToolStripMenuItem.Name = "enVentaToolStripMenuItem";
-            this.enVentaToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.enVentaToolStripMenuItem.Text = "En venta";
+            tsmiEnVenta.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaEnVenta, tsmiNuevoEnVenta });
+            tsmiEnVenta.Name = "tsmiEnVenta";
+            tsmiEnVenta.Size = new Size(162, 22);
+            tsmiEnVenta.Text = "En venta";
             // 
-            // listaDeEnVentaToolStripMenuItem
+            // tsmiListaEnVenta
             // 
-            this.listaDeEnVentaToolStripMenuItem.Name = "listaDeEnVentaToolStripMenuItem";
-            this.listaDeEnVentaToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.listaDeEnVentaToolStripMenuItem.Text = "Lista en Venta";
+            tsmiListaEnVenta.Name = "tsmiListaEnVenta";
+            tsmiListaEnVenta.Size = new Size(157, 22);
+            tsmiListaEnVenta.Text = "Lista en Venta";
             // 
-            // nuevoEnVentaToolStripMenuItem
+            // tsmiNuevoEnVenta
             // 
-            this.nuevoEnVentaToolStripMenuItem.Name = "nuevoEnVentaToolStripMenuItem";
-            this.nuevoEnVentaToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.nuevoEnVentaToolStripMenuItem.Text = "Nuevo en Venta";
+            tsmiNuevoEnVenta.Name = "tsmiNuevoEnVenta";
+            tsmiNuevoEnVenta.Size = new Size(157, 22);
+            tsmiNuevoEnVenta.Text = "Nuevo en Venta";
             // 
-            // buscarInmuebleToolStripMenuItem
+            // tsmiBuscarInmuebles
             // 
-            this.buscarInmuebleToolStripMenuItem.Name = "buscarInmuebleToolStripMenuItem";
-            this.buscarInmuebleToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.buscarInmuebleToolStripMenuItem.Text = "Buscar Inmueble";
+            tsmiBuscarInmuebles.Name = "tsmiBuscarInmuebles";
+            tsmiBuscarInmuebles.Size = new Size(162, 22);
+            tsmiBuscarInmuebles.Text = "Buscar Inmueble";
             // 
-            // visitasToolStripMenuItem
+            // tsmiListaVisitas
             // 
-            this.visitasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaDeVisitasToolStripMenuItem,
-            this.nuevaVisitaToolStripMenuItem,
-            this.buscarVisitaToolStripMenuItem});
-            this.visitasToolStripMenuItem.Name = "visitasToolStripMenuItem";
-            this.visitasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.visitasToolStripMenuItem.Text = "Visitas";
+            tsmiListaVisitas.DropDownItems.AddRange(new ToolStripItem[] { listaDeVisitasToolStripMenuItem, tsmiNuevaVisita, tsmiBuscarVisita });
+            tsmiListaVisitas.Name = "tsmiListaVisitas";
+            tsmiListaVisitas.Size = new Size(52, 20);
+            tsmiListaVisitas.Text = "Visitas";
             // 
             // listaDeVisitasToolStripMenuItem
             // 
-            this.listaDeVisitasToolStripMenuItem.Name = "listaDeVisitasToolStripMenuItem";
-            this.listaDeVisitasToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.listaDeVisitasToolStripMenuItem.Text = "Lista de Visitas";
+            listaDeVisitasToolStripMenuItem.Name = "listaDeVisitasToolStripMenuItem";
+            listaDeVisitasToolStripMenuItem.Size = new Size(150, 22);
+            listaDeVisitasToolStripMenuItem.Text = "Lista de Visitas";
             // 
-            // nuevaVisitaToolStripMenuItem
+            // tsmiNuevaVisita
             // 
-            this.nuevaVisitaToolStripMenuItem.Name = "nuevaVisitaToolStripMenuItem";
-            this.nuevaVisitaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.nuevaVisitaToolStripMenuItem.Text = "Nueva Visita";
+            tsmiNuevaVisita.Name = "tsmiNuevaVisita";
+            tsmiNuevaVisita.Size = new Size(150, 22);
+            tsmiNuevaVisita.Text = "Nueva Visita";
             // 
-            // buscarVisitaToolStripMenuItem
+            // tsmiBuscarVisita
             // 
-            this.buscarVisitaToolStripMenuItem.Name = "buscarVisitaToolStripMenuItem";
-            this.buscarVisitaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.buscarVisitaToolStripMenuItem.Text = "Buscar Visita";
+            tsmiBuscarVisita.Name = "tsmiBuscarVisita";
+            tsmiBuscarVisita.Size = new Size(150, 22);
+            tsmiBuscarVisita.Text = "Buscar Visita";
             // 
-            // empleadosToolStripMenuItem
+            // tsmiEmpleados
             // 
-            this.empleadosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaEmpleadosToolStripMenuItem,
-            this.nuevoEmpleadoToolStripMenuItem,
-            this.buscarEmpleadoToolStripMenuItem});
-            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.empleadosToolStripMenuItem.Text = "Empleados";
+            tsmiEmpleados.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaEmpleados, tsmiNuevoEmpleado, tsmiBuscarEmpleado });
+            tsmiEmpleados.Name = "tsmiEmpleados";
+            tsmiEmpleados.Size = new Size(77, 20);
+            tsmiEmpleados.Text = "Empleados";
+            tsmiEmpleados.Visible = false;
             // 
-            // listaEmpleadosToolStripMenuItem
+            // tsmiListaEmpleados
             // 
-            this.listaEmpleadosToolStripMenuItem.Name = "listaEmpleadosToolStripMenuItem";
-            this.listaEmpleadosToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.listaEmpleadosToolStripMenuItem.Text = "Lista Empleados";
+            tsmiListaEmpleados.Name = "tsmiListaEmpleados";
+            tsmiListaEmpleados.Size = new Size(165, 22);
+            tsmiListaEmpleados.Text = "Lista Empleados";
             // 
-            // nuevoEmpleadoToolStripMenuItem
+            // tsmiNuevoEmpleado
             // 
-            this.nuevoEmpleadoToolStripMenuItem.Name = "nuevoEmpleadoToolStripMenuItem";
-            this.nuevoEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.nuevoEmpleadoToolStripMenuItem.Text = "Nuevo Empleado";
+            tsmiNuevoEmpleado.Name = "tsmiNuevoEmpleado";
+            tsmiNuevoEmpleado.Size = new Size(165, 22);
+            tsmiNuevoEmpleado.Text = "Nuevo Empleado";
             // 
-            // buscarEmpleadoToolStripMenuItem
+            // tsmiBuscarEmpleado
             // 
-            this.buscarEmpleadoToolStripMenuItem.Name = "buscarEmpleadoToolStripMenuItem";
-            this.buscarEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.buscarEmpleadoToolStripMenuItem.Text = "Buscar Empleado";
+            tsmiBuscarEmpleado.Name = "tsmiBuscarEmpleado";
+            tsmiBuscarEmpleado.Size = new Size(165, 22);
+            tsmiBuscarEmpleado.Text = "Buscar Empleado";
             // 
-            // usuariosToolStripMenuItem
+            // tsmiUsuarios
             // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            tsmiUsuarios.DropDownItems.AddRange(new ToolStripItem[] { listadoDeUsuariosToolStripMenuItem, nuevoUsuarioToolStripMenuItem });
+            tsmiUsuarios.Name = "tsmiUsuarios";
+            tsmiUsuarios.Size = new Size(64, 20);
+            tsmiUsuarios.Text = "Usuarios";
+            tsmiUsuarios.Visible = false;
             // 
-            // configuracionToolStripMenuItem
+            // listadoDeUsuariosToolStripMenuItem
             // 
-            this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
-            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.configuracionToolStripMenuItem.Text = "Configuracion";
+            listadoDeUsuariosToolStripMenuItem.Name = "listadoDeUsuariosToolStripMenuItem";
+            listadoDeUsuariosToolStripMenuItem.Size = new Size(176, 22);
+            listadoDeUsuariosToolStripMenuItem.Text = "Listado de Usuarios";
+            listadoDeUsuariosToolStripMenuItem.Click += listadoDeUsuariosToolStripMenuItem_Click;
             // 
-            // ayudaToolStripMenuItem
+            // nuevoUsuarioToolStripMenuItem
             // 
-            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.documentaciónToolStripMenuItem,
-            this.acercaDeToolStripMenuItem});
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
+            nuevoUsuarioToolStripMenuItem.Size = new Size(176, 22);
+            nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
+            nuevoUsuarioToolStripMenuItem.Click += nuevoUsuarioToolStripMenuItem_Click;
             // 
-            // documentaciónToolStripMenuItem
+            // tsmiConfiguracion
             // 
-            this.documentaciónToolStripMenuItem.Name = "documentaciónToolStripMenuItem";
-            this.documentaciónToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.documentaciónToolStripMenuItem.Text = "Documentación";
+            tsmiConfiguracion.Name = "tsmiConfiguracion";
+            tsmiConfiguracion.Size = new Size(95, 20);
+            tsmiConfiguracion.Text = "Configuracion";
             // 
-            // acercaDeToolStripMenuItem
+            // tsmiAyuda
             // 
-            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.acercaDeToolStripMenuItem.Text = "Acerca de";
+            tsmiAyuda.DropDownItems.AddRange(new ToolStripItem[] { tsmiDocumentacion, tsmiAcercaDe });
+            tsmiAyuda.Name = "tsmiAyuda";
+            tsmiAyuda.Size = new Size(53, 20);
+            tsmiAyuda.Text = "Ayuda";
+            // 
+            // tsmiDocumentacion
+            // 
+            tsmiDocumentacion.Name = "tsmiDocumentacion";
+            tsmiDocumentacion.Size = new Size(159, 22);
+            tsmiDocumentacion.Text = "Documentación";
+            // 
+            // tsmiAcercaDe
+            // 
+            tsmiAcercaDe.Name = "tsmiAcercaDe";
+            tsmiAcercaDe.Size = new Size(159, 22);
+            tsmiAcercaDe.Text = "Acerca de";
             // 
             // msPrincipal
             // 
-            this.msPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inicioToolStripMenuItem,
-            this.clientesToolStripMenuItem,
-            this.ofertasToolStripMenuItem,
-            this.visitasToolStripMenuItem,
-            this.empleadosToolStripMenuItem,
-            this.usuariosToolStripMenuItem,
-            this.configuracionToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
-            this.msPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.msPrincipal.Name = "msPrincipal";
-            this.msPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.msPrincipal.Size = new System.Drawing.Size(728, 24);
-            this.msPrincipal.TabIndex = 6;
-            this.msPrincipal.Text = "menuStrip1";
+            msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, tsmiListaVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
+            msPrincipal.Location = new Point(0, 0);
+            msPrincipal.Name = "msPrincipal";
+            msPrincipal.Size = new Size(849, 24);
+            msPrincipal.TabIndex = 6;
+            msPrincipal.Text = "menuStrip1";
             // 
             // Principal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::InmoSolution.Properties.Resources.Principal;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(728, 470);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.chart1);
-            this.Controls.Add(this.msPrincipal);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblUltima);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Principal";
-            this.Text = "Principal";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.msPrincipal.ResumeLayout(false);
-            this.msPrincipal.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.Principal;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(849, 542);
+            Controls.Add(dataGridView1);
+            Controls.Add(chart1);
+            Controls.Add(msPrincipal);
+            Controls.Add(groupBox1);
+            Controls.Add(lblUltima);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
+            Name = "Principal";
+            Text = "Principal";
+            Load += Principal_Load;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            msPrincipal.ResumeLayout(false);
+            msPrincipal.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -441,34 +433,36 @@
         private TextBox txtbxAlquileres;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private DataGridView dataGridView1;
-        private ToolStripMenuItem inicioToolStripMenuItem;
-        private ToolStripMenuItem perfilToolStripMenuItem;
-        private ToolStripMenuItem cerrarSesionToolStripMenuItem;
-        private ToolStripMenuItem clientesToolStripMenuItem;
-        private ToolStripMenuItem listaDeClientesToolStripMenuItem;
-        private ToolStripMenuItem agregarClienteToolStripMenuItem;
-        private ToolStripMenuItem buscarClienteToolStripMenuItem;
-        private ToolStripMenuItem ofertasToolStripMenuItem;
-        private ToolStripMenuItem alquileresToolStripMenuItem;
-        private ToolStripMenuItem listaDeAlquileresToolStripMenuItem;
-        private ToolStripMenuItem nuevoAlquilerToolStripMenuItem;
-        private ToolStripMenuItem enVentaToolStripMenuItem;
-        private ToolStripMenuItem listaDeEnVentaToolStripMenuItem;
-        private ToolStripMenuItem nuevoEnVentaToolStripMenuItem;
-        private ToolStripMenuItem buscarInmuebleToolStripMenuItem;
-        private ToolStripMenuItem visitasToolStripMenuItem;
+        private ToolStripMenuItem tsmiInicio;
+        private ToolStripMenuItem tsmiPerfil;
+        private ToolStripMenuItem tsmiCerrar;
+        private ToolStripMenuItem tsmiClientes;
+        private ToolStripMenuItem tsmiListaClientes;
+        private ToolStripMenuItem tsmiNuevoCliente;
+        private ToolStripMenuItem tsmiBuscarCliente;
+        private ToolStripMenuItem tsmiInmuebles;
+        private ToolStripMenuItem tsmiAlquileres;
+        private ToolStripMenuItem tsmiListaAlquileres;
+        private ToolStripMenuItem tsmiNuevoAlquiler;
+        private ToolStripMenuItem tsmiEnVenta;
+        private ToolStripMenuItem tsmiListaEnVenta;
+        private ToolStripMenuItem tsmiNuevoEnVenta;
+        private ToolStripMenuItem tsmiBuscarInmuebles;
+        private ToolStripMenuItem tsmiListaVisitas;
         private ToolStripMenuItem listaDeVisitasToolStripMenuItem;
-        private ToolStripMenuItem nuevaVisitaToolStripMenuItem;
-        private ToolStripMenuItem buscarVisitaToolStripMenuItem;
-        private ToolStripMenuItem empleadosToolStripMenuItem;
-        private ToolStripMenuItem listaEmpleadosToolStripMenuItem;
-        private ToolStripMenuItem nuevoEmpleadoToolStripMenuItem;
-        private ToolStripMenuItem buscarEmpleadoToolStripMenuItem;
-        private ToolStripMenuItem usuariosToolStripMenuItem;
-        private ToolStripMenuItem configuracionToolStripMenuItem;
-        private ToolStripMenuItem ayudaToolStripMenuItem;
-        private ToolStripMenuItem documentaciónToolStripMenuItem;
-        private ToolStripMenuItem acercaDeToolStripMenuItem;
+        private ToolStripMenuItem tsmiNuevaVisita;
+        private ToolStripMenuItem tsmiBuscarVisita;
+        private ToolStripMenuItem tsmiEmpleados;
+        private ToolStripMenuItem tsmiListaEmpleados;
+        private ToolStripMenuItem tsmiNuevoEmpleado;
+        private ToolStripMenuItem tsmiBuscarEmpleado;
+        private ToolStripMenuItem tsmiUsuarios;
+        private ToolStripMenuItem tsmiConfiguracion;
+        private ToolStripMenuItem tsmiAyuda;
+        private ToolStripMenuItem tsmiDocumentacion;
+        private ToolStripMenuItem tsmiAcercaDe;
         private MenuStrip msPrincipal;
+        private ToolStripMenuItem listadoDeUsuariosToolStripMenuItem;
+        private ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
     }
 }
