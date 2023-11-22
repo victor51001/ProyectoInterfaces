@@ -82,7 +82,7 @@
             // lblUltima
             // 
             lblUltima.AutoSize = true;
-            lblUltima.Location = new Point(618, 216);
+            lblUltima.Location = new Point(576, 332);
             lblUltima.Margin = new Padding(2, 0, 2, 0);
             lblUltima.Name = "lblUltima";
             lblUltima.Size = new Size(123, 15);
@@ -117,7 +117,7 @@
             groupBox1.Controls.Add(txtbxEnVenta);
             groupBox1.Controls.Add(lblInmuebles);
             groupBox1.Controls.Add(txtbxInmuebles);
-            groupBox1.Location = new Point(369, 63);
+            groupBox1.Location = new Point(514, 75);
             groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(2);
@@ -170,7 +170,7 @@
             chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             chart1.Legends.Add(legend1);
-            chart1.Location = new Point(125, 237);
+            chart1.Location = new Point(21, 310);
             chart1.Margin = new Padding(2);
             chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
@@ -184,7 +184,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(597, 261);
+            dataGridView1.Location = new Point(555, 377);
             dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 24;
@@ -324,19 +324,19 @@
             // tsmiListaEmpleados
             // 
             tsmiListaEmpleados.Name = "tsmiListaEmpleados";
-            tsmiListaEmpleados.Size = new Size(165, 22);
+            tsmiListaEmpleados.Size = new Size(180, 22);
             tsmiListaEmpleados.Text = "Lista Empleados";
             // 
             // tsmiNuevoEmpleado
             // 
             tsmiNuevoEmpleado.Name = "tsmiNuevoEmpleado";
-            tsmiNuevoEmpleado.Size = new Size(165, 22);
+            tsmiNuevoEmpleado.Size = new Size(180, 22);
             tsmiNuevoEmpleado.Text = "Nuevo Empleado";
             // 
             // tsmiBuscarEmpleado
             // 
             tsmiBuscarEmpleado.Name = "tsmiBuscarEmpleado";
-            tsmiBuscarEmpleado.Size = new Size(165, 22);
+            tsmiBuscarEmpleado.Size = new Size(180, 22);
             tsmiBuscarEmpleado.Text = "Buscar Empleado";
             // 
             // tsmiUsuarios
@@ -391,7 +391,7 @@
             msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, tsmiListaVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
             msPrincipal.Location = new Point(0, 0);
             msPrincipal.Name = "msPrincipal";
-            msPrincipal.Size = new Size(849, 24);
+            msPrincipal.Size = new Size(778, 24);
             msPrincipal.TabIndex = 6;
             msPrincipal.Text = "menuStrip1";
             // 
@@ -399,9 +399,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.Principal;
+            BackgroundImage = Properties.Resources.Fondo_Principal;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(849, 542);
+            ClientSize = new Size(778, 614);
             Controls.Add(dataGridView1);
             Controls.Add(chart1);
             Controls.Add(msPrincipal);

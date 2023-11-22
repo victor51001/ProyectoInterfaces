@@ -45,11 +45,11 @@ namespace InmoSolution.Formularios
 
         private void Principal_Load(object sender, EventArgs e)
         {
-            if (user.Id==0)
+            if (user.Id == 0)
             {
                 tsmiUsuarios.Visible = true;
                 tsmiEmpleados.Visible = true;
-            } 
+            }
             else if (ControladorEmpleado.EsAdministrativo(user) || ControladorEmpleado.EsJefe(user))
             {
                 tsmiEmpleados.Visible = true;

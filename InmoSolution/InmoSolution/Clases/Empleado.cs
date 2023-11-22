@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace InmoSolution.Clases
 {
-    public enum Puesto
-    {
-        Administrador,
-        Administrativo,
-        Agente,
-        Jefe
-    }
+    
     public class Empleado
     {
+        public enum Puesto
+        {
+            Administrador,
+            Administrativo,
+            Agente,
+            Jefe
+        }
         //atributos
         private string dni;
         private string nombre;

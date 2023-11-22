@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Color backColorSesion = Color.FromArgb(128, Color.WhiteSmoke);
-            Color backColorLink = Color.FromArgb(156, Color.LightGoldenrodYellow);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             lblSesion = new Label();
             txtbxUsuario = new TextBox();
@@ -40,10 +38,10 @@
             // 
             // lblSesion
             // 
-            lblSesion.BackColor = backColorSesion;
-            lblSesion.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold);
+            lblSesion.BackColor = Color.FromArgb(128, 245, 245, 245);
+            lblSesion.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold, GraphicsUnit.Point);
             lblSesion.ForeColor = SystemColors.ControlText;
-            lblSesion.Location = new Point(113, 74);
+            lblSesion.Location = new Point(110, 52);
             lblSesion.Name = "lblSesion";
             lblSesion.Size = new Size(167, 22);
             lblSesion.TabIndex = 0;
@@ -53,9 +51,9 @@
             // txtbxUsuario
             // 
             txtbxUsuario.BackColor = SystemColors.ControlDark;
-            txtbxUsuario.Font = new Font("Segoe UI", 9F);
+            txtbxUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtbxUsuario.ForeColor = SystemColors.ControlText;
-            txtbxUsuario.Location = new Point(113, 144);
+            txtbxUsuario.Location = new Point(110, 122);
             txtbxUsuario.Name = "txtbxUsuario";
             txtbxUsuario.PlaceholderText = "Introduce tu usuario:";
             txtbxUsuario.Size = new Size(167, 23);
@@ -65,7 +63,7 @@
             // 
             txtbxClave.BackColor = SystemColors.ControlDark;
             txtbxClave.ForeColor = SystemColors.ControlText;
-            txtbxClave.Location = new Point(113, 192);
+            txtbxClave.Location = new Point(110, 170);
             txtbxClave.Name = "txtbxClave";
             txtbxClave.PasswordChar = '*';
             txtbxClave.PlaceholderText = "Introduce tu clave:";
@@ -75,10 +73,10 @@
             // lbllnkCrear
             // 
             lbllnkCrear.AutoSize = true;
-            lbllnkCrear.BackColor = backColorLink;
+            lbllnkCrear.BackColor = Color.FromArgb(156, 250, 250, 210);
             lbllnkCrear.Cursor = Cursors.Hand;
             lbllnkCrear.ForeColor = SystemColors.ControlText;
-            lbllnkCrear.Location = new Point(12, 311);
+            lbllnkCrear.Location = new Point(12, 312);
             lbllnkCrear.Name = "lbllnkCrear";
             lbllnkCrear.Size = new Size(98, 13);
             lbllnkCrear.TabIndex = 4;
@@ -89,7 +87,7 @@
             // bttnEntrar
             // 
             bttnEntrar.Cursor = Cursors.Hand;
-            bttnEntrar.Location = new Point(152, 266);
+            bttnEntrar.Location = new Point(149, 244);
             bttnEntrar.Name = "bttnEntrar";
             bttnEntrar.Size = new Size(89, 29);
             bttnEntrar.TabIndex = 5;
@@ -103,7 +101,7 @@
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            BackgroundImage = Properties.Resources.Login;
+            BackgroundImage = Properties.Resources.Fondo_login;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(387, 334);
             Controls.Add(bttnEntrar);
@@ -111,7 +109,7 @@
             Controls.Add(txtbxClave);
             Controls.Add(txtbxUsuario);
             Controls.Add(lblSesion);
-            Font = new Font("Segoe UI", 8F);
+            Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;

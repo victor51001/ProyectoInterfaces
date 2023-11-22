@@ -46,8 +46,8 @@
             // lblUser
             // 
             lblUser.AutoSize = true;
-            lblUser.BackColor = Color.Moccasin;
-            lblUser.Font = new Font("Arial", 11.25F, FontStyle.Bold);
+            lblUser.BackColor = Color.FromArgb(128, 139, 69, 19);
+            lblUser.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblUser.ForeColor = SystemColors.ControlText;
             lblUser.Location = new Point(146, 88);
             lblUser.Name = "lblUser";
@@ -58,8 +58,8 @@
             // lblPassword1
             // 
             lblPassword1.AutoSize = true;
-            lblPassword1.BackColor = Color.Moccasin;
-            lblPassword1.Font = new Font("Arial", 11.25F, FontStyle.Bold);
+            lblPassword1.BackColor = Color.FromArgb(128, 139, 69, 19);
+            lblPassword1.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblPassword1.Location = new Point(146, 197);
             lblPassword1.Name = "lblPassword1";
             lblPassword1.Size = new Size(94, 18);
@@ -69,8 +69,8 @@
             // lblPassword2
             // 
             lblPassword2.AutoSize = true;
-            lblPassword2.BackColor = Color.Moccasin;
-            lblPassword2.Font = new Font("Arial", 11.25F, FontStyle.Bold);
+            lblPassword2.BackColor = Color.FromArgb(128, 139, 69, 19);
+            lblPassword2.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblPassword2.Location = new Point(148, 280);
             lblPassword2.Name = "lblPassword2";
             lblPassword2.Size = new Size(151, 18);
@@ -79,7 +79,7 @@
             // 
             // txtbxUser
             // 
-            txtbxUser.BackColor = Color.Silver;
+            txtbxUser.BackColor = SystemColors.Window;
             txtbxUser.Location = new Point(146, 124);
             txtbxUser.Name = "txtbxUser";
             txtbxUser.Size = new Size(170, 23);
@@ -87,7 +87,7 @@
             // 
             // txtbxPass1
             // 
-            txtbxPass1.BackColor = Color.Silver;
+            txtbxPass1.BackColor = SystemColors.Window;
             txtbxPass1.Location = new Point(146, 229);
             txtbxPass1.Name = "txtbxPass1";
             txtbxPass1.PasswordChar = '*';
@@ -96,7 +96,7 @@
             // 
             // txtbxPass2
             // 
-            txtbxPass2.BackColor = Color.Silver;
+            txtbxPass2.BackColor = SystemColors.Window;
             txtbxPass2.Location = new Point(148, 325);
             txtbxPass2.Name = "txtbxPass2";
             txtbxPass2.PasswordChar = '*';
@@ -156,7 +156,7 @@
             AcceptButton = bttnAceptar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.Crear_usuario;
+            BackgroundImage = Properties.Resources.fondo_Altas1;
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = bttnCancelar;
             ClientSize = new Size(560, 471);
