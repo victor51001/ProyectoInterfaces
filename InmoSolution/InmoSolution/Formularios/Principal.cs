@@ -21,6 +21,19 @@ namespace InmoSolution.Formularios
             user = usu;
         }
 
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            if (user.Id == 0)
+            {
+                tsmiUsuarios.Visible = true;
+                tsmiEmpleados.Visible = true;
+            }
+            else if (ControladorEmpleado.EsAdministrativo(user) || ControladorEmpleado.EsJefe(user))
+            {
+                tsmiEmpleados.Visible = true;
+            }
+        }
+
         private void tsmiPerfil_Click(object sender, EventArgs e)
         {
             Usuarios.ModificarUsuario frmPerfil = new Usuarios.ModificarUsuario(user);
@@ -43,17 +56,10 @@ namespace InmoSolution.Formularios
             frmNuevoUsuario.ShowDialog();
         }
 
-        private void Principal_Load(object sender, EventArgs e)
+        private void tsmiNuevoEmpleado_Click(object sender, EventArgs e)
         {
-            if (user.Id == 0)
-            {
-                tsmiUsuarios.Visible = true;
-                tsmiEmpleados.Visible = true;
-            }
-            else if (ControladorEmpleado.EsAdministrativo(user) || ControladorEmpleado.EsJefe(user))
-            {
-                tsmiEmpleados.Visible = true;
-            }
+            Empleados.NuevoEmpleado frmNuevoEmpleado = new Empleados.NuevoEmpleado();
+            frmNuevoEmpleado.ShowDialog();
         }
     }
 }

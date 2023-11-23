@@ -156,7 +156,7 @@
             AcceptButton = bttnAceptar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.fondo_Altas1;
+            BackgroundImage = Properties.Resources.fondo_Altas;
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = bttnCancelar;
             ClientSize = new Size(560, 471);

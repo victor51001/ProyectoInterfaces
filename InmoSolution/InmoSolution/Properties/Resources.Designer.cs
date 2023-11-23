@@ -93,9 +93,9 @@ namespace InmoSolution.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fondo_Altas1 {
+        internal static System.Drawing.Bitmap fondo_Listas {
             get {
-                object obj = ResourceManager.GetObject("fondo_Altas1", resourceCulture);
+                object obj = ResourceManager.GetObject("fondo_Listas", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,4 +1,4 @@
-﻿namespace InmoSolution.Formularios.Empleado
+﻿namespace InmoSolution.Formularios.Empleados
 {
     partial class NuevoEmpleado
     {
@@ -31,21 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NuevoEmpleado));
             txtbxDni = new TextBox();
             lblDni = new Label();
-            lblErrorDNI = new Label();
-            lblErrorNombre = new Label();
             txtbxNombre = new TextBox();
             lblNombre = new Label();
-            label3 = new Label();
-            textBox2 = new TextBox();
+            txtbxApellidos = new TextBox();
             lblApellidos = new Label();
-            lblErrorTelefono = new Label();
-            txtbxTelefono = new TextBox();
             lblTelefono = new Label();
             lblPuesto = new Label();
-            lblErrorEmail = new Label();
             txtbxEmail = new TextBox();
             lblEmail = new Label();
             cmbxPuesto = new ComboBox();
+            nudTelefono = new NumericUpDown();
+            bttnAceptar = new Button();
+            bttnCancelar = new Button();
+            ((System.ComponentModel.ISupportInitialize)nudTelefono).BeginInit();
             SuspendLayout();
             // 
             // txtbxDni
@@ -68,32 +66,6 @@
             lblDni.TabIndex = 4;
             lblDni.Text = "Dni: ";
             // 
-            // lblErrorDNI
-            // 
-            lblErrorDNI.AutoSize = true;
-            lblErrorDNI.BackColor = Color.FromArgb(158, 0, 0, 0);
-            lblErrorDNI.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblErrorDNI.ForeColor = Color.Red;
-            lblErrorDNI.Location = new Point(199, 160);
-            lblErrorDNI.Name = "lblErrorDNI";
-            lblErrorDNI.Size = new Size(143, 15);
-            lblErrorDNI.TabIndex = 6;
-            lblErrorDNI.Text = "Introduce un DNI valido.";
-            lblErrorDNI.Visible = false;
-            // 
-            // lblErrorNombre
-            // 
-            lblErrorNombre.AutoSize = true;
-            lblErrorNombre.BackColor = Color.FromArgb(158, 0, 0, 0);
-            lblErrorNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblErrorNombre.ForeColor = Color.Red;
-            lblErrorNombre.Location = new Point(185, 224);
-            lblErrorNombre.Name = "lblErrorNombre";
-            lblErrorNombre.Size = new Size(165, 15);
-            lblErrorNombre.TabIndex = 9;
-            lblErrorNombre.Text = "Introduce un nombre valido.";
-            lblErrorNombre.Visible = false;
-            // 
             // txtbxNombre
             // 
             txtbxNombre.BackColor = SystemColors.Window;
@@ -114,27 +86,14 @@
             lblNombre.TabIndex = 7;
             lblNombre.Text = "Nombre:";
             // 
-            // label3
+            // txtbxApellidos
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(158, 0, 0, 0);
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.Red;
-            label3.Location = new Point(185, 304);
-            label3.Name = "label3";
-            label3.Size = new Size(157, 15);
-            label3.TabIndex = 12;
-            label3.Text = "Introduce apellidos validos.";
-            label3.Visible = false;
-            // 
-            // textBox2
-            // 
-            textBox2.BackColor = SystemColors.Window;
-            textBox2.Location = new Point(182, 261);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(170, 40);
-            textBox2.TabIndex = 11;
+            txtbxApellidos.BackColor = SystemColors.Window;
+            txtbxApellidos.Location = new Point(182, 261);
+            txtbxApellidos.Multiline = true;
+            txtbxApellidos.Name = "txtbxApellidos";
+            txtbxApellidos.Size = new Size(170, 40);
+            txtbxApellidos.TabIndex = 11;
             // 
             // lblApellidos
             // 
@@ -147,27 +106,6 @@
             lblApellidos.Size = new Size(81, 18);
             lblApellidos.TabIndex = 10;
             lblApellidos.Text = "Apellidos: ";
-            // 
-            // lblErrorTelefono
-            // 
-            lblErrorTelefono.AutoSize = true;
-            lblErrorTelefono.BackColor = Color.FromArgb(158, 0, 0, 0);
-            lblErrorTelefono.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblErrorTelefono.ForeColor = Color.Red;
-            lblErrorTelefono.Location = new Point(526, 160);
-            lblErrorTelefono.Name = "lblErrorTelefono";
-            lblErrorTelefono.Size = new Size(169, 15);
-            lblErrorTelefono.TabIndex = 15;
-            lblErrorTelefono.Text = "Introduce un telefono valido.";
-            lblErrorTelefono.Visible = false;
-            // 
-            // txtbxTelefono
-            // 
-            txtbxTelefono.BackColor = SystemColors.Window;
-            txtbxTelefono.Location = new Point(525, 134);
-            txtbxTelefono.Name = "txtbxTelefono";
-            txtbxTelefono.Size = new Size(170, 23);
-            txtbxTelefono.TabIndex = 14;
             // 
             // lblTelefono
             // 
@@ -192,19 +130,6 @@
             lblPuesto.Size = new Size(66, 18);
             lblPuesto.TabIndex = 19;
             lblPuesto.Text = "Puesto: ";
-            // 
-            // lblErrorEmail
-            // 
-            lblErrorEmail.AutoSize = true;
-            lblErrorEmail.BackColor = Color.FromArgb(158, 0, 0, 0);
-            lblErrorEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblErrorEmail.ForeColor = Color.Red;
-            lblErrorEmail.Location = new Point(537, 224);
-            lblErrorEmail.Name = "lblErrorEmail";
-            lblErrorEmail.Size = new Size(158, 15);
-            lblErrorEmail.TabIndex = 18;
-            lblErrorEmail.Text = "Introduce un correo valido.";
-            lblErrorEmail.Visible = false;
             // 
             // txtbxEmail
             // 
@@ -234,34 +159,62 @@
             cmbxPuesto.Size = new Size(169, 23);
             cmbxPuesto.TabIndex = 20;
             // 
+            // nudTelefono
+            // 
+            nudTelefono.InterceptArrowKeys = false;
+            nudTelefono.Location = new Point(526, 134);
+            nudTelefono.Name = "nudTelefono";
+            nudTelefono.Size = new Size(169, 23);
+            nudTelefono.TabIndex = 21;
+            // 
+            // bttnAceptar
+            // 
+            bttnAceptar.Location = new Point(170, 369);
+            bttnAceptar.Name = "bttnAceptar";
+            bttnAceptar.Size = new Size(95, 31);
+            bttnAceptar.TabIndex = 22;
+            bttnAceptar.Text = "Aceptar";
+            bttnAceptar.UseVisualStyleBackColor = true;
+            bttnAceptar.Click += bttnAceptar_Click;
+            // 
+            // bttnCancelar
+            // 
+            bttnCancelar.Location = new Point(467, 369);
+            bttnCancelar.Name = "bttnCancelar";
+            bttnCancelar.Size = new Size(95, 31);
+            bttnCancelar.TabIndex = 23;
+            bttnCancelar.Text = "Cancelar";
+            bttnCancelar.UseVisualStyleBackColor = true;
+            bttnCancelar.Click += bttnCancelar_Click;
+            // 
             // NuevoEmpleado
             // 
+            AcceptButton = bttnAceptar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.fondo_Altas;
             BackgroundImageLayout = ImageLayout.Stretch;
+            CancelButton = bttnCancelar;
             ClientSize = new Size(726, 450);
+            Controls.Add(bttnCancelar);
+            Controls.Add(bttnAceptar);
+            Controls.Add(nudTelefono);
             Controls.Add(cmbxPuesto);
             Controls.Add(lblPuesto);
-            Controls.Add(lblErrorEmail);
             Controls.Add(txtbxEmail);
             Controls.Add(lblEmail);
-            Controls.Add(lblErrorTelefono);
-            Controls.Add(txtbxTelefono);
             Controls.Add(lblTelefono);
-            Controls.Add(label3);
-            Controls.Add(textBox2);
+            Controls.Add(txtbxApellidos);
             Controls.Add(lblApellidos);
-            Controls.Add(lblErrorNombre);
             Controls.Add(txtbxNombre);
             Controls.Add(lblNombre);
-            Controls.Add(lblErrorDNI);
             Controls.Add(txtbxDni);
             Controls.Add(lblDni);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "NuevoEmpleado";
             Text = "Alta Empleado";
             Load += NuevoEmpleado_Load;
+            ((System.ComponentModel.ISupportInitialize)nudTelefono).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,20 +223,17 @@
 
         private TextBox txtbxDni;
         private Label lblDni;
-        private Label lblErrorDNI;
-        private Label lblErrorNombre;
         private TextBox txtbxNombre;
         private Label lblNombre;
-        private Label label3;
-        private TextBox textBox2;
+        private TextBox txtbxApellidos;
         private Label lblApellidos;
-        private Label lblErrorTelefono;
-        private TextBox txtbxTelefono;
         private Label lblTelefono;
         private Label lblPuesto;
-        private Label lblErrorEmail;
         private TextBox txtbxEmail;
         private Label lblEmail;
         private ComboBox cmbxPuesto;
+        private NumericUpDown nudTelefono;
+        private Button bttnAceptar;
+        private Button bttnCancelar;
     }
 }

@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InmoSolution.Formularios.Empleado
+namespace InmoSolution.Formularios.Empleados
 {
-    public partial class NuevoEmpleado : Form
+    public partial class ListadoEmpleados : Form
     {
-        public NuevoEmpleado()
+        public ListadoEmpleados()
         {
             InitializeComponent();
-        }
-
-        private void NuevoEmpleado_Load(object sender, EventArgs e)
-        {
-            cmbxPuesto.DataSource = Empleado.Puesto;
         }
     }
 }

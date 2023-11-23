@@ -332,6 +332,7 @@
             tsmiNuevoEmpleado.Name = "tsmiNuevoEmpleado";
             tsmiNuevoEmpleado.Size = new Size(180, 22);
             tsmiNuevoEmpleado.Text = "Nuevo Empleado";
+            tsmiNuevoEmpleado.Click += tsmiNuevoEmpleado_Click;
             // 
             // tsmiBuscarEmpleado
             // 
@@ -350,14 +351,14 @@
             // listadoDeUsuariosToolStripMenuItem
             // 
             listadoDeUsuariosToolStripMenuItem.Name = "listadoDeUsuariosToolStripMenuItem";
-            listadoDeUsuariosToolStripMenuItem.Size = new Size(176, 22);
+            listadoDeUsuariosToolStripMenuItem.Size = new Size(180, 22);
             listadoDeUsuariosToolStripMenuItem.Text = "Listado de Usuarios";
             listadoDeUsuariosToolStripMenuItem.Click += listadoDeUsuariosToolStripMenuItem_Click;
             // 
             // nuevoUsuarioToolStripMenuItem
             // 
             nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            nuevoUsuarioToolStripMenuItem.Size = new Size(176, 22);
+            nuevoUsuarioToolStripMenuItem.Size = new Size(180, 22);
             nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
             nuevoUsuarioToolStripMenuItem.Click += nuevoUsuarioToolStripMenuItem_Click;
             // 

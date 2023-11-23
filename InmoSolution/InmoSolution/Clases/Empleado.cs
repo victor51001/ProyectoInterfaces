@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InmoSolution.Controladores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace InmoSolution.Clases
     
     public class Empleado
     {
-        public enum Puesto
+        public enum Puestos
         {
             Administrador,
             Administrativo,
@@ -20,15 +21,15 @@ namespace InmoSolution.Clases
         private string dni;
         private string nombre;
         private string apellidos;
-        private string telefono;
+        private int telefono;
         private string email;
         private Usuario usuario;
-        private Puesto puesto;
+        private Puestos puesto;
         private double sueldoBase;
         private double comision;
 
         //constructor
-        public Empleado(string dni, string nombre, string apellidos, string telefono, string email, Usuario usuario, Puesto puesto, double sueldoBase, double comision)
+        public Empleado(string dni, string nombre, string apellidos, string email, int telefono,Usuario usuario, Puestos puesto)
         {
             this.Dni = dni;
             this.Nombre = nombre;
@@ -37,18 +38,18 @@ namespace InmoSolution.Clases
             this.Email = email;
             this.Usuario = usuario;
             this.Puesto = puesto;
-            this.SueldoBase = sueldoBase;
-            this.Comision = comision;
+            this.SueldoBase = ControladorEmpleado.SUELDO_MINIMO;
+            this.Comision = ControladorEmpleado.COMISION_BASE;
         }
 
         //getters y setters
         public string Dni { get => dni; set => dni = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellidos { get => apellidos; set => apellidos = value; }
-        public string Telefono { get => telefono; set => telefono = value; }
+        public int Telefono { get => telefono; set => telefono = value; }
         public string Email { get => email; set => email = value; }
         public Usuario Usuario { get => usuario; set => usuario = value; }
-        public Puesto Puesto { get => puesto; set => puesto = value; }
+        public Puestos Puesto { get => puesto; set => puesto = value; }
         public double SueldoBase { get => sueldoBase; set => sueldoBase = value; }
         public double Comision { get => comision; set => comision = value; }
 

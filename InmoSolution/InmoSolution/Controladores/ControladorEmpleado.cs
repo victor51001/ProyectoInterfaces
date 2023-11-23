@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using static InmoSolution.Clases.Empleado;
 
 namespace InmoSolution.Controladores
 {
@@ -12,6 +14,8 @@ namespace InmoSolution.Controladores
     {
         public static List<Empleado> ListaEmpleados = new List<Empleado>();
         public static bool cambios;
+        public static double SUELDO_MINIMO = 900;
+        public static double COMISION_BASE = 0.05;
         public static void LeerEmpleados()
         {
             try
@@ -47,7 +51,7 @@ namespace InmoSolution.Controladores
             {
                 if (emp.Usuario.Id == user.Id)
                 {
-                    if (emp.Puesto == Puesto.Jefe)
+                    if (emp.Puesto == Puestos.Jefe)
                     {
                         return true;
                     }
@@ -62,7 +66,7 @@ namespace InmoSolution.Controladores
             {
                 if (emp.Usuario.Id == user.Id)
                 {
-                    if (emp.Puesto == Puesto.Administrativo)
+                    if (emp.Puesto == Puestos.Administrativo)
                     {
                         return true;
                     }
