@@ -23,6 +23,7 @@ namespace InmoSolution.Formularios.Empleados
         {
             cmbxPuesto.DataSource = Enum.GetValues(typeof(Empleado.Puestos));
             nudTelefono.Controls[0].Visible = false;
+            nudTelefono.Controls[1].Visible = false;
             nudTelefono.Width = nudTelefono.Controls[1].Width;
         }
 
@@ -64,7 +65,6 @@ namespace InmoSolution.Formularios.Empleados
 
         private bool ValidarDni()
         {
-            bool ok = false;
             if (txtbxDni.Text.Length == 9)
             {
                 if (txtbxDni.Text.Substring(0, 8).All(char.IsDigit) &&
@@ -73,34 +73,32 @@ namespace InmoSolution.Formularios.Empleados
                     if (txtbxDni.Text.Substring(8, 1).ToUpper() ==
                         CalcularLetraDni().ToString())
                     {
-                        ok = true;
+                        return true;
                     }
                 }
             }
-            return ok;
+            return false;
         }
 
         private bool ValidarNombre()
         {
-            bool ok = false;
             if (ControladorUsuario.GetUsuario(txtbxNombre.Text) != null)
             {
-                ok = true;
+                return true;
             }            
-            return ok;
+            return false;
         }
         private bool ValidarEmail()
         {
-            bool ok = false;
             if (txtbxEmail.Text.Contains("@") || txtbxEmail.Text.Contains("."))
             {
                 if (txtbxEmail.Text.Split("@").Length == 2 &&
                     txtbxEmail.Text.Split("@")[1].Split(".").Length == 2)
                 {
-                    ok = true;
+                    return true;
                 }
             }
-            return ok;
+            return false;
         }
 
         private char CalcularLetraDni()

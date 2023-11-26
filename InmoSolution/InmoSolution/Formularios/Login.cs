@@ -1,3 +1,4 @@
+using InmoSolution.Clases;
 using InmoSolution.Controladores;
 using InmoSolution.Formularios;
 using InmoSolution.Formularios.Usuarios;
@@ -11,19 +12,6 @@ namespace InmoSolution
             InitializeComponent();
         }
 
-        private Boolean ValidaUsuario()
-        {
-            int posicion = ControladorUsuario.ListaUsuarios.FindIndex(x => x.Nombre == txtbxUsuario.Text.ToLower());
-            if (posicion != -1 && ControladorUsuario.ListaUsuarios[posicion].Clave == txtbxClave.Text)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         private void lbllnkCrear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             NuevoUsuario frmNuevoUsuario = new NuevoUsuario();
@@ -35,9 +23,9 @@ namespace InmoSolution
         {
             if (ControladorUsuario.existeUsuario(txtbxUsuario.Text, txtbxClave.Text))
             {
+                Principal FrmP = new Principal(ControladorUsuario.GetUsuario(txtbxUsuario.Text));
                 txtbxUsuario.Clear();
                 txtbxClave.Clear();
-                Principal FrmP = new Principal(ControladorUsuario.GetUsuario(txtbxUsuario.Text));
                 FrmP.ShowDialog();
                 Close();
             }
@@ -51,6 +39,19 @@ namespace InmoSolution
             {
                 Application.Exit();
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            // Crear usuarios
+            Usuario adminUser = new Usuario(0, "admin", "1234");
+            Usuario usuario1 = new Usuario("Juan", "5678");
+            Usuario usuario2 = new Usuario("Ana", "9012");
+            Usuario usuario3 = new Usuario("Pedro", "3456");
+            Usuario usuario4 = new Usuario("María", "7890");
+            Usuario usuario5 = new Usuario("Carlos", "2345");
+            ControladorUsuario.ListaUsuarios.AddRange(new List<Usuario> { adminUser, usuario1, usuario2, usuario3, usuario4, usuario5 });
+            ControladorUsuario.EscribirUsuarios();
         }
     }
 }

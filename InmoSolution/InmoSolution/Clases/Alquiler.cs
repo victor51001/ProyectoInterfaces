@@ -9,25 +9,25 @@ namespace InmoSolution.Clases
     public class Alquiler : Inmueble
     {
         //atributos
-        private int precio;
+        private int precioMensual;
 
         //constructor
         public Alquiler(int id, string direccion, int habitaciones, 
             int baños, int metrosCuadrados, int antiguedad, bool disponible, 
-            Cliente propietario, string localidad, int precio) 
+            Cliente propietario, string localidad, int precioMensual) 
             : base(id, direccion, habitaciones, baños, metrosCuadrados, 
                   antiguedad, disponible, propietario, localidad)
         {
-            this.Precio = precio;
+            this.PrecioMensual = precioMensual;
         }
 
         //getters y setters
-        public int Precio { get => precio; set => precio = value; }
+        public int PrecioMensual { get => precioMensual; set => precioMensual = value; }
 
         //metodos
         public override string ToString()
         {
-            return base.ToString() + " Precio: " + this.Precio;
+            return base.ToString() + " Precio: " + this.PrecioMensual;
         }
     }
 }

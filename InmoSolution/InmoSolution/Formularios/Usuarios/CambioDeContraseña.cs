@@ -15,11 +15,12 @@ namespace InmoSolution.Formularios.Usuarios
     public partial class CambioDeContraseña : Form
     {
         private Usuario user;
-        public static string contraseñaDevuelta = "";
+        public static string contraseñaDevuelta;
         public CambioDeContraseña(Usuario usu)
         {
             InitializeComponent();
             user = usu;
+            contraseñaDevuelta = null;
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)

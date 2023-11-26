@@ -15,26 +15,56 @@ namespace InmoSolution.Formularios.Usuarios
 {
     public partial class ModificarUsuario : Form
     {
-        private Boolean cambios = false;
+        private Boolean[] cambios = new Boolean[2];
         private Usuario user;
         public ModificarUsuario(Usuario usu)
         {
             InitializeComponent();
-            txtId.Text = usu.Id.ToString();
-            txtbxNombre.Text = usu.Nombre;
-            txtbxClave.Text = usu.Clave;
             user = usu;
+        }
+
+        private void ModificarUsuario_Load(object sender, EventArgs e)
+        {
+            txtId.Text = user.Id.ToString();
+            txtbxNombre.Text = user.Nombre;
+            txtbxClave.Text = user.Clave;
+        }
+
+        private bool ValidarNombre()
+        {
+            bool ok = false;
+            if (ControladorUsuario.GetUsuario(txtbxNombre.Text) == null &&
+                txtbxNombre.Text.Any<char>(char.IsDigit))
+            {
+                ok = true;
+            }
+            return ok;
         }
 
         private void txtbxNombre_TextChanged(object sender, EventArgs e)
         {
-            if (!txtbxNombre.Text.Equals(user.Nombre))
+            if (ValidarNombre())
             {
-                cambios = true;
-            } 
-            else 
-            { 
-                cambios = false;
+                cambios[0] = true;
+            }
+            else
+            {
+                cambios[0] = false;
+            }
+        }
+
+        private void bttnCambiarContraseña_Click(object sender, EventArgs e)
+        {
+            CambioDeContraseña frmCambio = new CambioDeContraseña(user);
+            frmCambio.ShowDialog();
+            if (CambioDeContraseña.contraseñaDevuelta != null)
+            {
+                txtbxClave.Text = CambioDeContraseña.contraseñaDevuelta;
+                cambios[1] = true;
+            }
+            else
+            {
+                cambios[1] = false;
             }
         }
 
@@ -45,21 +75,23 @@ namespace InmoSolution.Formularios.Usuarios
 
         private void bttnAceptar_Click(object sender, EventArgs e)
         {
-            if (cambios)
-            {                
-                ControladorUsuario.ModificarUsuario(
-                    Int32.Parse(txtId.Text.ToString()),
-                    txtbxNombre.Text.ToString(),
-                    CambioDeContraseña.contraseñaDevuelta
-                    );
-                Close();                
+            string nombre = null;
+            string clave = null;
+            int c = 0;
+            c = cambios.Count(x => x == true);
+            switch (c)
+            {
+                case 0:
+                    MessageBox.Show("No se han realizado cambios", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 1:
+                    nombre = txtbxNombre.Text;
+                    break;
+                case 2:
+                    clave = txtbxClave.Text;
+                    break;
             }
-        }
-
-        private void bttnCambiarContraseña_Click(object sender, EventArgs e)
-        {
-            CambioDeContraseña frmCambio = new CambioDeContraseña(user);
-            frmCambio.ShowDialog();
+            ControladorUsuario.ModificarUsuario(user,nombre, clave);
         }
     }
 }

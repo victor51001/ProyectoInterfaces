@@ -1,4 +1,7 @@
-﻿namespace InmoSolution.Formularios.Empleados
+﻿using InmoSolution.Clases;
+using System.Drawing;
+
+namespace InmoSolution.Formularios.Empleados
 {
     partial class ListadoEmpleados
     {
@@ -29,7 +32,78 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoEmpleados));
+            chklstbxEmpleados = new CheckedListBox();
+            lblEmpleados = new Label();
+            bttnEliminar = new Button();
+            bttnOrdenar = new Button();
+            bttnCancelar = new Button();
+            bttnModificar = new Button();
             SuspendLayout();
+            // 
+            // chklstbxEmpleados
+            // 
+            chklstbxEmpleados.FormattingEnabled = true;
+            chklstbxEmpleados.Location = new Point(166, 160);
+            chklstbxEmpleados.Name = "chklstbxEmpleados";
+            chklstbxEmpleados.ScrollAlwaysVisible = true;
+            chklstbxEmpleados.Size = new Size(445, 256);
+            chklstbxEmpleados.TabIndex = 0;
+            chklstbxEmpleados.DrawItem += chklstbxEmpleados_DrawItem;
+            // 
+            // lblEmpleados
+            // 
+            lblEmpleados.AutoSize = true;
+            lblEmpleados.BackColor = Color.FromArgb(138, 70, 130, 180);
+            lblEmpleados.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            lblEmpleados.Location = new Point(317, 93);
+            lblEmpleados.Name = "lblEmpleados";
+            lblEmpleados.Size = new Size(148, 37);
+            lblEmpleados.TabIndex = 1;
+            lblEmpleados.Text = "Empleados";
+            // 
+            // bttnEliminar
+            // 
+            bttnEliminar.ImeMode = ImeMode.NoControl;
+            bttnEliminar.Location = new Point(412, 487);
+            bttnEliminar.Name = "bttnEliminar";
+            bttnEliminar.Size = new Size(106, 37);
+            bttnEliminar.TabIndex = 10;
+            bttnEliminar.Text = "Eliminar";
+            bttnEliminar.UseVisualStyleBackColor = true;
+            bttnEliminar.Click += bttnEliminar_Click;
+            // 
+            // bttnOrdenar
+            // 
+            bttnOrdenar.ImeMode = ImeMode.NoControl;
+            bttnOrdenar.Location = new Point(257, 487);
+            bttnOrdenar.Name = "bttnOrdenar";
+            bttnOrdenar.Size = new Size(106, 37);
+            bttnOrdenar.TabIndex = 9;
+            bttnOrdenar.Text = "Ordenar";
+            bttnOrdenar.UseVisualStyleBackColor = true;
+            bttnOrdenar.Click += bttnOrdenar_Click;
+            // 
+            // bttnCancelar
+            // 
+            bttnCancelar.ImeMode = ImeMode.NoControl;
+            bttnCancelar.Location = new Point(555, 487);
+            bttnCancelar.Name = "bttnCancelar";
+            bttnCancelar.Size = new Size(106, 37);
+            bttnCancelar.TabIndex = 8;
+            bttnCancelar.Text = "Cancelar";
+            bttnCancelar.UseVisualStyleBackColor = true;
+            bttnCancelar.Click += bttnCancelar_Click;
+            // 
+            // bttnModificar
+            // 
+            bttnModificar.ImeMode = ImeMode.NoControl;
+            bttnModificar.Location = new Point(113, 487);
+            bttnModificar.Name = "bttnModificar";
+            bttnModificar.Size = new Size(106, 37);
+            bttnModificar.TabIndex = 7;
+            bttnModificar.Text = "Modificar";
+            bttnModificar.UseVisualStyleBackColor = true;
+            bttnModificar.Click += bttnModificar_Click;
             // 
             // ListadoEmpleados
             // 
@@ -37,13 +111,40 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.fondo_Listas;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(575, 500);
+            CancelButton = bttnCancelar;
+            ClientSize = new Size(781, 647);
+            Controls.Add(bttnEliminar);
+            Controls.Add(bttnOrdenar);
+            Controls.Add(bttnCancelar);
+            Controls.Add(bttnModificar);
+            Controls.Add(lblEmpleados);
+            Controls.Add(chklstbxEmpleados);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ListadoEmpleados";
             Text = "ListadoEmpleados";
+            Load += ListadoEmpleados_Load;
             ResumeLayout(false);
+            PerformLayout();
+        }
+
+        private void chklstbxEmpleados_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index >= 0)
+            {
+                Empleado empleado = (Empleado)chklstbxEmpleados.Items[e.Index];
+                Brush brocha = new SolidBrush(e.ForeColor);
+                string cadena = empleado.Dni + " " + empleado.Nombre + " " + empleado.Apellidos + " " + empleado.Puesto.ToString();
+                e.Graphics.DrawString(cadena, e.Font, brocha, e.Bounds.Left, e.Bounds.Top);
+            }
         }
 
         #endregion
+
+        private CheckedListBox chklstbxEmpleados;
+        private Label lblEmpleados;
+        private Button bttnEliminar;
+        private Button bttnOrdenar;
+        private Button bttnCancelar;
+        private Button bttnModificar;
     }
 }

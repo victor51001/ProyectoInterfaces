@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace InmoSolution.Clases
 {
-    
-    public class Empleado
-    {
+    [Serializable]
+    public class Empleado : IXmlSerializable
+    {        
+        [Serializable]
         public enum Puestos
         {
             Administrador,
             Administrativo,
             Agente,
-            Jefe
+            Jefe,
+            nulo
         }
         //atributos
         private string dni;
@@ -25,8 +28,7 @@ namespace InmoSolution.Clases
         private string email;
         private Usuario usuario;
         private Puestos puesto;
-        private double sueldoBase;
-        private double comision;
+        private double sueldo;
 
         //constructor
         public Empleado(string dni, string nombre, string apellidos, string email, int telefono,Usuario usuario, Puestos puesto)
@@ -38,8 +40,7 @@ namespace InmoSolution.Clases
             this.Email = email;
             this.Usuario = usuario;
             this.Puesto = puesto;
-            this.SueldoBase = ControladorEmpleado.SUELDO_MINIMO;
-            this.Comision = ControladorEmpleado.COMISION_BASE;
+            this.Sueldo = CalcularSueldo();
         }
 
         //getters y setters
@@ -50,18 +51,94 @@ namespace InmoSolution.Clases
         public string Email { get => email; set => email = value; }
         public Usuario Usuario { get => usuario; set => usuario = value; }
         public Puestos Puesto { get => puesto; set => puesto = value; }
-        public double SueldoBase { get => sueldoBase; set => sueldoBase = value; }
-        public double Comision { get => comision; set => comision = value; }
+        public double Sueldo { get => sueldo; set => sueldo = value; }
 
         //metodos
         public override string ToString()
         {
-            return " Dni: " + this.Dni + " Nombre: " + this.Nombre + " Apellido: " + this.Apellidos + " Telefono: " + this.Telefono + " Email: " + this.Email + " Usuario: " + this.Usuario + " Puesto: " + this.Puesto + " Sueldo Base: " + this.SueldoBase + " Comision: " + this.Comision;
+            return "Dni: " + this.dni +
+                   " Nombre: " + this.nombre +
+                   " Apellidos: " + this.apellidos +
+                   " Teléfono: " + this.telefono +
+                   " Email: " + this.email +
+                   " Puesto: " + this.puesto +
+                   " Sueldo: " + this.sueldo +
+                   " Usuario: " + this.usuario.ToString();
         }
-        public double CalcularNomina()
+
+        public double CalcularComision(int alquileres, int ventas)
         {
-            double nomina = (this.SueldoBase + this.Comision) - ((this.SueldoBase + this.Comision)/**IRPF*/)/100;
-            return nomina;
+            return (alquileres*ControladorEmpleado.COMISION_ALQUILER + ventas*ControladorEmpleado.COMISION_VENTA);
+        }
+        public double CalcularSueldo()
+        {
+            switch (this.Puesto.ToString())
+            {
+                case "Administrador":
+                    return ControladorEmpleado.SUELDO_MINIMO * 1.8;
+                case "Administrativo":
+                    return ControladorEmpleado.SUELDO_MINIMO * 1.1;
+                case "Agente":
+                    return ControladorEmpleado.SUELDO_MINIMO + GetComisionAlquileres() + GetComisionVentas();
+                case "Jefe":
+                    return ControladorEmpleado.SUELDO_MINIMO * 2.5;
+                default:
+                    return 0;
+            }
+        }
+        public double GetComisionAlquileres()
+        {
+            double comision = 0;
+            Alquiler alquiler;
+            foreach (Transaccion t in ControladorTransaccion.ListaTransacciones)
+            {
+                if (t.Empleado.Equals(this))
+                {
+                    if (t.Inmueble.GetType().Equals(typeof(Alquiler)))
+                    {
+                        alquiler = (Alquiler)t.Inmueble;
+                        comision += alquiler.PrecioMensual * 12 * ControladorEmpleado.COMISION_ALQUILER;
+                    }
+                }
+            }
+            return comision;
+        }
+
+        public double GetComisionVentas()
+        {
+            double comision = 0;
+            EnVenta venta;
+            foreach (Transaccion t in ControladorTransaccion.ListaTransacciones)
+            {
+                if (t.Empleado.Equals(this))
+                {
+                    if (t.Inmueble.GetType().Equals(typeof(EnVenta)))
+                    {
+                        venta = (EnVenta)t.Inmueble;
+                        comision += venta.Precio * ControladorEmpleado.COMISION_VENTA;
+                    }
+                }            
+            }
+            return comision;
+        }
+        public System.Xml.Schema.XmlSchema GetSchema()
+        {
+            return null;
+        }
+        public void ReadXml(System.Xml.XmlReader reader)
+        {
+            // Implementa la lógica de lectura personalizada si es necesario
+            reader.ReadStartElement();
+            this.Usuario.Id = int.Parse(reader.ReadElementContentAsString("IdUsuario", ""));
+            // Lee otros elementos si es necesario
+            reader.ReadEndElement();
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer)
+        {
+            // Implementa la lógica de escritura personalizada
+            writer.WriteElementString("IdUsuario", this.Usuario.Id.ToString());
+            // Escribe otros elementos si es necesario
         }
     }
 }

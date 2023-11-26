@@ -73,6 +73,7 @@
             tsmiDocumentacion = new ToolStripMenuItem();
             tsmiAcercaDe = new ToolStripMenuItem();
             msPrincipal = new MenuStrip();
+            transaccionesToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -324,20 +325,20 @@
             // tsmiListaEmpleados
             // 
             tsmiListaEmpleados.Name = "tsmiListaEmpleados";
-            tsmiListaEmpleados.Size = new Size(180, 22);
+            tsmiListaEmpleados.Size = new Size(165, 22);
             tsmiListaEmpleados.Text = "Lista Empleados";
             // 
             // tsmiNuevoEmpleado
             // 
             tsmiNuevoEmpleado.Name = "tsmiNuevoEmpleado";
-            tsmiNuevoEmpleado.Size = new Size(180, 22);
+            tsmiNuevoEmpleado.Size = new Size(165, 22);
             tsmiNuevoEmpleado.Text = "Nuevo Empleado";
             tsmiNuevoEmpleado.Click += tsmiNuevoEmpleado_Click;
             // 
             // tsmiBuscarEmpleado
             // 
             tsmiBuscarEmpleado.Name = "tsmiBuscarEmpleado";
-            tsmiBuscarEmpleado.Size = new Size(180, 22);
+            tsmiBuscarEmpleado.Size = new Size(165, 22);
             tsmiBuscarEmpleado.Text = "Buscar Empleado";
             // 
             // tsmiUsuarios
@@ -351,14 +352,14 @@
             // listadoDeUsuariosToolStripMenuItem
             // 
             listadoDeUsuariosToolStripMenuItem.Name = "listadoDeUsuariosToolStripMenuItem";
-            listadoDeUsuariosToolStripMenuItem.Size = new Size(180, 22);
+            listadoDeUsuariosToolStripMenuItem.Size = new Size(176, 22);
             listadoDeUsuariosToolStripMenuItem.Text = "Listado de Usuarios";
             listadoDeUsuariosToolStripMenuItem.Click += listadoDeUsuariosToolStripMenuItem_Click;
             // 
             // nuevoUsuarioToolStripMenuItem
             // 
             nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            nuevoUsuarioToolStripMenuItem.Size = new Size(180, 22);
+            nuevoUsuarioToolStripMenuItem.Size = new Size(176, 22);
             nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
             nuevoUsuarioToolStripMenuItem.Click += nuevoUsuarioToolStripMenuItem_Click;
             // 
@@ -389,12 +390,18 @@
             // 
             // msPrincipal
             // 
-            msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, tsmiListaVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
+            msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, transaccionesToolStripMenuItem, tsmiListaVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
             msPrincipal.Location = new Point(0, 0);
             msPrincipal.Name = "msPrincipal";
             msPrincipal.Size = new Size(778, 24);
             msPrincipal.TabIndex = 6;
             msPrincipal.Text = "menuStrip1";
+            // 
+            // transaccionesToolStripMenuItem
+            // 
+            transaccionesToolStripMenuItem.Name = "transaccionesToolStripMenuItem";
+            transaccionesToolStripMenuItem.Size = new Size(92, 20);
+            transaccionesToolStripMenuItem.Text = "Transacciones";
             // 
             // Principal
             // 
@@ -412,6 +419,7 @@
             Margin = new Padding(2);
             Name = "Principal";
             Text = "Principal";
+            FormClosing += Principal_FormClosing;
             Load += Principal_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -465,5 +473,6 @@
         private MenuStrip msPrincipal;
         private ToolStripMenuItem listadoDeUsuariosToolStripMenuItem;
         private ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
+        private ToolStripMenuItem transaccionesToolStripMenuItem;
     }
 }

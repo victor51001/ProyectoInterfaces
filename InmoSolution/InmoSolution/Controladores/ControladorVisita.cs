@@ -28,6 +28,10 @@ namespace InmoSolution.Controladores
         {
             try
             {
+                if (!File.Exists("visitas.toml"))
+                {
+                    File.Create("visitas.toml").Close();
+                }
                 var table = Toml.FromModel(ListaVisitas);
                 File.WriteAllText("visitas.toml", table);
             }

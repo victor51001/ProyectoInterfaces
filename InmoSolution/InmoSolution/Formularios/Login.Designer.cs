@@ -114,6 +114,7 @@
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar sesion";
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

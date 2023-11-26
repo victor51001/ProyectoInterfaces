@@ -148,7 +148,7 @@
             AcceptButton = bttnAceptar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.Modificar_usuarios;
+            BackgroundImage = Properties.Resources.fondo_Modificaciones;
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = bttnCancelar;
             ClientSize = new Size(561, 445);
@@ -165,6 +165,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ModificarUsuario";
             Text = "Perfil";
+            Load += ModificarUsuario_Load;
             ResumeLayout(false);
             PerformLayout();
         }

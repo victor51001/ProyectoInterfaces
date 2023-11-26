@@ -33,14 +33,14 @@
             bttnModificar = new Button();
             bttnCancelar = new Button();
             bttnOrdenar = new Button();
-            chkLstbxUsuarios = new CheckedListBox();
+            chklstbxUsuarios = new CheckedListBox();
             bttnEliminar = new Button();
             SuspendLayout();
             // 
             // lblUsuarios
             // 
             resources.ApplyResources(lblUsuarios, "lblUsuarios");
-            lblUsuarios.BackColor = Color.FromArgb(158, 70, 130, 180);
+            lblUsuarios.BackColor = Color.FromArgb(138, 70, 130, 180);
             lblUsuarios.Name = "lblUsuarios";
             // 
             // bttnModificar
@@ -64,12 +64,12 @@
             bttnOrdenar.UseVisualStyleBackColor = true;
             bttnOrdenar.Click += bttnOrdenar_Click;
             // 
-            // chkLstbxUsuarios
+            // chklstbxUsuarios
             // 
-            chkLstbxUsuarios.BackColor = SystemColors.Menu;
-            chkLstbxUsuarios.FormattingEnabled = true;
-            resources.ApplyResources(chkLstbxUsuarios, "chkLstbxUsuarios");
-            chkLstbxUsuarios.Name = "chkLstbxUsuarios";
+            chklstbxUsuarios.BackColor = SystemColors.Menu;
+            chklstbxUsuarios.FormattingEnabled = true;
+            resources.ApplyResources(chklstbxUsuarios, "chklstbxUsuarios");
+            chklstbxUsuarios.Name = "chklstbxUsuarios";
             // 
             // bttnEliminar
             // 
@@ -82,10 +82,10 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.Lista_usuarios;
+            BackgroundImage = Properties.Resources.fondo_Listas;
             CancelButton = bttnCancelar;
             Controls.Add(bttnEliminar);
-            Controls.Add(chkLstbxUsuarios);
+            Controls.Add(chklstbxUsuarios);
             Controls.Add(bttnOrdenar);
             Controls.Add(bttnCancelar);
             Controls.Add(bttnModificar);
@@ -101,7 +101,7 @@
         private Button bttnModificar;
         private Button bttnCancelar;
         private Button bttnOrdenar;
-        private CheckedListBox chkLstbxUsuarios;
+        private CheckedListBox chklstbxUsuarios;
         private Button bttnEliminar;
     }
 }

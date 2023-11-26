@@ -19,15 +19,15 @@ namespace InmoSolution.Formularios.Usuarios
             InitializeComponent();
         }
 
-        private void OrdenarListBox()
-        {
-            chkLstbxUsuarios.Sorted = true;
-        }
-
         private void ListadoUsuarios_Load(object sender, EventArgs e)
         {
-            chkLstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
-            chkLstbxUsuarios.DisplayMember = "Nombre";
+            chklstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
+            chklstbxUsuarios.DisplayMember = "Nombre";
+        }
+
+        private void OrdenarListBox()
+        {
+            chklstbxUsuarios.Sorted = true;
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)
@@ -42,18 +42,18 @@ namespace InmoSolution.Formularios.Usuarios
 
         private void bttnEliminar_Click(object sender, EventArgs e)
         {
-            if (chkLstbxUsuarios.CheckedItems.Count > 0)
+            if (chklstbxUsuarios.CheckedItems.Count > 0)
             {
                 DialogResult respuesta = MessageBox.Show("¿Está seguro que desea eliminar los usuarios seleccionados?", "Eliminar usuarios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
-                    foreach (Usuario user in chkLstbxUsuarios.CheckedItems)
+                    foreach (Usuario user in chklstbxUsuarios.CheckedItems)
                     {
                         ControladorUsuario.EliminarUsuario(user);
                     }
-                    chkLstbxUsuarios.DataSource = null;
-                    chkLstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
-                    chkLstbxUsuarios.DisplayMember = "Nombre";
+                    chklstbxUsuarios.DataSource = null;
+                    chklstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
+                    chklstbxUsuarios.DisplayMember = "Nombre";
                 }
             }
             else
@@ -64,14 +64,14 @@ namespace InmoSolution.Formularios.Usuarios
 
         private void bttnModificar_Click(object sender, EventArgs e)
         {
-            if (chkLstbxUsuarios.CheckedItems.Count == 1)
+            if (chklstbxUsuarios.CheckedItems.Count == 1)
             {
-                Usuario usuario = (Usuario)chkLstbxUsuarios.SelectedItem;
+                Usuario usuario = (Usuario)chklstbxUsuarios.SelectedItem;
                 ModificarUsuario modificarUsuario = new ModificarUsuario(usuario);
                 modificarUsuario.ShowDialog();
-                chkLstbxUsuarios.DataSource = null;
-                chkLstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
-                chkLstbxUsuarios.DisplayMember = "Nombre";
+                chklstbxUsuarios.DataSource = null;
+                chklstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
+                chklstbxUsuarios.DisplayMember = "Nombre";
             }
             else
             {

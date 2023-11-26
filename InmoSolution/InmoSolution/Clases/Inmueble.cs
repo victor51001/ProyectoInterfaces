@@ -18,6 +18,7 @@ namespace InmoSolution.Clases
         private bool disponible;
         private Cliente propietario;
         private string localidad;
+        private bool libre;
         
         //constructor
         public Inmueble(int id, string direccion, int habitaciones, int baños, int metrosCuadrados, int antiguedad, bool disponible, Cliente propietario, string localidad)
@@ -31,6 +32,7 @@ namespace InmoSolution.Clases
             this.Disponible = disponible;
             this.Propietario = propietario;
             this.Localidad = localidad;
+            this.libre = true;
         }
 
         //getters y setters
@@ -43,11 +45,12 @@ namespace InmoSolution.Clases
         public bool Disponible { get => disponible; set => disponible = value; }
         public Cliente Propietario { get => propietario; set => propietario = value; }
         public string Localidad { get => localidad; set => localidad = value; }
+        public bool Libre { get => libre; set => libre = value; }
 
         //metodos
         public override string ToString()
         {
-            return "Id: " + this.Id + " Direccion: " + this.Direccion + " Habitaciones: " + this.Habitaciones + " Baños: " + this.Baños + " Metros Cuadrados: " + this.MetrosCuadrados + " Antiguedad: " + this.Antiguedad + " Disponible: " + this.Disponible + " Propietario: " + this.Propietario + " Localidad: " + this.Localidad;
+            return "Id: " + this.Id + " Direccion: " + this.Direccion + " Habitaciones: " + this.Habitaciones + " Baños: " + this.Baños + " Metros Cuadrados: " + this.MetrosCuadrados + " Antiguedad: " + this.Antiguedad + " Disponible: " + this.Disponible + " Propietario: " + this.Propietario + " Localidad: " + this.Localidad + " Libre: " + this.Libre;
         }
     }
 }

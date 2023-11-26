@@ -231,28 +231,28 @@
   <data name="&gt;&gt;bttnOrdenar.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="chkLstbxUsuarios.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="chklstbxUsuarios.Location" type="System.Drawing.Point, System.Drawing">
     <value>167, 158</value>
   </data>
-  <data name="chkLstbxUsuarios.ScrollAlwaysVisible" type="System.Boolean, mscorlib">
+  <data name="chklstbxUsuarios.ScrollAlwaysVisible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="chkLstbxUsuarios.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="chklstbxUsuarios.Size" type="System.Drawing.Size, System.Drawing">
     <value>445, 256</value>
   </data>
-  <data name="chkLstbxUsuarios.TabIndex" type="System.Int32, mscorlib">
+  <data name="chklstbxUsuarios.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;chkLstbxUsuarios.Name" xml:space="preserve">
-    <value>chkLstbxUsuarios</value>
+  <data name="&gt;&gt;chklstbxUsuarios.Name" xml:space="preserve">
+    <value>chklstbxUsuarios</value>
   </data>
-  <data name="&gt;&gt;chkLstbxUsuarios.Type" xml:space="preserve">
+  <data name="&gt;&gt;chklstbxUsuarios.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;chkLstbxUsuarios.Parent" xml:space="preserve">
+  <data name="&gt;&gt;chklstbxUsuarios.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;chkLstbxUsuarios.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;chklstbxUsuarios.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="bttnEliminar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">

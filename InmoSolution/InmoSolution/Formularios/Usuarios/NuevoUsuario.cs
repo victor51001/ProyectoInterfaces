@@ -1,5 +1,4 @@
-﻿using Inicio_Y_Portal;
-using InmoSolution.Clases;
+﻿using InmoSolution.Clases;
 using InmoSolution.Controladores;
 using System;
 using System.Collections.Generic;
@@ -18,6 +17,14 @@ namespace InmoSolution.Formularios.Usuarios
         public NuevoUsuario()
         {
             InitializeComponent();
+        }
+
+        private void NuevoUsuario_Load(object sender, EventArgs e)
+        {
+            Color backColorLabel = Color.FromArgb(100, Color.Beige);
+            lblUser.BackColor = backColorLabel;
+            lblPassword1.BackColor = backColorLabel;
+            lblPassword2.BackColor = backColorLabel;
         }
         private Boolean ValidarCampos()
         {
@@ -69,21 +76,12 @@ namespace InmoSolution.Formularios.Usuarios
                 ControladorUsuario.ListaUsuarios.Add(u);
                 ControladorUsuario.cambios = true;
                 LimpiarCampos();
-                TerminarAlta frmTAP = new TerminarAlta();
-                frmTAP.ShowDialog();
-                if (!frmTAP.valor)
+                DialogResult resultado = MessageBox.Show("¿Desea dar de alta otro usuario?", "Alta", MessageBoxButtons.YesNo);
+                if (resultado.Equals(DialogResult.No))
                 {
                     Close();
                 }
             }
-        }
-
-        private void NuevoUsuario_Load(object sender, EventArgs e)
-        {
-            Color backColorLabel = Color.FromArgb(100, Color.Beige);
-            lblUser.BackColor = backColorLabel;
-            lblPassword1.BackColor = backColorLabel;
-            lblPassword2.BackColor = backColorLabel;
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)

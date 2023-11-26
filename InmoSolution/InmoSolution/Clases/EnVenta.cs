@@ -9,25 +9,27 @@ namespace InmoSolution.Clases
     public class EnVenta : Inmueble
     {
         //atributos
+        private int precioMetroCuadrado;
         private int precio;
 
         //constructor
         public EnVenta(int id, string direccion, int habitaciones, 
                        int baños, int metrosCuadrados, int antiguedad, bool disponible, 
-                                  Cliente propietario, string localidad, int precio) 
+                                  Cliente propietario, string localidad, int precioMetroCuadrado) 
             : base(id, direccion, habitaciones, baños, metrosCuadrados, 
                                    antiguedad, disponible, propietario, localidad)
         {
-            this.Precio = precio;
+            this.Precio = PrecioMetroCuadrado * MetrosCuadrados;
         }
 
         //getters y setters
         public int Precio { get => precio; set => precio = value; }
+        public int PrecioMetroCuadrado { get => precioMetroCuadrado; set => precioMetroCuadrado = value; }
 
         //metodos
         public override string ToString()
         {
-            return base.ToString() + " Precio: " + this.Precio;
+            return base.ToString() + " Precio por metro cuadrado: " + this.PrecioMetroCuadrado + " Precio: " + this.Precio;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using InmoSolution.Clases;
+using InmoSolution.Formularios.Usuarios;
+using MessagePack.Resolvers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using static InmoSolution.Clases.Empleado;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace InmoSolution.Controladores
 {
@@ -14,8 +17,11 @@ namespace InmoSolution.Controladores
     {
         public static List<Empleado> ListaEmpleados = new List<Empleado>();
         public static bool cambios;
-        public static double SUELDO_MINIMO = 900;
-        public static double COMISION_BASE = 0.05;
+        public const double SUELDO_MINIMO = 900;
+        public const double COMISION_ALQUILER = 0.05;
+        public const double COMISION_VENTA = 0.1;
+        public const double IRPF = 0.15;
+
         public static void LeerEmpleados()
         {
             try
@@ -73,6 +79,34 @@ namespace InmoSolution.Controladores
                 }
             }
             return false;
+        }
+
+        public static void EliminarEmpleado(Empleado empleado)
+        {
+            foreach (Empleado emp in ListaEmpleados)
+            {
+                if (emp == empleado)
+                {
+                    ListaEmpleados.Remove(emp);
+                    return;
+                }
+            }
+        }
+
+        public static void ModificarEmpleado(Empleado empleado, int telefono, string email, Empleado.Puestos puesto)
+        {
+            if (telefono != 0)
+            {
+                empleado.Telefono = telefono;
+            }
+            if (email != null)
+            {
+                empleado.Email = email;
+            }
+            if (puesto != Empleado.Puestos.nulo)
+            {
+                empleado.Puesto = puesto;
+            }            
         }
     }
 }

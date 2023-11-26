@@ -16,7 +16,7 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                Stream OpenFileStream = File.OpenRead("usuarios.bin");
+                Stream OpenFileStream = File.OpenRead("usuarios.msgpack");
                 ListaUsuarios = MessagePackSerializer.Deserialize<List<Usuario>>(OpenFileStream);
                 OpenFileStream.Close();
             }
@@ -27,31 +27,12 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                Stream SaveFileStream = File.Create("usuarios.bin");
+                Stream SaveFileStream = File.Create("usuarios.msgpack");
                 MessagePackSerializer.Serialize(SaveFileStream, ListaUsuarios);
                 SaveFileStream.Close();
             }
             catch (Exception)
             { }
-        }
-
-        public static void ModificarUsuario(int id, string nombre, string clave)
-        {
-            foreach (Usuario user in ListaUsuarios)
-            {
-                if (user.Id == id)
-                {
-                    if (!nombre.Equals(user.Nombre))
-                    {
-                        user.Nombre = nombre;
-                    }
-                    if (!clave.Equals(""))
-                    {
-                        user.Clave = clave;
-                    }
-                    return;
-                }
-            }
         }
 
         public static void EliminarUsuario(Usuario usu)
@@ -88,6 +69,18 @@ namespace InmoSolution.Controladores
                 }
             }
             return false;
+        }
+
+        public static void ModificarUsuario(Usuario user, string nombre, string clave)
+        {
+            if (nombre != null)
+            {
+                user.Nombre = nombre;
+            }
+            if (clave != null)
+            {
+                user.Clave = clave;
+            }
         }
     }
 }
