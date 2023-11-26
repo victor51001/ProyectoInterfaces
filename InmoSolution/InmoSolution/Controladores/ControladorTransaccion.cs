@@ -1,10 +1,8 @@
 ﻿using InmoSolution.Clases;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using MessagePack;
 
 namespace InmoSolution.Controladores
 {
@@ -12,33 +10,28 @@ namespace InmoSolution.Controladores
     {
         public static List<Transaccion> ListaTransacciones = new List<Transaccion>();
         public static bool cambios;
+
         public static void LeerTransacciones()
         {
             try
             {
-                using (FileStream fs = new FileStream("transacciones.bin", FileMode.Open))
+                using (FileStream fs = new FileStream("transacciones.dat", FileMode.Open))
                 {
-                    BinaryFormatter formatter = new BinaryFormatter();
-#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
-                    ListaTransacciones = (List<Transaccion>)formatter.Deserialize(fs);
-#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
+                    ListaTransacciones = MessagePackSerializer.Deserialize<List<Transaccion>>(fs);
                 }
             }
             catch (Exception)
             { }
-            
         }
 
         public static void EscribirTransacciones()
         {
             try
             {
-                FileStream fs = new FileStream("transacciones.bin", FileMode.Create);                
-                BinaryFormatter formatter = new BinaryFormatter();
-#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
-                formatter.Serialize(fs, ListaTransacciones);
-#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
-                
+                using (FileStream fs = new FileStream("transacciones.dat", FileMode.Create))
+                {
+                    MessagePackSerializer.Serialize(fs, ListaTransacciones);
+                }
             }
             catch (Exception)
             { }

@@ -48,10 +48,11 @@ namespace InmoSolution.Formularios
                 tsmiEmpleados.Visible = true;
             }
             CargarClases();
+            /*
             ControladorEmpleado.EscribirEmpleados();
             ControladorCliente.EscribirClientes();
             ControladorAlquiler.EscribirAlquileres();
-            ControladorEnVenta.EscribirEnVentas();
+            ControladorEnVenta.EscribirEnVentas();*/
             ControladorTransaccion.EscribirTransacciones();
             ControladorVisita.EscribirVisitas();
         }
@@ -84,26 +85,26 @@ namespace InmoSolution.Formularios
             EnVenta venta3 = new EnVenta(8, "Calle Toledo, 15", 3, 2, 100, 10, true, cliente3, "Pozuelo de Alarcón", 2000);
             EnVenta venta4 = new EnVenta(9, "Calle Atocha, 55", 1, 1, 60, 4, true, cliente4, "Boadilla del Monte", 900);
             EnVenta venta5 = new EnVenta(10, "Calle Gran Vía, 200", 5, 3, 220, 15, true, cliente5, "Torrejón de Ardoz", 3500);
-
+            
             // Crear visitas
             Visita visita1 = new Visita(1, new DateTime(2023, 11, 25, 14, 30, 0), cliente1, alquiler1, empleado1);
             Visita visita2 = new Visita(2, new DateTime(2023, 11, 24, 16, 0, 0), cliente2, venta2, empleado2);
             Visita visita3 = new Visita(3, new DateTime(2023, 11, 23, 10, 45, 0), cliente3, alquiler3, empleado3);
             Visita visita4 = new Visita(4, new DateTime(2023, 11, 22, 12, 15, 0), cliente4, venta4, empleado4);
             Visita visita5 = new Visita(5, new DateTime(2023, 11, 21, 15, 45, 0), cliente5, alquiler5, empleado5);
-
+            
             // Crear transacciones
             Transaccion transaccion1 = new Transaccion(1, new DateTime(2023, 11, 25, 15, 0, 0), new Visita[] { visita1 }, empleado1, cliente1, alquiler1, 1000, 200);
             Transaccion transaccion2 = new Transaccion(2, new DateTime(2023, 11, 24, 17, 30, 0), new Visita[] { visita2 }, empleado2, cliente2, venta2, 1200, 400);
             Transaccion transaccion3 = new Transaccion(3, new DateTime(2023, 11, 23, 11, 0, 0), new Visita[] { visita3 }, empleado3, cliente3, alquiler3, 1500, 300);
             Transaccion transaccion4 = new Transaccion(4, new DateTime(2023, 11, 22, 12, 45, 0), new Visita[] { visita4 }, empleado4, cliente4, venta4, 800, 150);
             Transaccion transaccion5 = new Transaccion(5, new DateTime(2023, 11, 21, 16, 15, 0), new Visita[] { visita5 }, empleado5, cliente5, alquiler5, 1100, 250);
-
+            /*
             ControladorEmpleado.ListaEmpleados.AddRange(new List<Empleado> { empleado1, empleado2, empleado3, empleado4, empleado5 });
             ControladorCliente.ListaClientes.AddRange(new List<Cliente> { cliente1, cliente2, cliente3, cliente4, cliente5 });
             ControladorAlquiler.ListaAlquileres.AddRange(new List<Alquiler> { alquiler1, alquiler2, alquiler3, alquiler4, alquiler5 });
             ControladorEnVenta.ListaEnVentas.AddRange(new List<EnVenta> { venta1, venta2, venta3, venta4, venta5 });
-            ControladorVisita.ListaVisitas.AddRange(new List<Visita> { visita1, visita2, visita3, visita4, visita5 });
+            */ControladorVisita.ListaVisitas.AddRange(new List<Visita> { visita1, visita2, visita3, visita4, visita5 });
             ControladorTransaccion.ListaTransacciones.AddRange(new List<Transaccion> { transaccion1, transaccion2, transaccion3, transaccion4, transaccion5 });
         }
         private void tsmiPerfil_Click(object sender, EventArgs e)

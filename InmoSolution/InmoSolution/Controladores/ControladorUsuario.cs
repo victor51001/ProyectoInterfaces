@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
+using System.Runtime.Serialization.Formatters.Binary;
 using InmoSolution.Clases;
 using MessagePack;
 
@@ -16,9 +17,13 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                Stream OpenFileStream = File.OpenRead("usuarios.msgpack");
-                ListaUsuarios = MessagePackSerializer.Deserialize<List<Usuario>>(OpenFileStream);
-                OpenFileStream.Close();
+                using (FileStream fs = new FileStream("usuarios.bin", FileMode.Open))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
+                    ListaUsuarios = (List<Usuario>)formatter.Deserialize(fs);
+#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
+                }
             }
             catch (Exception)
             { }
@@ -27,9 +32,11 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                Stream SaveFileStream = File.Create("usuarios.msgpack");
-                MessagePackSerializer.Serialize(SaveFileStream, ListaUsuarios);
-                SaveFileStream.Close();
+                FileStream fs = new FileStream("usuarios.bin", FileMode.Create);
+                BinaryFormatter formatter = new BinaryFormatter();
+#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
+                formatter.Serialize(fs, ListaUsuarios);
+#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
             }
             catch (Exception)
             { }
@@ -52,6 +59,18 @@ namespace InmoSolution.Controladores
             foreach (Usuario user in ListaUsuarios)
             {
                 if (user.Nombre == nombre)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        public static Usuario GetUsuario(int id)
+        {
+            foreach (Usuario user in ListaUsuarios)
+            {
+                if (user.Id == id)
                 {
                     return user;
                 }

@@ -30,7 +30,7 @@ namespace InmoSolution.Clases
         private Puestos puesto;
         private double sueldo;
 
-        //constructor
+        //constructores
         public Empleado(string dni, string nombre, string apellidos, string email, int telefono,Usuario usuario, Puestos puesto)
         {
             this.Dni = dni;
@@ -42,6 +42,7 @@ namespace InmoSolution.Clases
             this.Puesto = puesto;
             this.Sueldo = CalcularSueldo();
         }
+        public Empleado() { }
 
         //getters y setters
         public string Dni { get => dni; set => dni = value; }
@@ -127,18 +128,30 @@ namespace InmoSolution.Clases
         }
         public void ReadXml(System.Xml.XmlReader reader)
         {
-            // Implementa la lógica de lectura personalizada si es necesario
             reader.ReadStartElement();
-            this.Usuario.Id = int.Parse(reader.ReadElementContentAsString("IdUsuario", ""));
-            // Lee otros elementos si es necesario
+
+            this.Dni = reader.ReadElementContentAsString("Dni", "");
+            this.Nombre = reader.ReadElementContentAsString("Nombre", "");
+            this.Apellidos = reader.ReadElementContentAsString("Apellidos", "");
+            this.Telefono = int.Parse(reader.ReadElementContentAsString("Telefono", ""));
+            this.Email = reader.ReadElementContentAsString("Email", "");
+            this.Puesto = (Puestos)Enum.Parse(typeof(Puestos), reader.ReadElementContentAsString("Puesto", ""));
+            this.Sueldo = double.Parse(reader.ReadElementContentAsString("Sueldo", ""));
+            this.Usuario = ControladorUsuario.GetUsuario(int.Parse(reader.ReadElementContentAsString("IdUsuario", "")));
+
             reader.ReadEndElement();
         }
 
         public void WriteXml(System.Xml.XmlWriter writer)
         {
-            // Implementa la lógica de escritura personalizada
+            writer.WriteElementString("Dni", this.Dni);
+            writer.WriteElementString("Nombre", this.Nombre);
+            writer.WriteElementString("Apellidos", this.Apellidos);
+            writer.WriteElementString("Telefono", this.Telefono.ToString());
+            writer.WriteElementString("Email", this.Email);
+            writer.WriteElementString("Puesto", this.Puesto.ToString());
+            writer.WriteElementString("Sueldo", this.Sueldo.ToString());
             writer.WriteElementString("IdUsuario", this.Usuario.Id.ToString());
-            // Escribe otros elementos si es necesario
         }
     }
 }
