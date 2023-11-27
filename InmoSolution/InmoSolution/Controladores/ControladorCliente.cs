@@ -33,7 +33,8 @@ namespace InmoSolution.Controladores
                 var serializer = new SerializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
-                string yamlString = serializer.Serialize(ListaClientes);
+                var yamlString = serializer.Serialize(ListaClientes);
+                MessageBox.Show("Escribiendo clientes... {}" + yamlString);
                 File.WriteAllText("clientes.yml", yamlString);
             }
             catch (Exception)

@@ -74,6 +74,7 @@
             tsmiAcercaDe = new ToolStripMenuItem();
             msPrincipal = new MenuStrip();
             transaccionesToolStripMenuItem = new ToolStripMenuItem();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -403,6 +404,16 @@
             transaccionesToolStripMenuItem.Size = new Size(92, 20);
             transaccionesToolStripMenuItem.Text = "Transacciones";
             // 
+            // button1
+            // 
+            button1.Location = new Point(277, 157);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 9;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -410,6 +421,7 @@
             BackgroundImage = Properties.Resources.Fondo_Principal;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(778, 614);
+            Controls.Add(button1);
             Controls.Add(dataGridView1);
             Controls.Add(chart1);
             Controls.Add(msPrincipal);
@@ -474,5 +486,6 @@
         private ToolStripMenuItem listadoDeUsuariosToolStripMenuItem;
         private ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
         private ToolStripMenuItem transaccionesToolStripMenuItem;
+        private Button button1;
     }
 }

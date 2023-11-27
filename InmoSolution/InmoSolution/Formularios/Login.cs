@@ -14,16 +14,22 @@ namespace InmoSolution
 
         private void Login_Load(object sender, EventArgs e)
         {
-            ControladorUsuario.LeerUsuarios();
-            /*// Crear usuarios
-            Usuario adminUser = new Usuario(0, "admin", "1234");
-            Usuario usuario1 = new Usuario("Juan", "5678");
-            Usuario usuario2 = new Usuario("Ana", "9012");
-            Usuario usuario3 = new Usuario("Pedro", "3456");
-            Usuario usuario4 = new Usuario("María", "7890");
-            Usuario usuario5 = new Usuario("Carlos", "2345");
-            ControladorUsuario.ListaUsuarios.AddRange(new List<Usuario> { adminUser, usuario1, usuario2, usuario3, usuario4, usuario5 });
-            ControladorUsuario.EscribirUsuarios();*/
+            if (ControladorUsuario.ExisteFichero())
+            {
+                ControladorUsuario.LeerUsuarios();
+            } 
+            else
+            {
+                // Crear usuarios
+                Usuario adminUser = new Usuario(0, "admin", "1234");
+                Usuario usuario1 = new Usuario("Juan", "5678");
+                Usuario usuario2 = new Usuario("Ana", "9012");
+                Usuario usuario3 = new Usuario("Pedro", "3456");
+                Usuario usuario4 = new Usuario("María", "7890");
+                Usuario usuario5 = new Usuario("Carlos", "2345");
+                ControladorUsuario.ListaUsuarios.AddRange(new List<Usuario> { adminUser, usuario1, usuario2, usuario3, usuario4, usuario5 });
+                ControladorUsuario.EscribirUsuarios();
+            }
         }
 
         private void lbllnkCrear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -53,6 +59,7 @@ namespace InmoSolution
             {
                 Application.Exit();
             }
+            vueltas++;
         }
     }
 }

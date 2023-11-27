@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace InmoSolution.Clases
 {
+    [Serializable]
     public class Visita
     {
         //atributos
@@ -35,7 +36,7 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return "Id: " + this.Id + " Fecha y Hora: " + this.FechaHora + " Cliente: " + this.Cliente + " Inmueble: " + this.Inmueble + " Empleado: " + this.Empleado;
+            return "Id: " + this.Id + " Fecha y Hora: " + this.FechaHora + " Cliente: " + this.Cliente.ToString()+ " Inmueble: " + this.Inmueble.ToString() + " Empleado: " + this.Empleado.ToString();
         }
     }
 }

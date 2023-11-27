@@ -4,7 +4,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Runtime.Serialization.Formatters.Binary;
 using InmoSolution.Clases;
-using MessagePack;
+using ProtoBuf;
 
 namespace InmoSolution.Controladores
 {
@@ -32,11 +32,14 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                FileStream fs = new FileStream("usuarios.bin", FileMode.Create);
-                BinaryFormatter formatter = new BinaryFormatter();
+                MessageBox.Show("Escribiendo usuarios...");
+                using (FileStream fs = new FileStream("usuarios.bin", FileMode.Create))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
 #pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
-                formatter.Serialize(fs, ListaUsuarios);
+                    formatter.Serialize(fs, ListaUsuarios);
 #pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
+                }
             }
             catch (Exception)
             { }

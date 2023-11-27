@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace InmoSolution.Clases
 {
+    [Serializable]
     public class Alquiler : Inmueble
     {
         //atributos

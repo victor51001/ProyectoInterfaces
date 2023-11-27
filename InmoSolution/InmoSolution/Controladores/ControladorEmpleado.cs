@@ -1,6 +1,4 @@
 ﻿using InmoSolution.Clases;
-using InmoSolution.Formularios.Usuarios;
-using MessagePack.Resolvers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +31,8 @@ namespace InmoSolution.Controladores
                     ListaEmpleados = (List<Empleado>)serializer.Deserialize(reader);
                 }
             }
-            catch (Exception) { }
+            catch (Exception) 
+            { }
         }
 
         public static void EscribirEmpleados()
@@ -48,7 +47,8 @@ namespace InmoSolution.Controladores
                     serializer.Serialize(writer, ListaEmpleados, namespaces);
                 }
             }
-            catch (Exception) { }
+            catch (Exception) 
+            { }
         }
 
         public static bool EsJefe(Usuario user)

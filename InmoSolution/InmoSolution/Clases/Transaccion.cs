@@ -46,7 +46,7 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return " Id: " + this.Id + " Fecha: " + this.Fecha + " Visitas: " + this.Visitas + " Empleado: " + this.Empleado + " Cliente: " + this.Cliente + " Inmueble: " + this.Inmueble + " Precio: " + this.Precio + " Beneficio: " + this.Beneficio;
+            return " Id: " + this.Id + " Fecha: " + this.Fecha + " Visitas: " + this.Visitas.ToString() + " Empleado: " + this.Empleado + " Cliente: " + this.Cliente + " Inmueble: " + this.Inmueble + " Precio: " + this.Precio + " Beneficio: " + this.Beneficio;
         }
     }
 }

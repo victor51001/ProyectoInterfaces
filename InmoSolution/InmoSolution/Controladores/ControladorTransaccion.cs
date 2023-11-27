@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MessagePack;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace InmoSolution.Controladores
 {
@@ -17,7 +17,10 @@ namespace InmoSolution.Controladores
             {
                 using (FileStream fs = new FileStream("transacciones.dat", FileMode.Open))
                 {
-                    ListaTransacciones = MessagePackSerializer.Deserialize<List<Transaccion>>(fs);
+                    BinaryFormatter formatter = new BinaryFormatter();
+#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
+                    ListaTransacciones = (List<Transaccion>)formatter.Deserialize(fs);
+#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
                 }
             }
             catch (Exception)
@@ -28,9 +31,11 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                using (FileStream fs = new FileStream("transacciones.dat", FileMode.Create))
-                {
-                    MessagePackSerializer.Serialize(fs, ListaTransacciones);
+                using (FileStream fs = new FileStream("transacciones.dat", FileMode.Create)) { 
+                    BinaryFormatter formatter = new BinaryFormatter();
+#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
+                    formatter.Serialize(fs, ListaTransacciones);
+#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
                 }
             }
             catch (Exception)

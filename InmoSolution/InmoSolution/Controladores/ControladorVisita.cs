@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tomlyn;
+using System.IO;
+using Nett;
 
 namespace InmoSolution.Controladores
 {
@@ -16,26 +17,24 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                string toml = File.ReadAllText("visitas.toml");
-                var table = Toml.Parse(toml);
-                var visits = table.ToModel<List<Visita>>();
-                ListaVisitas = visits ?? new List<Visita>();
+                ListaVisitas = Toml.ReadFile<List<Visita>>("visitas.toml");
             }
-            catch (Exception) { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"Error al leer/visitas: {ex.Message}");
+            }
         }
 
         public static void EscribirVisitas()
         {
             try
             {
-                if (!File.Exists("visitas.toml"))
-                {
-                    File.Create("visitas.toml").Close();
-                }
-                var table = Toml.FromModel(ListaVisitas);
-                File.WriteAllText("visitas.toml", table);
+                Toml.WriteFile(ListaVisitas, "visitas.toml");
             }
-            catch (Exception) { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"Error al escribir/visitas: {ex.Message}");
+            }
         }
 
         public static bool ExisteFichero()

@@ -17,9 +17,11 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
-    <PackageReference Include="MessagePack" Version="2.5.129" />
+    <PackageReference Include="Google.Protobuf" Version="3.25.1" />
+    <PackageReference Include="Nett" Version="0.15.0" />
+    <PackageReference Include="protobuf-net" Version="3.2.30" />
     <PackageReference Include="System.Text.Json" Version="8.0.0" />
-    <PackageReference Include="Tomlyn" Version="0.16.2" />
+    <PackageReference Include="Tomlyn" Version="0.17.0" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.1" />
     <PackageReference Include="YamlDotNet" Version="13.7.1" />
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
