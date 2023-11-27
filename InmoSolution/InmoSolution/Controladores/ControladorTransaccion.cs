@@ -36,5 +36,9 @@ namespace InmoSolution.Controladores
             catch (Exception)
             { }
         }
+        public static bool ExisteFichero()
+        {
+            return File.Exists("transacciones.dat");
+        }
     }
 }

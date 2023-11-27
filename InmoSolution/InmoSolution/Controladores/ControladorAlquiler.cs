@@ -30,4 +30,8 @@ public class ControladorAlquiler
         catch (Exception)
         { }
     }
+    public static bool ExisteFichero()
+    {
+        return File.Exists("alquileres.json");
+    }
 }

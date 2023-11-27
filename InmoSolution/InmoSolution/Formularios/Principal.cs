@@ -19,6 +19,7 @@ namespace InmoSolution.Formularios
     {
         private Usuario user;
         Dictionary<string, bool> cambios = new Dictionary<string, bool>();
+        List<bool> ficherosExist = new List<bool>();
         public Principal(Usuario usu)
         {
             InitializeComponent();
@@ -34,6 +35,13 @@ namespace InmoSolution.Formularios
             cambios.Add("EnVenta", ControladorEnVenta.cambios);
             cambios.Add("Transaccion", ControladorTransaccion.cambios);
             cambios.Add("Visita", ControladorVisita.cambios);
+            ficherosExist.Add(ControladorUsuario.ExisteFichero());
+            ficherosExist.Add(ControladorEmpleado.ExisteFichero());
+            ficherosExist.Add(ControladorCliente.ExisteFichero());
+            ficherosExist.Add(ControladorAlquiler.ExisteFichero());
+            ficherosExist.Add(ControladorEnVenta.ExisteFichero());
+            ficherosExist.Add(ControladorTransaccion.ExisteFichero());
+            ficherosExist.Add(ControladorVisita.ExisteFichero());
         }
 
         private void Principal_Load(object sender, EventArgs e)
@@ -47,12 +55,86 @@ namespace InmoSolution.Formularios
             {
                 tsmiEmpleados.Visible = true;
             }
-            CargarClases();
-            /*
+            for (int i=0; i<ficherosExist.Count; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                        if (ficherosExist[i])
+                        {
+                            ControladorUsuario.LeerUsuarios();
+                        } else
+                        {
+                            ControladorUsuario.EscribirUsuarios();
+                        }
+                        break;
+                    case 2:
+                        if (ficherosExist[i])
+                        {
+                            ControladorEmpleado.LeerEmpleados();
+                        }
+                        else
+                        {
+                            ControladorEmpleado.EscribirEmpleados();
+                        }
+                        break;
+                    case 3:
+                        if (ficherosExist[i])
+                        {
+                            ControladorCliente.LeerClientes();
+                        }
+                        else
+                        {
+                            ControladorCliente.EscribirClientes();
+                        }
+                        break;
+                    case 4:
+                        if (ficherosExist[i])
+                        {
+                            ControladorAlquiler.LeerAlquileres();
+                        }
+                        else
+                        {
+                            ControladorAlquiler.EscribirAlquileres();
+                        }
+                        break;
+                    case 5:
+                        if (ficherosExist[i])
+                        {
+                            ControladorEnVenta.LeerEnVentas();
+                        }
+                        else
+                        {
+                            ControladorEnVenta.EscribirEnVentas();
+                        }
+                        break;
+                    case 6:
+                        if (ficherosExist[i])
+                        {
+                            ControladorTransaccion.LeerTransacciones();
+                        }
+                        else
+                        {
+                            ControladorTransaccion.EscribirTransacciones();
+                        }
+                        break;
+                    case 7:
+                        if (ficherosExist[i])
+                        {
+                            ControladorVisita.LeerVisitas();
+                        }
+                        else
+                        {
+                            ControladorVisita.EscribirVisitas();
+                        }
+                        break;
+                }
+            }
+            CargarClases();           
             ControladorEmpleado.EscribirEmpleados();
             ControladorCliente.EscribirClientes();
             ControladorAlquiler.EscribirAlquileres();
-            ControladorEnVenta.EscribirEnVentas();*/
+            ControladorEnVenta.EscribirEnVentas();
             ControladorTransaccion.EscribirTransacciones();
             ControladorVisita.EscribirVisitas();
         }
@@ -99,14 +181,15 @@ namespace InmoSolution.Formularios
             Transaccion transaccion3 = new Transaccion(3, new DateTime(2023, 11, 23, 11, 0, 0), new Visita[] { visita3 }, empleado3, cliente3, alquiler3, 1500, 300);
             Transaccion transaccion4 = new Transaccion(4, new DateTime(2023, 11, 22, 12, 45, 0), new Visita[] { visita4 }, empleado4, cliente4, venta4, 800, 150);
             Transaccion transaccion5 = new Transaccion(5, new DateTime(2023, 11, 21, 16, 15, 0), new Visita[] { visita5 }, empleado5, cliente5, alquiler5, 1100, 250);
-            /*
+            
             ControladorEmpleado.ListaEmpleados.AddRange(new List<Empleado> { empleado1, empleado2, empleado3, empleado4, empleado5 });
             ControladorCliente.ListaClientes.AddRange(new List<Cliente> { cliente1, cliente2, cliente3, cliente4, cliente5 });
             ControladorAlquiler.ListaAlquileres.AddRange(new List<Alquiler> { alquiler1, alquiler2, alquiler3, alquiler4, alquiler5 });
             ControladorEnVenta.ListaEnVentas.AddRange(new List<EnVenta> { venta1, venta2, venta3, venta4, venta5 });
-            */ControladorVisita.ListaVisitas.AddRange(new List<Visita> { visita1, visita2, visita3, visita4, visita5 });
+            ControladorVisita.ListaVisitas.AddRange(new List<Visita> { visita1, visita2, visita3, visita4, visita5 });
             ControladorTransaccion.ListaTransacciones.AddRange(new List<Transaccion> { transaccion1, transaccion2, transaccion3, transaccion4, transaccion5 });
         }
+
         private void tsmiPerfil_Click(object sender, EventArgs e)
         {
             Usuarios.ModificarUsuario frmPerfil = new Usuarios.ModificarUsuario(user);

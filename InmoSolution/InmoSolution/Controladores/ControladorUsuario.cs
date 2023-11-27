@@ -101,5 +101,9 @@ namespace InmoSolution.Controladores
                 user.Clave = clave;
             }
         }
+        public static bool ExisteFichero()
+        {
+            return File.Exists("usuarios.bin");
+        }
     }
 }

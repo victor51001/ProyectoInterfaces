@@ -108,5 +108,9 @@ namespace InmoSolution.Controladores
                 empleado.Puesto = puesto;
             }            
         }
+        public static bool ExisteFichero()
+        {
+            return File.Exists("empleados.xml");
+        }
     }
 }
