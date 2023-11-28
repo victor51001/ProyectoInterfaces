@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace InmoSolution.Controladores
@@ -18,11 +19,8 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                StreamReader reader = new StreamReader("enventa.csv");
-                CsvReader csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-                ListaEnVentas = csv.GetRecords<EnVenta>().ToList();
-                reader.Dispose();
-                csv.Dispose();
+                string jsonString = File.ReadAllText("enVenta.json");
+                ListaEnVentas = JsonSerializer.Deserialize<List<EnVenta>>(jsonString);
             }
             catch (Exception)
             { }
@@ -32,18 +30,15 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                StreamWriter writer = new StreamWriter("enventa.csv");
-                CsvWriter csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-                csv.WriteRecords(ListaEnVentas);
-                writer.Dispose();
-                csv.Dispose();
+                string jsonString = JsonSerializer.Serialize(ListaEnVentas);
+                File.WriteAllText("enVenta.json", jsonString);
             }
             catch (Exception)
             { }
         }
         public static bool ExisteFichero()
         {
-            return File.Exists("enventa.csv");
+            return File.Exists("enVenta.json");
         }
     }
 }
