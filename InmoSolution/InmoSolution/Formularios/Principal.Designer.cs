@@ -1,4 +1,6 @@
-﻿namespace InmoSolution.Formularios
+﻿using InmoSolution.Controladores;
+
+namespace InmoSolution.Formularios
 {
     partial class Principal
     {
@@ -35,20 +37,19 @@
             lblUltima = new Label();
             lblInmuebles = new Label();
             txtbxInmuebles = new TextBox();
-            groupBox1 = new GroupBox();
+            grpbxTotales = new GroupBox();
             lblAlquileres = new Label();
             txtbxAlquileres = new TextBox();
             lblEnVenta = new Label();
             txtbxEnVenta = new TextBox();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            dataGridView1 = new DataGridView();
+            dgvUltiTransacc = new DataGridView();
             tsmiInicio = new ToolStripMenuItem();
             tsmiPerfil = new ToolStripMenuItem();
             tsmiCerrar = new ToolStripMenuItem();
             tsmiClientes = new ToolStripMenuItem();
             tsmiListaClientes = new ToolStripMenuItem();
             tsmiNuevoCliente = new ToolStripMenuItem();
-            tsmiBuscarCliente = new ToolStripMenuItem();
             tsmiInmuebles = new ToolStripMenuItem();
             tsmiAlquileres = new ToolStripMenuItem();
             tsmiListaAlquileres = new ToolStripMenuItem();
@@ -56,35 +57,33 @@
             tsmiEnVenta = new ToolStripMenuItem();
             tsmiListaEnVenta = new ToolStripMenuItem();
             tsmiNuevoEnVenta = new ToolStripMenuItem();
-            tsmiBuscarInmuebles = new ToolStripMenuItem();
+            tsmiVisitas = new ToolStripMenuItem();
             tsmiListaVisitas = new ToolStripMenuItem();
-            listaDeVisitasToolStripMenuItem = new ToolStripMenuItem();
             tsmiNuevaVisita = new ToolStripMenuItem();
-            tsmiBuscarVisita = new ToolStripMenuItem();
             tsmiEmpleados = new ToolStripMenuItem();
             tsmiListaEmpleados = new ToolStripMenuItem();
             tsmiNuevoEmpleado = new ToolStripMenuItem();
-            tsmiBuscarEmpleado = new ToolStripMenuItem();
             tsmiUsuarios = new ToolStripMenuItem();
-            listadoDeUsuariosToolStripMenuItem = new ToolStripMenuItem();
-            nuevoUsuarioToolStripMenuItem = new ToolStripMenuItem();
+            tsmiListaUsuarios = new ToolStripMenuItem();
+            tsmiNuevoUsuario = new ToolStripMenuItem();
             tsmiConfiguracion = new ToolStripMenuItem();
             tsmiAyuda = new ToolStripMenuItem();
             tsmiDocumentacion = new ToolStripMenuItem();
             tsmiAcercaDe = new ToolStripMenuItem();
             msPrincipal = new MenuStrip();
-            transaccionesToolStripMenuItem = new ToolStripMenuItem();
-            button1 = new Button();
-            groupBox1.SuspendLayout();
+            tsmiTransacciones = new ToolStripMenuItem();
+            tsmiListaTransacciones = new ToolStripMenuItem();
+            tsmiNuevaTransaccion = new ToolStripMenuItem();
+            grpbxTotales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUltiTransacc).BeginInit();
             msPrincipal.SuspendLayout();
             SuspendLayout();
             // 
             // lblUltima
             // 
             lblUltima.AutoSize = true;
-            lblUltima.Location = new Point(576, 332);
+            lblUltima.Location = new Point(514, 332);
             lblUltima.Margin = new Padding(2, 0, 2, 0);
             lblUltima.Name = "lblUltima";
             lblUltima.Size = new Size(123, 15);
@@ -103,6 +102,7 @@
             // 
             // txtbxInmuebles
             // 
+            txtbxInmuebles.Enabled = false;
             txtbxInmuebles.Location = new Point(163, 16);
             txtbxInmuebles.Margin = new Padding(2);
             txtbxInmuebles.Name = "txtbxInmuebles";
@@ -110,23 +110,23 @@
             txtbxInmuebles.Size = new Size(31, 23);
             txtbxInmuebles.TabIndex = 4;
             // 
-            // groupBox1
+            // grpbxTotales
             // 
-            groupBox1.BackColor = Color.YellowGreen;
-            groupBox1.Controls.Add(lblAlquileres);
-            groupBox1.Controls.Add(txtbxAlquileres);
-            groupBox1.Controls.Add(lblEnVenta);
-            groupBox1.Controls.Add(txtbxEnVenta);
-            groupBox1.Controls.Add(lblInmuebles);
-            groupBox1.Controls.Add(txtbxInmuebles);
-            groupBox1.Location = new Point(514, 75);
-            groupBox1.Margin = new Padding(2);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(201, 100);
-            groupBox1.TabIndex = 5;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            grpbxTotales.BackColor = Color.FromArgb(148, 224, 255, 255);
+            grpbxTotales.Controls.Add(lblAlquileres);
+            grpbxTotales.Controls.Add(txtbxAlquileres);
+            grpbxTotales.Controls.Add(lblEnVenta);
+            grpbxTotales.Controls.Add(txtbxEnVenta);
+            grpbxTotales.Controls.Add(lblInmuebles);
+            grpbxTotales.Controls.Add(txtbxInmuebles);
+            grpbxTotales.Location = new Point(514, 75);
+            grpbxTotales.Margin = new Padding(2);
+            grpbxTotales.Name = "grpbxTotales";
+            grpbxTotales.Padding = new Padding(2);
+            grpbxTotales.Size = new Size(201, 100);
+            grpbxTotales.TabIndex = 5;
+            grpbxTotales.TabStop = false;
+            grpbxTotales.Text = "Totales";
             // 
             // lblAlquileres
             // 
@@ -140,6 +140,7 @@
             // 
             // txtbxAlquileres
             // 
+            txtbxAlquileres.Enabled = false;
             txtbxAlquileres.Location = new Point(163, 69);
             txtbxAlquileres.Margin = new Padding(2);
             txtbxAlquileres.Name = "txtbxAlquileres";
@@ -159,6 +160,7 @@
             // 
             // txtbxEnVenta
             // 
+            txtbxEnVenta.Enabled = false;
             txtbxEnVenta.Location = new Point(163, 43);
             txtbxEnVenta.Margin = new Padding(2);
             txtbxEnVenta.Name = "txtbxEnVenta";
@@ -183,15 +185,18 @@
             chart1.TabIndex = 7;
             chart1.Text = "chart1";
             // 
-            // dataGridView1
+            // dgvUltiTransacc
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(555, 377);
-            dataGridView1.Margin = new Padding(2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(210, 141);
-            dataGridView1.TabIndex = 8;
+            dgvUltiTransacc.AllowUserToAddRows = false;
+            dgvUltiTransacc.AllowUserToDeleteRows = false;
+            dgvUltiTransacc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUltiTransacc.Location = new Point(370, 363);
+            dgvUltiTransacc.Margin = new Padding(2);
+            dgvUltiTransacc.Name = "dgvUltiTransacc";
+            dgvUltiTransacc.ReadOnly = true;
+            dgvUltiTransacc.RowTemplate.Height = 24;
+            dgvUltiTransacc.Size = new Size(393, 145);
+            dgvUltiTransacc.TabIndex = 8;
             // 
             // tsmiInicio
             // 
@@ -216,7 +221,7 @@
             // 
             // tsmiClientes
             // 
-            tsmiClientes.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaClientes, tsmiNuevoCliente, tsmiBuscarCliente });
+            tsmiClientes.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaClientes, tsmiNuevoCliente });
             tsmiClientes.Name = "tsmiClientes";
             tsmiClientes.Size = new Size(61, 20);
             tsmiClientes.Text = "Clientes";
@@ -233,15 +238,9 @@
             tsmiNuevoCliente.Size = new Size(159, 22);
             tsmiNuevoCliente.Text = "Nuevo Cliente";
             // 
-            // tsmiBuscarCliente
-            // 
-            tsmiBuscarCliente.Name = "tsmiBuscarCliente";
-            tsmiBuscarCliente.Size = new Size(159, 22);
-            tsmiBuscarCliente.Text = "Buscar Cliente";
-            // 
             // tsmiInmuebles
             // 
-            tsmiInmuebles.DropDownItems.AddRange(new ToolStripItem[] { tsmiAlquileres, tsmiEnVenta, tsmiBuscarInmuebles });
+            tsmiInmuebles.DropDownItems.AddRange(new ToolStripItem[] { tsmiAlquileres, tsmiEnVenta });
             tsmiInmuebles.Name = "tsmiInmuebles";
             tsmiInmuebles.Size = new Size(74, 20);
             tsmiInmuebles.Text = "Inmuebles";
@@ -250,7 +249,7 @@
             // 
             tsmiAlquileres.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaAlquileres, tsmiNuevoAlquiler });
             tsmiAlquileres.Name = "tsmiAlquileres";
-            tsmiAlquileres.Size = new Size(162, 22);
+            tsmiAlquileres.Size = new Size(126, 22);
             tsmiAlquileres.Text = "Alquileres";
             // 
             // tsmiListaAlquileres
@@ -269,7 +268,7 @@
             // 
             tsmiEnVenta.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaEnVenta, tsmiNuevoEnVenta });
             tsmiEnVenta.Name = "tsmiEnVenta";
-            tsmiEnVenta.Size = new Size(162, 22);
+            tsmiEnVenta.Size = new Size(126, 22);
             tsmiEnVenta.Text = "En venta";
             // 
             // tsmiListaEnVenta
@@ -284,24 +283,18 @@
             tsmiNuevoEnVenta.Size = new Size(157, 22);
             tsmiNuevoEnVenta.Text = "Nuevo en Venta";
             // 
-            // tsmiBuscarInmuebles
+            // tsmiVisitas
             // 
-            tsmiBuscarInmuebles.Name = "tsmiBuscarInmuebles";
-            tsmiBuscarInmuebles.Size = new Size(162, 22);
-            tsmiBuscarInmuebles.Text = "Buscar Inmueble";
+            tsmiVisitas.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaVisitas, tsmiNuevaVisita });
+            tsmiVisitas.Name = "tsmiVisitas";
+            tsmiVisitas.Size = new Size(52, 20);
+            tsmiVisitas.Text = "Visitas";
             // 
             // tsmiListaVisitas
             // 
-            tsmiListaVisitas.DropDownItems.AddRange(new ToolStripItem[] { listaDeVisitasToolStripMenuItem, tsmiNuevaVisita, tsmiBuscarVisita });
             tsmiListaVisitas.Name = "tsmiListaVisitas";
-            tsmiListaVisitas.Size = new Size(52, 20);
-            tsmiListaVisitas.Text = "Visitas";
-            // 
-            // listaDeVisitasToolStripMenuItem
-            // 
-            listaDeVisitasToolStripMenuItem.Name = "listaDeVisitasToolStripMenuItem";
-            listaDeVisitasToolStripMenuItem.Size = new Size(150, 22);
-            listaDeVisitasToolStripMenuItem.Text = "Lista de Visitas";
+            tsmiListaVisitas.Size = new Size(150, 22);
+            tsmiListaVisitas.Text = "Lista de Visitas";
             // 
             // tsmiNuevaVisita
             // 
@@ -309,15 +302,9 @@
             tsmiNuevaVisita.Size = new Size(150, 22);
             tsmiNuevaVisita.Text = "Nueva Visita";
             // 
-            // tsmiBuscarVisita
-            // 
-            tsmiBuscarVisita.Name = "tsmiBuscarVisita";
-            tsmiBuscarVisita.Size = new Size(150, 22);
-            tsmiBuscarVisita.Text = "Buscar Visita";
-            // 
             // tsmiEmpleados
             // 
-            tsmiEmpleados.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaEmpleados, tsmiNuevoEmpleado, tsmiBuscarEmpleado });
+            tsmiEmpleados.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaEmpleados, tsmiNuevoEmpleado });
             tsmiEmpleados.Name = "tsmiEmpleados";
             tsmiEmpleados.Size = new Size(77, 20);
             tsmiEmpleados.Text = "Empleados";
@@ -336,33 +323,27 @@
             tsmiNuevoEmpleado.Text = "Nuevo Empleado";
             tsmiNuevoEmpleado.Click += tsmiNuevoEmpleado_Click;
             // 
-            // tsmiBuscarEmpleado
-            // 
-            tsmiBuscarEmpleado.Name = "tsmiBuscarEmpleado";
-            tsmiBuscarEmpleado.Size = new Size(165, 22);
-            tsmiBuscarEmpleado.Text = "Buscar Empleado";
-            // 
             // tsmiUsuarios
             // 
-            tsmiUsuarios.DropDownItems.AddRange(new ToolStripItem[] { listadoDeUsuariosToolStripMenuItem, nuevoUsuarioToolStripMenuItem });
+            tsmiUsuarios.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaUsuarios, tsmiNuevoUsuario });
             tsmiUsuarios.Name = "tsmiUsuarios";
             tsmiUsuarios.Size = new Size(64, 20);
             tsmiUsuarios.Text = "Usuarios";
             tsmiUsuarios.Visible = false;
             // 
-            // listadoDeUsuariosToolStripMenuItem
+            // tsmiListaUsuarios
             // 
-            listadoDeUsuariosToolStripMenuItem.Name = "listadoDeUsuariosToolStripMenuItem";
-            listadoDeUsuariosToolStripMenuItem.Size = new Size(176, 22);
-            listadoDeUsuariosToolStripMenuItem.Text = "Listado de Usuarios";
-            listadoDeUsuariosToolStripMenuItem.Click += listadoDeUsuariosToolStripMenuItem_Click;
+            tsmiListaUsuarios.Name = "tsmiListaUsuarios";
+            tsmiListaUsuarios.Size = new Size(176, 22);
+            tsmiListaUsuarios.Text = "Listado de Usuarios";
+            tsmiListaUsuarios.Click += listadoDeUsuariosToolStripMenuItem_Click;
             // 
-            // nuevoUsuarioToolStripMenuItem
+            // tsmiNuevoUsuario
             // 
-            nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            nuevoUsuarioToolStripMenuItem.Size = new Size(176, 22);
-            nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
-            nuevoUsuarioToolStripMenuItem.Click += nuevoUsuarioToolStripMenuItem_Click;
+            tsmiNuevoUsuario.Name = "tsmiNuevoUsuario";
+            tsmiNuevoUsuario.Size = new Size(176, 22);
+            tsmiNuevoUsuario.Text = "Nuevo Usuario";
+            tsmiNuevoUsuario.Click += nuevoUsuarioToolStripMenuItem_Click;
             // 
             // tsmiConfiguracion
             // 
@@ -391,28 +372,31 @@
             // 
             // msPrincipal
             // 
-            msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, transaccionesToolStripMenuItem, tsmiListaVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
+            msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, tsmiTransacciones, tsmiVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
             msPrincipal.Location = new Point(0, 0);
             msPrincipal.Name = "msPrincipal";
             msPrincipal.Size = new Size(778, 24);
             msPrincipal.TabIndex = 6;
             msPrincipal.Text = "menuStrip1";
             // 
-            // transaccionesToolStripMenuItem
+            // tsmiTransacciones
             // 
-            transaccionesToolStripMenuItem.Name = "transaccionesToolStripMenuItem";
-            transaccionesToolStripMenuItem.Size = new Size(92, 20);
-            transaccionesToolStripMenuItem.Text = "Transacciones";
+            tsmiTransacciones.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaTransacciones, tsmiNuevaTransaccion });
+            tsmiTransacciones.Name = "tsmiTransacciones";
+            tsmiTransacciones.Size = new Size(92, 20);
+            tsmiTransacciones.Text = "Transacciones";
             // 
-            // button1
+            // tsmiListaTransacciones
             // 
-            button1.Location = new Point(277, 157);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 9;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            tsmiListaTransacciones.Name = "tsmiListaTransacciones";
+            tsmiListaTransacciones.Size = new Size(190, 22);
+            tsmiListaTransacciones.Text = "Lista de Transacciones";
+            // 
+            // tsmiNuevaTransaccion
+            // 
+            tsmiNuevaTransaccion.Name = "tsmiNuevaTransaccion";
+            tsmiNuevaTransaccion.Size = new Size(190, 22);
+            tsmiNuevaTransaccion.Text = "Nueva Transaccion";
             // 
             // Principal
             // 
@@ -421,11 +405,10 @@
             BackgroundImage = Properties.Resources.Fondo_Principal;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(778, 614);
-            Controls.Add(button1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvUltiTransacc);
             Controls.Add(chart1);
             Controls.Add(msPrincipal);
-            Controls.Add(groupBox1);
+            Controls.Add(grpbxTotales);
             Controls.Add(lblUltima);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
@@ -433,10 +416,10 @@
             Text = "Principal";
             FormClosing += Principal_FormClosing;
             Load += Principal_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            grpbxTotales.ResumeLayout(false);
+            grpbxTotales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUltiTransacc).EndInit();
             msPrincipal.ResumeLayout(false);
             msPrincipal.PerformLayout();
             ResumeLayout(false);
@@ -447,13 +430,13 @@
         private Label lblUltima;
         private Label lblInmuebles;
         private TextBox txtbxInmuebles;
-        private GroupBox groupBox1;
+        private GroupBox grpbxTotales;
         private Label lblEnVenta;
         private TextBox txtbxEnVenta;
         private Label lblAlquileres;
         private TextBox txtbxAlquileres;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvUltiTransacc;
         private ToolStripMenuItem tsmiInicio;
         private ToolStripMenuItem tsmiPerfil;
         private ToolStripMenuItem tsmiCerrar;
@@ -469,8 +452,8 @@
         private ToolStripMenuItem tsmiListaEnVenta;
         private ToolStripMenuItem tsmiNuevoEnVenta;
         private ToolStripMenuItem tsmiBuscarInmuebles;
+        private ToolStripMenuItem tsmiVisitas;
         private ToolStripMenuItem tsmiListaVisitas;
-        private ToolStripMenuItem listaDeVisitasToolStripMenuItem;
         private ToolStripMenuItem tsmiNuevaVisita;
         private ToolStripMenuItem tsmiBuscarVisita;
         private ToolStripMenuItem tsmiEmpleados;
@@ -483,9 +466,10 @@
         private ToolStripMenuItem tsmiDocumentacion;
         private ToolStripMenuItem tsmiAcercaDe;
         private MenuStrip msPrincipal;
-        private ToolStripMenuItem listadoDeUsuariosToolStripMenuItem;
-        private ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
-        private ToolStripMenuItem transaccionesToolStripMenuItem;
-        private Button button1;
+        private ToolStripMenuItem tsmiListaUsuarios;
+        private ToolStripMenuItem tsmiNuevoUsuario;
+        private ToolStripMenuItem tsmiTransacciones;
+        private ToolStripMenuItem tsmiListaTransacciones;
+        private ToolStripMenuItem tsmiNuevaTransaccion;
     }
 }

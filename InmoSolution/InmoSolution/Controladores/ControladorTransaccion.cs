@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using ProtoBuf;
 
 namespace InmoSolution.Controladores
 {
@@ -10,6 +10,7 @@ namespace InmoSolution.Controladores
     {
         public static List<Transaccion> ListaTransacciones = new List<Transaccion>();
         public static bool cambios;
+        public static bool Cambios { get => cambios; set => cambios = value; }
 
         public static void LeerTransacciones()
         {
@@ -17,29 +18,28 @@ namespace InmoSolution.Controladores
             {
                 using (FileStream fs = new FileStream("transacciones.dat", FileMode.Open))
                 {
-                    BinaryFormatter formatter = new BinaryFormatter();
-#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
-                    ListaTransacciones = (List<Transaccion>)formatter.Deserialize(fs);
-#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
+                    ListaTransacciones = Serializer.Deserialize<List<Transaccion>>(fs);
                 }
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al leer transacciones: {ex.Message}");
+            }
         }
 
         public static void EscribirTransacciones()
         {
             try
             {
-                using (FileStream fs = new FileStream("transacciones.dat", FileMode.Create)) { 
-                    BinaryFormatter formatter = new BinaryFormatter();
-#pragma warning disable SYSLIB0011 // El tipo o el miembro están obsoletos
-                    formatter.Serialize(fs, ListaTransacciones);
-#pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
+                using (FileStream fs = new FileStream("transacciones.dat", FileMode.Create)) 
+                {   
+                    Serializer.Serialize(fs, ListaTransacciones);
                 }
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al escribir transacciones: {ex.Message}");
+            }
         }
         public static bool ExisteFichero()
         {

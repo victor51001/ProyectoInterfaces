@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
-using System.Runtime.Serialization.Formatters.Binary;
 using InmoSolution.Clases;
-using ProtoBuf;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace InmoSolution.Controladores
 {
@@ -13,6 +12,7 @@ namespace InmoSolution.Controladores
         public static List<Usuario> ListaUsuarios = new List<Usuario>();
         public static int id = 10;
         public static bool cambios;
+        public static bool Cambios { get => cambios; set => cambios = value; }
         public static void LeerUsuarios()
         {
             try
@@ -25,8 +25,10 @@ namespace InmoSolution.Controladores
 #pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
                 }
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al leer usuarios: {ex.Message}");
+            }
         }
         public static void EscribirUsuarios()
         {
@@ -41,8 +43,10 @@ namespace InmoSolution.Controladores
 #pragma warning restore SYSLIB0011 // El tipo o el miembro están obsoletos
                 }
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            { 
+                MessageBox.Show($"Error al escribir usuarios: {ex.Message}");
+            }
         }
 
         public static void EliminarUsuario(Usuario usu)
@@ -81,7 +85,7 @@ namespace InmoSolution.Controladores
             return null;
         }
 
-        public static bool existeUsuario(string nombre, string clave)
+        public static bool ExisteUsuario(string nombre, string clave)
         {
             foreach (Usuario user in ListaUsuarios)
             {

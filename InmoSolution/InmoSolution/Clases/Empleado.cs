@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using ProtoBuf;
 
 namespace InmoSolution.Clases
 {
-    [Serializable]
+    [ProtoContract]
     public class Empleado : IXmlSerializable
-    {        
-        [Serializable]
+    {
+        [ProtoContract]
         public enum Puestos
         {
             Administrador,
@@ -21,13 +22,21 @@ namespace InmoSolution.Clases
             nulo
         }
         //atributos
+        [ProtoMember(1)]
         private string dni;
+        [ProtoMember(2)]
         private string nombre;
+        [ProtoMember(3)]
         private string apellidos;
+        [ProtoMember(4)]
         private int telefono;
+        [ProtoMember(5)]
         private string email;
+        [ProtoMember(6)]
         private Usuario usuario;
+        [ProtoMember(7)]
         private Puestos puesto;
+        [ProtoMember(8)]
         private double sueldo;
 
         //constructores

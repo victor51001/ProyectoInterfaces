@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.Json;
 
 public class ControladorAlquiler
 {
     public static List<Alquiler> ListaAlquileres = new List<Alquiler>();
     public static bool cambios;
+    public static bool Cambios { get => cambios; set => cambios = value; }
 
     public static void LeerAlquileres()
     {
@@ -16,8 +18,10 @@ public class ControladorAlquiler
             string jsonString = File.ReadAllText("alquileres.json");
             ListaAlquileres = JsonSerializer.Deserialize<List<Alquiler>>(jsonString);
         }
-        catch (Exception)
-        { }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error al leer alquileres: {ex.Message}");
+        }
     }
 
     public static void EscribirAlquileres()
@@ -25,10 +29,12 @@ public class ControladorAlquiler
         try
         {
             string jsonString = JsonSerializer.Serialize(ListaAlquileres);
-            File.WriteAllText("alquileres.json", jsonString);
+            File.WriteAllText("alquileres.json", jsonString, Encoding.UTF8);
         }
-        catch (Exception)
-        { }
+        catch (Exception ex)
+        { 
+            MessageBox.Show($"Error al escribir alquileres: {ex.Message}");
+        }
     }
     public static bool ExisteFichero()
     {

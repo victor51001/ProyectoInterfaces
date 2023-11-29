@@ -13,6 +13,7 @@ namespace InmoSolution.Controladores
     {
         public static List<Cliente> ListaClientes = new List<Cliente>();
         public static bool cambios;
+        public static bool Cambios { get => cambios; set => cambios = value; }
         public static void LeerClientes()
         {
             try
@@ -23,8 +24,10 @@ namespace InmoSolution.Controladores
                 .Build();
                 ListaClientes = deserializer.Deserialize<List<Cliente>>(yamlString);
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al leer clientes: {ex.Message}");
+            }
         }
         public static void EscribirClientes()
         {
@@ -34,11 +37,12 @@ namespace InmoSolution.Controladores
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
                 var yamlString = serializer.Serialize(ListaClientes);
-                MessageBox.Show("Escribiendo clientes... {}" + yamlString);
                 File.WriteAllText("clientes.yml", yamlString);
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al escribir clientes: {ex.Message}");
+            }
         }
         public static bool ExisteFichero()
         {

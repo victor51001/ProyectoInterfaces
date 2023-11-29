@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace InmoSolution.Clases
 {
-    [Serializable]
+    [ProtoContract]
     public class Alquiler : Inmueble
     {
         //atributos
+        [ProtoMember(11)]
         private int precioMensual;
 
         //constructores
@@ -21,12 +23,7 @@ namespace InmoSolution.Clases
         {
             this.PrecioMensual = precioMensual;
         }
-        public Alquiler(int id, string direccion, int habitaciones,
-            int baños, int metrosCuadrados, int antiguedad, bool disponible,
-            Cliente propietario, string localidad) : 
-            base(id, direccion, habitaciones, baños, metrosCuadrados,
-                antiguedad, disponible, propietario, localidad)
-        { }
+        public Alquiler() { }
 
         //getters y setters
         public int PrecioMensual { get => precioMensual; set => precioMensual = value; }

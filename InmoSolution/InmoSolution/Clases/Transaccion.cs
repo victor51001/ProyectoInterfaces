@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,25 @@ using System.Threading.Tasks;
 
 namespace InmoSolution.Clases
 {
-    [Serializable]
+    [ProtoContract]
     public class Transaccion
     {
         //atributos
+        [ProtoMember(1)]
         private int id;
+        [ProtoMember(2)]
         private DateTime fecha;
+        [ProtoMember(3)]
         private Visita[] visitas;
+        [ProtoMember(4)]
         private Empleado empleado;
+        [ProtoMember(5)]
         private Cliente cliente;
+        [ProtoMember(6)]
         private Inmueble inmueble;
+        [ProtoMember(7)]
         private double precio;
+        [ProtoMember(8)]
         private double beneficio;
 
         //constructor
@@ -32,6 +41,7 @@ namespace InmoSolution.Clases
             this.Precio = precio;
             this.Beneficio = beneficio;
         }
+        public Transaccion() { }
 
         //getters y setters
         public int Id { get => id; set => id = value; }

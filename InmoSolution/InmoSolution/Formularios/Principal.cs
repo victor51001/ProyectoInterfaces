@@ -24,13 +24,13 @@ namespace InmoSolution.Formularios
         {
             InitializeComponent();
             user = usu;
-            cambios.Add("Usuario", ControladorUsuario.cambios);
-            cambios.Add("Empleado", ControladorEmpleado.cambios);
-            cambios.Add("Cliente", ControladorCliente.cambios);
-            cambios.Add("Alquiler", ControladorAlquiler.cambios);
-            cambios.Add("EnVenta", ControladorEnVenta.cambios);
-            cambios.Add("Transaccion", ControladorTransaccion.cambios);
-            cambios.Add("Visita", ControladorVisita.cambios);
+            cambios.Add("Usuario", ControladorUsuario.Cambios);
+            cambios.Add("Empleado", ControladorEmpleado.Cambios);
+            cambios.Add("Cliente", ControladorCliente.Cambios);
+            cambios.Add("Alquiler", ControladorAlquiler.Cambios);
+            cambios.Add("EnVenta", ControladorEnVenta.Cambios);
+            cambios.Add("Transaccion", ControladorTransaccion.Cambios);
+            cambios.Add("Visita", ControladorVisita.Cambios);
             ficherosExist.Add(ControladorEmpleado.ExisteFichero());
             ficherosExist.Add(ControladorCliente.ExisteFichero());
             ficherosExist.Add(ControladorAlquiler.ExisteFichero());
@@ -41,16 +41,18 @@ namespace InmoSolution.Formularios
 
         private void Principal_Load(object sender, EventArgs e)
         {
-            if (user.Id == 0)
+            switch (ControladorEmpleado.GetPuesto(user))
             {
-                tsmiUsuarios.Visible = true;
-                tsmiEmpleados.Visible = true;
+                case "Administrador":
+                    tsmiEmpleados.Visible = true;
+                    tsmiUsuarios.Visible = true;
+                    break;
+                case "Administrativo":
+                case "Jefe":
+                    tsmiEmpleados.Visible = true;
+                    break;
             }
-            else if (ControladorEmpleado.EsAdministrativo(user) || ControladorEmpleado.EsJefe(user))
-            {
-                tsmiEmpleados.Visible = true;
-            }
-                    CargarClases();
+            //CargarClases();
             for (int i = 0; i < ficherosExist.Count; i++)
             {
                 switch (i)
@@ -114,20 +116,46 @@ namespace InmoSolution.Formularios
                         {
                             ControladorVisita.EscribirVisitas();
                         }
-                        MessageBox.Show($"{ControladorVisita.ListaVisitas.Count}");
                         break;
                 }
             }
+            ControladorInmueble.RellenarListaInmuebles();
+            txtbxInmuebles.Text = ControladorInmueble.ListaInmuebles.Count.ToString();
+            txtbxAlquileres.Text = ControladorAlquiler.ListaAlquileres.Count.ToString();
+            txtbxEnVenta.Text = ControladorEnVenta.ListaEnVenta.Count.ToString();
+            dgvUltiTransacc.DataSource = ControladorTransaccion.ListaTransacciones.OrderByDescending(t => t.Fecha).Take(5).ToList();
+            dgvUltiTransacc.Columns.Clear();
+            DataGridViewTextBoxColumn colId = new DataGridViewTextBoxColumn();
+            colId.DataPropertyName = "Id";
+            colId.HeaderText = "Id";
+            colId.Width = 50;
+            colId.ReadOnly = true;
+            DataGridViewTextBoxColumn colFecha = new DataGridViewTextBoxColumn();
+            colFecha.DataPropertyName = "Fecha";
+            colFecha.HeaderText = "Fecha";
+            colFecha.Width = 150;
+            colFecha.ReadOnly = true;
+            DataGridViewTextBoxColumn colPrecio = new DataGridViewTextBoxColumn();
+            colPrecio.DataPropertyName = "Precio";
+            colPrecio.HeaderText = "Precio";
+            colPrecio.Width = 75;
+            colPrecio.ReadOnly = true;
+            DataGridViewTextBoxColumn colBeneficio = new DataGridViewTextBoxColumn();
+            colBeneficio.DataPropertyName = "Beneficio";
+            colBeneficio.HeaderText = "Beneficio";
+            colBeneficio.Width = 75;
+            colBeneficio.ReadOnly = true;
+            dgvUltiTransacc.Columns.AddRange(new DataGridViewColumn[] { colId, colFecha, colPrecio, colBeneficio });
         }
 
         private void CargarClases()
         {
             // Crear clientes
-            Cliente cliente1 = new Cliente("11111111A", "Antonio", "Gómez", "123456789", "antonio@gmail.com");
-            Cliente cliente2 = new Cliente("22222222B", "Elena", "Fernández", "987654321", "elena@gmail.com");
-            Cliente cliente3 = new Cliente("33333333C", "Javier", "Martínez", "654321987", "javier@gmail.com");
-            Cliente cliente4 = new Cliente("44444444D", "Carmen", "Rodríguez", "321654987", "carmen@gmail.com");
-            Cliente cliente5 = new Cliente("55555555E", "Alberto", "Sánchez", "789456123", "alberto@gmail.com");
+            Cliente cliente1 = new Cliente("11111111A", "Antonio", "Gómez", 123456789, "antonio@gmail.com");
+            Cliente cliente2 = new Cliente("22222222B", "Elena", "Fernández", 987654321, "elena@gmail.com");
+            Cliente cliente3 = new Cliente("33333333C", "Javier", "Martínez", 654321987, "javier@gmail.com");
+            Cliente cliente4 = new Cliente("44444444D", "Carmen", "Rodríguez", 321654987, "carmen@gmail.com");
+            Cliente cliente5 = new Cliente("55555555E", "Alberto", "Sánchez", 789456123, "alberto@gmail.com");
 
             // Crear empleados
             Empleado empleado1 = new Empleado("12345678X", "Juan", "González", "juan@gmail.com", 987654321, ControladorUsuario.GetUsuario("Juan"), Empleado.Puestos.Administrativo);
@@ -166,7 +194,7 @@ namespace InmoSolution.Formularios
             ControladorEmpleado.ListaEmpleados.AddRange(new List<Empleado> { empleado1, empleado2, empleado3, empleado4, empleado5 });
             ControladorCliente.ListaClientes.AddRange(new List<Cliente> { cliente1, cliente2, cliente3, cliente4, cliente5 });
             ControladorAlquiler.ListaAlquileres.AddRange(new List<Alquiler> { alquiler1, alquiler2, alquiler3, alquiler4, alquiler5 });
-            ControladorEnVenta.ListaEnVentas.AddRange(new List<EnVenta> { venta1, venta2, venta3, venta4, venta5 });
+            ControladorEnVenta.ListaEnVenta.AddRange(new List<EnVenta> { venta1, venta2, venta3, venta4, venta5 });
             ControladorVisita.ListaVisitas.AddRange(new List<Visita> { visita1, visita2, visita3, visita4, visita5 });
             ControladorTransaccion.ListaTransacciones.AddRange(new List<Transaccion> { transaccion1, transaccion2, transaccion3, transaccion4, transaccion5 });
         }
@@ -267,9 +295,9 @@ namespace InmoSolution.Formularios
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void listaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"{ControladorTransaccion.ListaTransacciones.Count}");
+
         }
     }
 }

@@ -3,25 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace InmoSolution.Clases
 {
-    [Serializable]
+    [ProtoContract]
+    [ProtoInclude(20, typeof(Alquiler))]
+    [ProtoInclude(21, typeof(EnVenta))]
     public abstract class Inmueble
     {
         //atributos
+        [ProtoMember(1)]
         private int id;
+        [ProtoMember(2)]
         private string direccion;
+        [ProtoMember(3)]
         private int habitaciones;
+        [ProtoMember(4)]
         private int baños;
+        [ProtoMember(5)]
         private int metrosCuadrados;
+        [ProtoMember(6)]
         private int antiguedad;
+        [ProtoMember(7)]
         private bool disponible;
+        [ProtoMember(8)]
         private Cliente propietario;
+        [ProtoMember(9)]
         private string localidad;
+        [ProtoMember(10)]
         private bool libre;
         
-        //constructor
+        //constructores
         public Inmueble(int id, string direccion, int habitaciones, int baños, int metrosCuadrados, int antiguedad, bool disponible, Cliente propietario, string localidad)
         {
             this.Id = id;
@@ -35,6 +48,7 @@ namespace InmoSolution.Clases
             this.Localidad = localidad;
             this.libre = true;
         }
+        public Inmueble() { }
 
         //getters y setters
         public int Id { get => id; set => id = value; }

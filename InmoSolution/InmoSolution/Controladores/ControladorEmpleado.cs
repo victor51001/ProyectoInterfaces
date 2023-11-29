@@ -15,6 +15,8 @@ namespace InmoSolution.Controladores
     {
         public static List<Empleado> ListaEmpleados = new List<Empleado>();
         public static bool cambios;
+        public static bool Cambios { get => cambios; set => cambios = value; }
+
         public const double SUELDO_MINIMO = 900;
         public const double COMISION_ALQUILER = 0.05;
         public const double COMISION_VENTA = 0.1;
@@ -31,8 +33,10 @@ namespace InmoSolution.Controladores
                     ListaEmpleados = (List<Empleado>)serializer.Deserialize(reader);
                 }
             }
-            catch (Exception) 
-            { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"Error al leer empleados: {ex.Message}");
+            }
         }
 
         public static void EscribirEmpleados()
@@ -47,38 +51,22 @@ namespace InmoSolution.Controladores
                     serializer.Serialize(writer, ListaEmpleados, namespaces);
                 }
             }
-            catch (Exception) 
-            { }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show($"Error al escribir empleados: {ex.Message}");
+            }
         }
 
-        public static bool EsJefe(Usuario user)
+        public static string GetPuesto(Usuario user)
         {
             foreach (Empleado emp in ListaEmpleados)
             {
                 if (emp.Usuario.Id == user.Id)
                 {
-                    if (emp.Puesto == Puestos.Jefe)
-                    {
-                        return true;
-                    }
+                    return emp.Puesto.ToString();
                 }
             }
-            return false;
-        }
-
-        public static bool EsAdministrativo(Usuario user)
-        {
-            foreach (Empleado emp in ListaEmpleados)
-            {
-                if (emp.Usuario.Id == user.Id)
-                {
-                    if (emp.Puesto == Puestos.Administrativo)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return "nulo";
         }
 
         public static void EliminarEmpleado(Empleado empleado)
@@ -111,6 +99,22 @@ namespace InmoSolution.Controladores
         public static bool ExisteFichero()
         {
             return File.Exists("empleados.xml");
+        }
+        public static Empleado.Puestos ParseString(string texto)
+        {
+            switch (texto)
+            {
+                case "Administrador":
+                    return Empleado.Puestos.Administrador;
+                case "Administrativo":
+                    return Empleado.Puestos.Administrativo;
+                case "Agente":
+                    return Empleado.Puestos.Agente;
+                case "Jefe":
+                    return Empleado.Puestos.Jefe;
+                default:
+                    return Empleado.Puestos.nulo;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using InmoSolution.Controladores;
+using ProtoBuf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,15 @@ using System.Threading.Tasks;
 namespace InmoSolution.Clases
 {
     [Serializable]
+    [ProtoContract]
     public class Usuario
     {
         //atributos
+        [ProtoMember(1)]
         private int id;
+        [ProtoMember(2)]
         private string nombre;
+        [ProtoMember(3)]
         private string clave;
 
         //constructor
@@ -28,6 +33,7 @@ namespace InmoSolution.Clases
             Nombre = nombre;
             Clave = clave;
         }
+        public Usuario() { }
 
         //getters y setters
         public int Id { get => id; set => id = value; }

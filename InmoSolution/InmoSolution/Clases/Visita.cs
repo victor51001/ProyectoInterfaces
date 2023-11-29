@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,19 @@ using System.Threading.Tasks;
 
 namespace InmoSolution.Clases
 {
-    [Serializable]
+    [ProtoContract]
     public class Visita
     {
         //atributos
+        [ProtoMember(1)]
         private int id;
+        [ProtoMember(2)]
         private DateTime fechaHora;
+        [ProtoMember(3)]
         private Cliente cliente;
+        [ProtoMember(4)]
         private Inmueble inmueble;
+        [ProtoMember(5)]
         private Empleado empleado;
 
         //constructores

@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace InmoSolution.Clases
 {
-    [Serializable]
+    [ProtoContract]
     public class EnVenta : Inmueble
     {
         //atributos
+        [ProtoMember(11)]
         private int precioMetroCuadrado;
+        [ProtoMember(12)]
         private int precio;
 
         //constructores
@@ -20,14 +23,10 @@ namespace InmoSolution.Clases
             : base(id, direccion, habitaciones, baños, metrosCuadrados, 
                                    antiguedad, disponible, propietario, localidad)
         {
+            this.PrecioMetroCuadrado = precioMetroCuadrado;
             this.Precio = PrecioMetroCuadrado * MetrosCuadrados;
         }
-        public EnVenta(int id, string direccion, int habitaciones,
-            int baños, int metrosCuadrados, int antiguedad, bool disponible,
-            Cliente propietario, string localidad) : 
-            base(id, direccion, habitaciones, baños, metrosCuadrados,
-                antiguedad, disponible, propietario, localidad)
-        { }
+        public EnVenta() { }
 
         //getters y setters
         public int Precio { get => precio; set => precio = value; }

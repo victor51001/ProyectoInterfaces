@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace InmoSolution.Clases
 {
-    [Serializable]
+    [ProtoContract]
     public class Cliente
     {
         //atributos
+        [ProtoMember(1)]
         private string dni;
+        [ProtoMember(2)]
         private string nombre;
+        [ProtoMember(3)]
         private string apellidos;
+        [ProtoMember(4)]
         private int telefono;
+        [ProtoMember(5)]
         private string email;
         
         //constructores

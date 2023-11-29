@@ -14,6 +14,7 @@ namespace InmoSolution.Controladores
     {
         public static List<Visita> ListaVisitas = new List<Visita>();
         public static bool cambios;
+        public static bool Cambios { get => cambios; set => cambios = value; }
         public static void LeerVisitas()
         {
             try
@@ -31,10 +32,10 @@ namespace InmoSolution.Controladores
                         switch (parVisita.Key)
                         {
                             case "Id":
-                                visita.Id = (int)parVisita.Value;
+                                visita.Id = ((int)(long)parVisita.Value);
                                 break;
                             case "FechaHora":
-                                visita.FechaHora = (DateTime)parVisita.Value;
+                                visita.FechaHora = ((TomlDateTime)parVisita.Value).DateTime.DateTime;
                                 break;
                             case "Cliente":
                                 var tablaCliente = (TomlTable)parVisita.Value;
@@ -53,7 +54,7 @@ namespace InmoSolution.Controladores
                                             cliente.Apellidos = (string)parCliente.Value;
                                             break;
                                         case "Telefono":
-                                            cliente.Telefono = (int)parCliente.Value;
+                                            cliente.Telefono = (int)(long)parCliente.Value;
                                             break;
                                         case "Email":
                                             cliente.Email = (string)parCliente.Value;
@@ -67,38 +68,47 @@ namespace InmoSolution.Controladores
                                 Inmueble inmueble = null;
                                 foreach (KeyValuePair<string, object> parInmueble in tablaInmueble)
                                 {
+                                    if (tablaInmueble.ContainsKey("PrecioMensual"))
+                                    {
+                                        inmueble = new Alquiler();
+                                    } else
+                                    {
+                                        inmueble = new EnVenta();
+                                    }
                                     switch (parInmueble.Key)
                                     {
                                         case "Id":
-                                            if (tablaInmueble["PrecioMensual"] != null)
-                                            {
-                                                inmueble = new Alquiler();
-                                                ((Alquiler)inmueble).PrecioMensual = (int)tablaInmueble["PrecioMensual"];
-                                            }
-                                            else
-                                            {
-                                                inmueble = new EnVenta();
-                                                ((EnVenta)inmueble).Precio = (int)tablaInmueble["Precio"];
-                                            }
-                                            inmueble.Id = (int)parInmueble.Value;
+                                            inmueble.Id = (int)(long)parInmueble.Value;
                                             break;
                                         case "Direccion":
                                             inmueble.Direccion = (string)parInmueble.Value;
                                             break;
                                         case "Habitaciones":
-                                            inmueble.Habitaciones = (int)parInmueble.Value;
+                                            inmueble.Habitaciones = (int)(long)parInmueble.Value;
                                             break;
                                         case "Baños":
-                                            inmueble.Baños = (int)parInmueble.Value;
+                                            inmueble.Baños = (int)(long)parInmueble.Value;
                                             break;
                                         case "MetrosCuadrados":
-                                            inmueble.MetrosCuadrados = (int)parInmueble.Value;
+                                            inmueble.MetrosCuadrados = (int)(long)parInmueble.Value;
                                             break;
                                         case "Antiguedad":
-                                            inmueble.Antiguedad = (int)parInmueble.Value;
+                                            inmueble.Antiguedad = (int)(long)parInmueble.Value;
                                             break;
                                         case "Disponible":
                                             inmueble.Disponible = (bool)parInmueble.Value;
+                                            break;
+                                        case "Localidad":
+                                            inmueble.Localidad = (string)parInmueble.Value;
+                                            break;
+                                        case "PrecioMensual":
+                                            ((Alquiler)inmueble).PrecioMensual = (int)(long)parInmueble.Value;
+                                            break;
+                                        case "PrecioMetroCuadrado":
+                                            ((EnVenta)inmueble).PrecioMetroCuadrado = (int)(long)parInmueble.Value;
+                                            break;
+                                        case "Precio":
+                                            ((EnVenta)inmueble).Precio = (int)(long)parInmueble.Value;
                                             break;
                                         case "Propietario":
                                             var tablaPropietario = (TomlTable)parInmueble.Value;
@@ -117,14 +127,68 @@ namespace InmoSolution.Controladores
                                                         propietario.Apellidos = (string)parPropietario.Value;
                                                         break;
                                                     case "Telefono":
-                                                        propietario.Telefono = (int)parPropietario.Value;
+                                                        propietario.Telefono = (int)(long)parPropietario.Value;
                                                         break;
                                                 }
                                             }
+                                            inmueble.Propietario = propietario;
+                                            break;
                                     }
                                 }
+                                visita.Inmueble = inmueble;
+                                break;
+                            case "Empleado":
+                                var tablaEmpleado = (TomlTable)parVisita.Value;
+                                Empleado empleado = new Empleado();
+                                foreach (KeyValuePair<string, object> parEmpleado in tablaEmpleado)
+                                {
+                                    switch (parEmpleado.Key)
+                                    {
+                                        case "Dni":
+                                            empleado.Dni = (string)parEmpleado.Value;
+                                            break;
+                                        case "Nombre":
+                                            empleado.Nombre = (string)parEmpleado.Value;
+                                            break;
+                                        case "Apellidos":
+                                            empleado.Apellidos = (string)parEmpleado.Value;
+                                            break;
+                                        case "Telefono":
+                                            empleado.Telefono = (int)(long)parEmpleado.Value;
+                                            break;
+                                        case "Email":
+                                            empleado.Email = (string)parEmpleado.Value;
+                                            break;
+                                        case "Puesto":
+                                            empleado.Puesto = ControladorEmpleado.ParseString((string)parEmpleado.Value);
+                                            break;
+                                        case "Sueldo":
+                                            empleado.Sueldo = (double)parEmpleado.Value;
+                                            break;
+                                        case "Usuario":
+                                            var tablaUsuario = (TomlTable)parEmpleado.Value;
+                                            Usuario usuario = new Usuario();
+                                            foreach (KeyValuePair<string, object> parUsuario in tablaUsuario)
+                                            {
+                                                switch (parUsuario.Key)
+                                                {
+                                                    case "Id":
+                                                        usuario.Id = (int)(long)parUsuario.Value;
+                                                        break;
+                                                    case "Nombre":
+                                                        usuario.Nombre = (string)parUsuario.Value;
+                                                        break;
+                                                }
+                                            }
+                                            empleado.Usuario = usuario;
+                                            break;
+                                    }
+                                }
+                                visita.Empleado = empleado;
+                                break;
                         }
                     }
+                    ListaVisitas.Add(visita);
                 }
 
             }
@@ -146,6 +210,7 @@ namespace InmoSolution.Controladores
 
                 for (int i = 0; i < ListaVisitas.Count; i++)
                 {
+                    toml = "";
                     switch (ListaVisitas[i].Inmueble)
                     {
                         case Alquiler:
@@ -189,12 +254,13 @@ namespace InmoSolution.Controladores
                                     ["Email"] = ListaVisitas[i].Inmueble.Propietario.Email
                                 },
                                 ["Localidad"] = ListaVisitas[i].Inmueble.Localidad,
+                                ["PrecioMetroCuadrado"] = ((EnVenta)ListaVisitas[i].Inmueble).PrecioMetroCuadrado,
                                 ["Precio"] = ((EnVenta)ListaVisitas[i].Inmueble).Precio
                             };
                             break;
                     }
 
-                    tabla["Visita"] = new TomlTable()
+                    tabla["Visita " + (i+1)] = new TomlTable()
                     {
                         ["Id"] = ListaVisitas[i].Id,
                         ["FechaHora"] = ListaVisitas[i].FechaHora,

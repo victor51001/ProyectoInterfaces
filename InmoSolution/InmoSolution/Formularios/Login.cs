@@ -41,7 +41,7 @@ namespace InmoSolution
         private int vueltas = 0;
         private void bttnEntrar_Click(object sender, EventArgs e)
         {
-            if (ControladorUsuario.existeUsuario(txtbxUsuario.Text, txtbxClave.Text))
+            if (ControladorUsuario.ExisteUsuario(txtbxUsuario.Text, txtbxClave.Text))
             {
                 Principal FrmP = new Principal(ControladorUsuario.GetUsuario(txtbxUsuario.Text));
                 txtbxUsuario.Clear();

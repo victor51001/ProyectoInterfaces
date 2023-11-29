@@ -16,9 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="30.0.1" />
-    <PackageReference Include="Google.Protobuf" Version="3.25.1" />
-    <PackageReference Include="Nett" Version="0.15.0" />
     <PackageReference Include="protobuf-net" Version="3.2.30" />
     <PackageReference Include="System.Text.Json" Version="8.0.0" />
     <PackageReference Include="Tomlyn" Version="0.17.0" />
@@ -56,6 +53,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Formularios\Inmuebles\Alquileres\" />
+    <Folder Include="Formularios\Inmuebles\EnVenta\" />
   </ItemGroup>
 
 </Project>
