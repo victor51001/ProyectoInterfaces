@@ -16,7 +16,7 @@ namespace InmoSolution.Clases
         private Inmueble inmueble;
         private Empleado empleado;
 
-        //constructor
+        //constructores
         public Visita(int id, DateTime fechaHora, Cliente cliente, Inmueble inmueble, Empleado empleado)
         {
             this.Id = id;
@@ -25,6 +25,7 @@ namespace InmoSolution.Clases
             this.Inmueble = inmueble;
             this.Empleado = empleado;
         }
+        public Visita() { }
 
         //getters y setters
         public int Id { get => id; set => id = value; }

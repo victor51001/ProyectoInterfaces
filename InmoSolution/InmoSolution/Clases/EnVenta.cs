@@ -13,7 +13,7 @@ namespace InmoSolution.Clases
         private int precioMetroCuadrado;
         private int precio;
 
-        //constructor
+        //constructores
         public EnVenta(int id, string direccion, int habitaciones, 
                        int baños, int metrosCuadrados, int antiguedad, bool disponible, 
                                   Cliente propietario, string localidad, int precioMetroCuadrado) 
@@ -22,6 +22,12 @@ namespace InmoSolution.Clases
         {
             this.Precio = PrecioMetroCuadrado * MetrosCuadrados;
         }
+        public EnVenta(int id, string direccion, int habitaciones,
+            int baños, int metrosCuadrados, int antiguedad, bool disponible,
+            Cliente propietario, string localidad) : 
+            base(id, direccion, habitaciones, baños, metrosCuadrados,
+                antiguedad, disponible, propietario, localidad)
+        { }
 
         //getters y setters
         public int Precio { get => precio; set => precio = value; }

@@ -12,7 +12,7 @@ namespace InmoSolution.Clases
         //atributos
         private int precioMensual;
 
-        //constructor
+        //constructores
         public Alquiler(int id, string direccion, int habitaciones, 
             int baños, int metrosCuadrados, int antiguedad, bool disponible, 
             Cliente propietario, string localidad, int precioMensual) 
@@ -21,6 +21,12 @@ namespace InmoSolution.Clases
         {
             this.PrecioMensual = precioMensual;
         }
+        public Alquiler(int id, string direccion, int habitaciones,
+            int baños, int metrosCuadrados, int antiguedad, bool disponible,
+            Cliente propietario, string localidad) : 
+            base(id, direccion, habitaciones, baños, metrosCuadrados,
+                antiguedad, disponible, propietario, localidad)
+        { }
 
         //getters y setters
         public int PrecioMensual { get => precioMensual; set => precioMensual = value; }

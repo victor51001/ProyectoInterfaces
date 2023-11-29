@@ -13,11 +13,11 @@ namespace InmoSolution.Clases
         private string dni;
         private string nombre;
         private string apellidos;
-        private string telefono;
+        private int telefono;
         private string email;
         
-        //constructor
-        public Cliente(string dni, string nombre, string apellidos, string telefono, string email)
+        //constructores
+        public Cliente(string dni, string nombre, string apellidos, int telefono, string email)
         {
             this.Dni = dni;
             this.Nombre = nombre;
@@ -25,12 +25,13 @@ namespace InmoSolution.Clases
             this.Telefono = telefono;
             this.Email = email;
         }
+        public Cliente() { }
 
         //getters y setters
         public string Dni { get => dni; set => dni = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellidos { get => apellidos; set => apellidos = value; }
-        public string Telefono { get => telefono; set => telefono = value; }
+        public int Telefono { get => telefono; set => telefono = value; }
         public string Email { get => email; set => email = value; }
 
         //metodos
