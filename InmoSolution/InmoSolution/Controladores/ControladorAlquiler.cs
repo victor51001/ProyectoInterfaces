@@ -1,4 +1,5 @@
 ﻿using InmoSolution.Clases;
+using InmoSolution.Controladores;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,5 +40,20 @@ public class ControladorAlquiler
     public static bool ExisteFichero()
     {
         return File.Exists("alquileres.json");
+    }
+
+    public static Alquiler GenerarAlquiler()
+    {   
+        Random r = new Random();
+        KeyValuePair<string, string> dirLoc = ControladorInmueble.GenerarDireccionLocalidad();
+        string direccion = dirLoc.Value;
+        int habitaciones = r.Next(1, 6);
+        int baños = r.Next(1, 4);
+        int metrosCuadrados = r.Next(40, 201);
+        int antiguedad = r.Next(1, 51);
+        Cliente propietario = ControladorCliente.ListaClientes[r.Next(ControladorCliente.ListaClientes.Count)];
+        string localidad = dirLoc.Key;
+        bool disponible = true;
+        return new Alquiler(direccion, habitaciones, baños, metrosCuadrados, antiguedad, disponible, propietario, localidad);
     }
 }

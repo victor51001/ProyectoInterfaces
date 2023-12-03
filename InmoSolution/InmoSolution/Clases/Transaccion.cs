@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using InmoSolution.Controladores;
+using ProtoBuf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,22 +25,32 @@ namespace InmoSolution.Clases
         [ProtoMember(6)]
         private Inmueble inmueble;
         [ProtoMember(7)]
-        private double precio;
+        private int precio;
         [ProtoMember(8)]
         private double beneficio;
 
         //constructor
-        public Transaccion(int id, DateTime fecha, Visita[] visitas, Empleado empleado, Cliente cliente, Inmueble inmueble, double precio, double beneficio)
+        public Transaccion(DateOnly fecha, Inmueble inmueble)
         {
-            this.Id = id;
-            this.Fecha = fecha;
-            this.Visitas = visitas;
-            this.Empleado = empleado;
-            this.Cliente = cliente;
-            this.Inmueble = inmueble;
-            this.Inmueble.Libre = false;
-            this.Precio = precio;
-            this.Beneficio = beneficio;
+            Id = ControladorTransaccion.ListaTransacciones.Count + 1;
+            Fecha = fecha.ToDateTime(new TimeOnly(0,0,0));
+            Inmueble = inmueble;
+            Visitas = inmueble.GetVisitas();
+            Empleado = Visitas[Visitas.Length - 1].Empleado;
+            Cliente = Visitas[Visitas.Length - 1].Cliente;
+            Inmueble.Disponible = false;
+            if (Inmueble is Alquiler)
+            {
+                Precio = ((Alquiler)Inmueble).PrecioMensual;
+                Beneficio = Precio;
+                ControladorTransaccion.AddFechaAlquiler(Fecha);
+            }
+            else
+            {
+                Precio = ((EnVenta)Inmueble).Precio;
+                Beneficio = Precio * 0.1;
+                ControladorTransaccion.AddFechaVenta(Fecha);
+            }
         }
         public Transaccion() { }
 
@@ -50,13 +61,13 @@ namespace InmoSolution.Clases
         public Empleado Empleado { get => empleado; set => empleado = value; }
         public Cliente Cliente { get => cliente; set => cliente = value; }
         public Inmueble Inmueble { get => inmueble; set => inmueble = value; }
-        public double Precio { get => precio; set => precio = value; }
+        public int Precio { get => precio; set => precio = value; }
         public double Beneficio { get => beneficio; set => beneficio = value; }
 
         //metodos
         public override string ToString()
         {
-            return " Id: " + this.Id + " Fecha: " + this.Fecha + " Visitas: " + this.Visitas.ToString() + " Empleado: " + this.Empleado + " Cliente: " + this.Cliente + " Inmueble: " + this.Inmueble + " Precio: " + this.Precio + " Beneficio: " + this.Beneficio;
+            return " Id: " + Id + " Fecha: " + Fecha + " Visitas: " + Visitas.ToString() + " Empleado: " + Empleado + " Cliente: " + Cliente + " Inmueble: " + Inmueble + " Precio: " + Precio + " Beneficio: " + Beneficio;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InmoSolution.Controladores;
 using ProtoBuf;
 
 namespace InmoSolution.Clases
@@ -11,18 +12,19 @@ namespace InmoSolution.Clases
     public class EnVenta : Inmueble
     {
         //atributos
-        [ProtoMember(11)]
+        [ProtoMember(10)]
         private int precioMetroCuadrado;
-        [ProtoMember(12)]
+        [ProtoMember(11)]
         private int precio;
 
         //constructores
-        public EnVenta(int id, string direccion, int habitaciones, 
+        public EnVenta(string direccion, int habitaciones, 
                        int baños, int metrosCuadrados, int antiguedad, bool disponible, 
                                   Cliente propietario, string localidad, int precioMetroCuadrado) 
-            : base(id, direccion, habitaciones, baños, metrosCuadrados, 
+            : base(direccion, habitaciones, baños, metrosCuadrados, 
                                    antiguedad, disponible, propietario, localidad)
         {
+            this.Id = ControladorEnVenta.ListaEnVenta.Count + 1;
             this.PrecioMetroCuadrado = precioMetroCuadrado;
             this.Precio = PrecioMetroCuadrado * MetrosCuadrados;
         }

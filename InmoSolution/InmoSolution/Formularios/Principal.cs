@@ -1,5 +1,6 @@
 ﻿using InmoSolution.Clases;
 using InmoSolution.Controladores;
+using InmoSolution.Formularios.Clientes;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace InmoSolution.Formularios
 {
@@ -35,26 +37,18 @@ namespace InmoSolution.Formularios
             ficherosExist.Add(ControladorCliente.ExisteFichero());
             ficherosExist.Add(ControladorAlquiler.ExisteFichero());
             ficherosExist.Add(ControladorEnVenta.ExisteFichero());
-            ficherosExist.Add(ControladorTransaccion.ExisteFichero());
             ficherosExist.Add(ControladorVisita.ExisteFichero());
+            ficherosExist.Add(ControladorTransaccion.ExisteFichero());
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
-            switch (ControladorEmpleado.GetPuesto(user))
-            {
-                case "Administrador":
-                    tsmiEmpleados.Visible = true;
-                    tsmiUsuarios.Visible = true;
-                    break;
-                case "Administrativo":
-                case "Jefe":
-                    tsmiEmpleados.Visible = true;
-                    break;
-            }
-            //CargarClases();
             for (int i = 0; i < ficherosExist.Count; i++)
             {
+                if (i==4)
+                {
+                    ControladorInmueble.RellenarListaInmuebles();
+                }
                 switch (i)
                 {
                     case 0:
@@ -64,6 +58,7 @@ namespace InmoSolution.Formularios
                         }
                         else
                         {
+                            CargarEmpleados();
                             ControladorEmpleado.EscribirEmpleados();
                         }
                         break;
@@ -74,6 +69,7 @@ namespace InmoSolution.Formularios
                         }
                         else
                         {
+                            CargarClientes();
                             ControladorCliente.EscribirClientes();
                         }
                         break;
@@ -84,6 +80,7 @@ namespace InmoSolution.Formularios
                         }
                         else
                         {
+                            CargarAlquileres();
                             ControladorAlquiler.EscribirAlquileres();
                         }
                         break;
@@ -94,35 +91,54 @@ namespace InmoSolution.Formularios
                         }
                         else
                         {
+                            CargarEnVenta();
                             ControladorEnVenta.EscribirEnVentas();
                         }
                         break;
                     case 4:
                         if (ficherosExist[i])
                         {
-                            ControladorTransaccion.LeerTransacciones();
+                            ControladorVisita.LeerVisitas();
                         }
                         else
                         {
-                            ControladorTransaccion.EscribirTransacciones();
+                            CargarVisitas();
+                            ControladorVisita.EscribirVisitas();
                         }
                         break;
                     case 5:
                         if (ficherosExist[i])
                         {
-                            ControladorVisita.LeerVisitas();
+                            ControladorTransaccion.LeerTransacciones();
                         }
                         else
                         {
-                            ControladorVisita.EscribirVisitas();
+                            CargarTransacciones();
+                            ControladorTransaccion.EscribirTransacciones();
                         }
                         break;
                 }
             }
-            ControladorInmueble.RellenarListaInmuebles();
+            switch (user.GetPuesto())
+            {
+                case "Administrador":
+                    tsmiEmpleados.Visible = true;
+                    tsmiUsuarios.Visible = true;
+                    break;
+                case "Administrativo":
+                case "Jefe":
+                    tsmiEmpleados.Visible = true;
+                    break;
+            }
+
             txtbxInmuebles.Text = ControladorInmueble.ListaInmuebles.Count.ToString();
             txtbxAlquileres.Text = ControladorAlquiler.ListaAlquileres.Count.ToString();
             txtbxEnVenta.Text = ControladorEnVenta.ListaEnVenta.Count.ToString();
+            CargarDataGrid();
+            InicializarGrafico();
+        }
+        private void CargarDataGrid()
+        {
             dgvUltiTransacc.DataSource = ControladorTransaccion.ListaTransacciones.OrderByDescending(t => t.Fecha).Take(5).ToList();
             dgvUltiTransacc.Columns.Clear();
             DataGridViewTextBoxColumn colId = new DataGridViewTextBoxColumn();
@@ -146,57 +162,105 @@ namespace InmoSolution.Formularios
             colBeneficio.Width = 75;
             colBeneficio.ReadOnly = true;
             dgvUltiTransacc.Columns.AddRange(new DataGridViewColumn[] { colId, colFecha, colPrecio, colBeneficio });
+            dgvUltiTransacc.Invalidate();
+            dgvUltiTransacc.Update();
+        }
+        private void ActualizarDataGrid()
+        {
+            dgvUltiTransacc.DataSource = ControladorTransaccion.ListaTransacciones.OrderByDescending(t => t.Fecha).Take(5).ToList();
+            dgvUltiTransacc.Invalidate();
+            dgvUltiTransacc.Update();
+        }
+        private void InicializarGrafico()
+        {
+            chrtEstadistica.ChartAreas[0].AxisX.Title = "Fecha";
+            chrtEstadistica.ChartAreas[0].AxisY.Title = "Transacciones";
+            chrtEstadistica.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM";
+            chrtEstadistica.ChartAreas[0].AxisX.Interval = 1;
+            chrtEstadistica.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Months;
+            chrtEstadistica.ChartAreas[0].AxisX.Minimum = ControladorTransaccion.ContadorPorFechasAlquileres.Keys.Min().ToOADate();
+            chrtEstadistica.ChartAreas[0].AxisX.Maximum = ControladorTransaccion.ContadorPorFechasAlquileres.Keys.Max().ToOADate();
+
+            Series serieAlquiler = chrtEstadistica.Series[0];
+            serieAlquiler.Name = "Alquileres";
+            serieAlquiler.ChartType = SeriesChartType.Line;
+            serieAlquiler.XValueMember = "Key"; 
+            serieAlquiler.YValueMembers = "Value";
+
+            Series serieEnVenta = chrtEstadistica.Series[1];
+            serieEnVenta.Name = "Ventas";
+            serieEnVenta.ChartType = SeriesChartType.Line;
+            serieEnVenta.XValueMember = "Key";
+            serieEnVenta.YValueMembers = "Value";
+            ControladorTransaccion.ContadorPorFechasAlquileres = ControladorTransaccion.ContadorPorFechasAlquileres.OrderBy(t => t.Key).ToDictionary(t => t.Key, t => t.Value);
+            ControladorTransaccion.ContadorPorFechasVentas = ControladorTransaccion.ContadorPorFechasVentas.OrderBy(t => t.Key).ToDictionary(t => t.Key, t => t.Value);
+            foreach (KeyValuePair<DateTime, int> par in ControladorTransaccion.ContadorPorFechasAlquileres)
+            {
+                serieAlquiler.Points.AddXY(par.Key, par.Value);
+            }
+            foreach (KeyValuePair<DateTime, int> par in ControladorTransaccion.ContadorPorFechasVentas)
+            {
+                serieEnVenta.Points.AddXY(par.Key, par.Value);
+            }
+            serieAlquiler.Color = Color.Green;
+            serieEnVenta.Color = Color.Red;
+
+            chrtEstadistica.DataBind();
+        }
+        private void ActualizarGrafico()
+        {
+            chrtEstadistica.DataBind();
         }
 
-        private void CargarClases()
+        private void CargarClientes()
         {
             // Crear clientes
-            Cliente cliente1 = new Cliente("11111111A", "Antonio", "Gómez", 123456789, "antonio@gmail.com");
-            Cliente cliente2 = new Cliente("22222222B", "Elena", "Fernández", 987654321, "elena@gmail.com");
-            Cliente cliente3 = new Cliente("33333333C", "Javier", "Martínez", 654321987, "javier@gmail.com");
-            Cliente cliente4 = new Cliente("44444444D", "Carmen", "Rodríguez", 321654987, "carmen@gmail.com");
-            Cliente cliente5 = new Cliente("55555555E", "Alberto", "Sánchez", 789456123, "alberto@gmail.com");
-
+            for (int i = 0; i < 400; i++)
+            {
+                ControladorCliente.ListaClientes.Add(ControladorCliente.GenerarCliente());
+            }
+        }
+        private void CargarEmpleados()
+        {
+            ControladorEmpleado.ListaEmpleados.Add(new Empleado("54750696R", "Juan", "Perez", "admin@admin.com", 611546200, user, Empleado.Puestos.Administrador));
             // Crear empleados
-            Empleado empleado1 = new Empleado("12345678X", "Juan", "González", "juan@gmail.com", 987654321, ControladorUsuario.GetUsuario("Juan"), Empleado.Puestos.Administrativo);
-            Empleado empleado2 = new Empleado("23456789Y", "Ana", "López", "ana@gmail.com", 654321987, ControladorUsuario.GetUsuario("Ana"), Empleado.Puestos.Agente);
-            Empleado empleado3 = new Empleado("34567890Z", "Pedro", "Pérez", "pedro@gmail.com", 321654987, ControladorUsuario.GetUsuario("Pedro"), Empleado.Puestos.Administrador);
-            Empleado empleado4 = new Empleado("45678901A", "María", "Ruiz", "maria@gmail.com", 789456123, ControladorUsuario.GetUsuario("María"), Empleado.Puestos.Jefe);
-            Empleado empleado5 = new Empleado("56789012B", "Carlos", "Díaz", "carlos@gmail.com", 456123789, ControladorUsuario.GetUsuario("Carlos"), Empleado.Puestos.Agente);
-
-            // Crear inmuebles
-            Alquiler alquiler1 = new Alquiler(1, "Calle Gran Vía, 123", 3, 2, 120, 10, true, cliente1, "Alcalá de Henares", 1000);
-            Alquiler alquiler2 = new Alquiler(2, "Calle Princesa, 45", 2, 1, 80, 5, true, cliente2, "Getafe", 800);
-            Alquiler alquiler3 = new Alquiler(3, "Calle Alcalá, 67", 4, 3, 150, 15, true, cliente3, "Alcobendas", 1200);
-            Alquiler alquiler4 = new Alquiler(4, "Calle Mayor, 10", 1, 1, 50, 3, true, cliente4, "Leganes", 600);
-            Alquiler alquiler5 = new Alquiler(5, "Calle Serrano, 30", 3, 2, 110, 8, true, cliente5, "Las Rozas", 950);
-
-            EnVenta venta1 = new EnVenta(6, "Paseo del Prado, 20", 4, 2, 180, 12, true, cliente1, "Madrid", 3000);
-            EnVenta venta2 = new EnVenta(7, "Calle Fuencarral, 80", 2, 1, 75, 6, true, cliente2, "Majadahonda", 1200);
-            EnVenta venta3 = new EnVenta(8, "Calle Toledo, 15", 3, 2, 100, 10, true, cliente3, "Pozuelo de Alarcón", 2000);
-            EnVenta venta4 = new EnVenta(9, "Calle Atocha, 55", 1, 1, 60, 4, true, cliente4, "Boadilla del Monte", 900);
-            EnVenta venta5 = new EnVenta(10, "Calle Gran Vía, 200", 5, 3, 220, 15, true, cliente5, "Torrejón de Ardoz", 3500);
-
+            for (int i = 0; i < 20; i++)
+            {
+                ControladorEmpleado.ListaEmpleados.Add(ControladorEmpleado.GenerarEmpleado());
+            }
+            ControladorUsuario.EscribirUsuarios();
+        }
+        private void CargarAlquileres()
+        {
+            // Crear alquileres
+            for (int i = 0; i < 150; i++)
+            {
+                ControladorAlquiler.ListaAlquileres.Add(ControladorAlquiler.GenerarAlquiler());
+            }
+        }
+        private void CargarEnVenta()
+        {
+            // Crear en venta
+            for (int i = 0; i < 150; i++)
+            {
+                ControladorEnVenta.ListaEnVenta.Add(ControladorEnVenta.GenerarEnVenta());
+            }
+        }
+        private void CargarVisitas()
+        {
             // Crear visitas
-            Visita visita1 = new Visita(1, new DateTime(2023, 11, 25, 14, 30, 0), cliente1, alquiler1, empleado1);
-            Visita visita2 = new Visita(2, new DateTime(2023, 11, 24, 16, 0, 0), cliente2, venta2, empleado2);
-            Visita visita3 = new Visita(3, new DateTime(2023, 11, 23, 10, 45, 0), cliente3, alquiler3, empleado3);
-            Visita visita4 = new Visita(4, new DateTime(2023, 11, 22, 12, 15, 0), cliente4, venta4, empleado4);
-            Visita visita5 = new Visita(5, new DateTime(2023, 11, 21, 15, 45, 0), cliente5, alquiler5, empleado5);
-
+            for (int i = 0; i < 500; i++)
+            {
+                ControladorVisita.ListaVisitas.Add(ControladorVisita.GenerarVisita());
+            }
+        }
+        private void CargarTransacciones()
+        {
             // Crear transacciones
-            Transaccion transaccion1 = new Transaccion(1, new DateTime(2023, 11, 25, 15, 0, 0), new Visita[] { visita1 }, empleado1, cliente1, alquiler1, 1000, 200);
-            Transaccion transaccion2 = new Transaccion(2, new DateTime(2023, 11, 24, 17, 30, 0), new Visita[] { visita2 }, empleado2, cliente2, venta2, 1200, 400);
-            Transaccion transaccion3 = new Transaccion(3, new DateTime(2023, 11, 23, 11, 0, 0), new Visita[] { visita3 }, empleado3, cliente3, alquiler3, 1500, 300);
-            Transaccion transaccion4 = new Transaccion(4, new DateTime(2023, 11, 22, 12, 45, 0), new Visita[] { visita4 }, empleado4, cliente4, venta4, 800, 150);
-            Transaccion transaccion5 = new Transaccion(5, new DateTime(2023, 11, 21, 16, 15, 0), new Visita[] { visita5 }, empleado5, cliente5, alquiler5, 1100, 250);
-
-            ControladorEmpleado.ListaEmpleados.AddRange(new List<Empleado> { empleado1, empleado2, empleado3, empleado4, empleado5 });
-            ControladorCliente.ListaClientes.AddRange(new List<Cliente> { cliente1, cliente2, cliente3, cliente4, cliente5 });
-            ControladorAlquiler.ListaAlquileres.AddRange(new List<Alquiler> { alquiler1, alquiler2, alquiler3, alquiler4, alquiler5 });
-            ControladorEnVenta.ListaEnVenta.AddRange(new List<EnVenta> { venta1, venta2, venta3, venta4, venta5 });
-            ControladorVisita.ListaVisitas.AddRange(new List<Visita> { visita1, visita2, visita3, visita4, visita5 });
-            ControladorTransaccion.ListaTransacciones.AddRange(new List<Transaccion> { transaccion1, transaccion2, transaccion3, transaccion4, transaccion5 });
+            for (int i = 0; i < 70; i++)
+            {
+                ControladorTransaccion.ListaTransacciones.Add(ControladorTransaccion.GenerarTransaccion());
+            }
         }
 
         private void tsmiPerfil_Click(object sender, EventArgs e)
@@ -206,23 +270,6 @@ namespace InmoSolution.Formularios
         private void tsmiCerrar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-        private void listadoDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Usuarios.ListadoUsuarios frmListado = new Usuarios.ListadoUsuarios();
-            frmListado.ShowDialog();
-        }
-
-        private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Usuarios.NuevoUsuario frmNuevoUsuario = new Usuarios.NuevoUsuario();
-            frmNuevoUsuario.ShowDialog();
-        }
-
-        private void tsmiNuevoEmpleado_Click(object sender, EventArgs e)
-        {
-            Empleados.NuevoEmpleado frmNuevoEmpleado = new Empleados.NuevoEmpleado();
-            frmNuevoEmpleado.ShowDialog();
         }
 
         private void Principal_FormClosing(object sender, FormClosingEventArgs e)
@@ -295,7 +342,90 @@ namespace InmoSolution.Formularios
             }
         }
 
-        private void listaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmiListaClientes_Click(object sender, EventArgs e)
+        {
+            ListadoClientes frmListado = new ListadoClientes();
+            frmListado.ShowDialog();
+        }
+
+        private void tsmiNuevoCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiListaAlquileres_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiNuevoAlquiler_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiListaEnVenta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiNuevoEnVenta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiListaTransacciones_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiNuevaTransaccion_Click(object sender, EventArgs e)
+        {
+
+            ActualizarGrafico();
+        }
+
+        private void tsmiListaVisitas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiNuevaVisita_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiListaEmpleados_Click(object sender, EventArgs e)
+        {
+            Empleados.ListadoEmpleados frmListado = new Empleados.ListadoEmpleados();
+            frmListado.ShowDialog();
+        }
+
+        private void tsmiNuevoEmpleado_Click(object sender, EventArgs e)
+        {
+            Empleados.NuevoEmpleado frmNuevoEmpleado = new Empleados.NuevoEmpleado();
+            frmNuevoEmpleado.ShowDialog();
+        }
+        private void listadoDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Usuarios.ListadoUsuarios frmListado = new Usuarios.ListadoUsuarios();
+            frmListado.ShowDialog();
+        }
+
+        private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void tsmiConfiguracion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiDocumentacion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiAcercaDe_Click(object sender, EventArgs e)
         {
 
         }

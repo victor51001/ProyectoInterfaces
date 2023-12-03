@@ -44,5 +44,39 @@ namespace InmoSolution.Controladores
         {
             return File.Exists("enVenta.json");
         }
+        public static int GetPrecioMetroCuadrado(string localidad)
+        {
+            int precioMetroCuadrado = 0;
+            switch (localidad)
+            {
+                case "Madrid":
+                    return 4000;
+                case "Alcalá de Henares":
+                case "Getafe":
+                case "Móstoles":
+                case "Alcorcón":
+                case "Fuenlabrada":
+                    return 2000;
+                default:
+                    break;
+            }
+            return precioMetroCuadrado;
+        }
+
+        public static EnVenta GenerarEnVenta()
+        {
+            Random r = new Random();
+            KeyValuePair<string, string> dirLoc = ControladorInmueble.GenerarDireccionLocalidad();
+            string direccion = dirLoc.Value;
+            int habitaciones = r.Next(1, 6);
+            int baños = r.Next(1, 4);
+            int metrosCuadrados = r.Next(40, 201);
+            int antiguedad = r.Next(1, 51);
+            Cliente propietario = ControladorCliente.ListaClientes[r.Next(ControladorCliente.ListaClientes.Count)];
+            string localidad = dirLoc.Key;
+            bool disponible = true;
+            int precioMetroCuadrado = GetPrecioMetroCuadrado(localidad);
+            return new EnVenta(direccion, habitaciones, baños, metrosCuadrados, antiguedad, disponible, propietario, localidad, precioMetroCuadrado);
+        }
     }
 }

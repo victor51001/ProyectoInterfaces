@@ -10,7 +10,8 @@ using ProtoBuf;
 namespace InmoSolution.Clases
 {
     [ProtoContract]
-    public class Empleado : IXmlSerializable
+    [XmlRoot("Empleado")]
+    public class Empleado
     {
         [ProtoContract]
         public enum Puestos
@@ -23,20 +24,28 @@ namespace InmoSolution.Clases
         }
         //atributos
         [ProtoMember(1)]
+        [XmlElement("Dni")]
         private string dni;
         [ProtoMember(2)]
+        [XmlElement("Nombre")]
         private string nombre;
         [ProtoMember(3)]
+        [XmlElement("Apellidos")]
         private string apellidos;
         [ProtoMember(4)]
+        [XmlElement("Telefono")]
         private int telefono;
         [ProtoMember(5)]
+        [XmlElement("Email")]
         private string email;
         [ProtoMember(6)]
+        [XmlElement("Usuario")]
         private Usuario usuario;
         [ProtoMember(7)]
+        [XmlElement("Puesto")]
         private Puestos puesto;
         [ProtoMember(8)]
+        [XmlElement("Sueldo")]
         private double sueldo;
 
         //constructores
@@ -61,7 +70,7 @@ namespace InmoSolution.Clases
         public string Email { get => email; set => email = value; }
         public Usuario Usuario { get => usuario; set => usuario = value; }
         public Puestos Puesto { get => puesto; set => puesto = value; }
-        public double Sueldo { get => sueldo; set => sueldo = value; }
+        public double Sueldo { get => sueldo; set => sueldo = Math.Round(value,2); }
 
         //metodos
         public override string ToString()
@@ -130,37 +139,6 @@ namespace InmoSolution.Clases
                 }            
             }
             return comision;
-        }
-        public System.Xml.Schema.XmlSchema GetSchema()
-        {
-            return null;
-        }
-        public void ReadXml(System.Xml.XmlReader reader)
-        {
-            reader.ReadStartElement();
-
-            this.Dni = reader.ReadElementContentAsString("Dni", "");
-            this.Nombre = reader.ReadElementContentAsString("Nombre", "");
-            this.Apellidos = reader.ReadElementContentAsString("Apellidos", "");
-            this.Telefono = int.Parse(reader.ReadElementContentAsString("Telefono", ""));
-            this.Email = reader.ReadElementContentAsString("Email", "");
-            this.Puesto = (Puestos)Enum.Parse(typeof(Puestos), reader.ReadElementContentAsString("Puesto", ""));
-            this.Sueldo = double.Parse(reader.ReadElementContentAsString("Sueldo", ""));
-            this.Usuario = ControladorUsuario.GetUsuario(int.Parse(reader.ReadElementContentAsString("IdUsuario", "")));
-
-            reader.ReadEndElement();
-        }
-
-        public void WriteXml(System.Xml.XmlWriter writer)
-        {
-            writer.WriteElementString("Dni", this.Dni);
-            writer.WriteElementString("Nombre", this.Nombre);
-            writer.WriteElementString("Apellidos", this.Apellidos);
-            writer.WriteElementString("Telefono", this.Telefono.ToString());
-            writer.WriteElementString("Email", this.Email);
-            writer.WriteElementString("Puesto", this.Puesto.ToString());
-            writer.WriteElementString("Sueldo", this.Sueldo.ToString());
-            writer.WriteElementString("IdUsuario", this.Usuario.Id.ToString());
         }
     }
 }

@@ -32,16 +32,18 @@
             lblSesion = new Label();
             txtbxUsuario = new TextBox();
             txtbxClave = new TextBox();
-            lbllnkCrear = new LinkLabel();
             bttnEntrar = new Button();
+            pnlLogin = new Panel();
+            pnlLogin.SuspendLayout();
             SuspendLayout();
             // 
             // lblSesion
             // 
+            lblSesion.Anchor = AnchorStyles.Top;
             lblSesion.BackColor = Color.FromArgb(128, 245, 245, 245);
             lblSesion.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold, GraphicsUnit.Point);
             lblSesion.ForeColor = SystemColors.ControlText;
-            lblSesion.Location = new Point(110, 52);
+            lblSesion.Location = new Point(17, 0);
             lblSesion.Name = "lblSesion";
             lblSesion.Size = new Size(167, 22);
             lblSesion.TabIndex = 0;
@@ -50,10 +52,11 @@
             // 
             // txtbxUsuario
             // 
+            txtbxUsuario.Anchor = AnchorStyles.Top;
             txtbxUsuario.BackColor = SystemColors.ControlDark;
             txtbxUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtbxUsuario.ForeColor = SystemColors.ControlText;
-            txtbxUsuario.Location = new Point(110, 122);
+            txtbxUsuario.Location = new Point(17, 57);
             txtbxUsuario.Name = "txtbxUsuario";
             txtbxUsuario.PlaceholderText = "Introduce tu usuario:";
             txtbxUsuario.Size = new Size(167, 23);
@@ -61,39 +64,41 @@
             // 
             // txtbxClave
             // 
+            txtbxClave.Anchor = AnchorStyles.Bottom;
             txtbxClave.BackColor = SystemColors.ControlDark;
             txtbxClave.ForeColor = SystemColors.ControlText;
-            txtbxClave.Location = new Point(110, 170);
+            txtbxClave.Location = new Point(17, 111);
             txtbxClave.Name = "txtbxClave";
             txtbxClave.PasswordChar = '*';
             txtbxClave.PlaceholderText = "Introduce tu clave:";
             txtbxClave.Size = new Size(167, 22);
             txtbxClave.TabIndex = 2;
             // 
-            // lbllnkCrear
-            // 
-            lbllnkCrear.AutoSize = true;
-            lbllnkCrear.BackColor = Color.FromArgb(156, 250, 250, 210);
-            lbllnkCrear.Cursor = Cursors.Hand;
-            lbllnkCrear.ForeColor = SystemColors.ControlText;
-            lbllnkCrear.Location = new Point(12, 312);
-            lbllnkCrear.Name = "lbllnkCrear";
-            lbllnkCrear.Size = new Size(98, 13);
-            lbllnkCrear.TabIndex = 4;
-            lbllnkCrear.TabStop = true;
-            lbllnkCrear.Text = "No tengo usuario";
-            lbllnkCrear.LinkClicked += lbllnkCrear_LinkClicked;
-            // 
             // bttnEntrar
             // 
+            bttnEntrar.Anchor = AnchorStyles.Bottom;
             bttnEntrar.Cursor = Cursors.Hand;
-            bttnEntrar.Location = new Point(149, 244);
+            bttnEntrar.Location = new Point(52, 182);
             bttnEntrar.Name = "bttnEntrar";
             bttnEntrar.Size = new Size(89, 29);
             bttnEntrar.TabIndex = 5;
             bttnEntrar.Text = "Entrar";
             bttnEntrar.UseVisualStyleBackColor = true;
             bttnEntrar.Click += bttnEntrar_Click;
+            // 
+            // pnlLogin
+            // 
+            pnlLogin.Anchor = AnchorStyles.None;
+            pnlLogin.BackColor = Color.Transparent;
+            pnlLogin.Controls.Add(lblSesion);
+            pnlLogin.Controls.Add(bttnEntrar);
+            pnlLogin.Controls.Add(txtbxUsuario);
+            pnlLogin.Controls.Add(txtbxClave);
+            pnlLogin.Location = new Point(96, 48);
+            pnlLogin.Margin = new Padding(50);
+            pnlLogin.Name = "pnlLogin";
+            pnlLogin.Size = new Size(200, 223);
+            pnlLogin.TabIndex = 6;
             // 
             // Login
             // 
@@ -104,19 +109,16 @@
             BackgroundImage = Properties.Resources.Fondo_login;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(387, 334);
-            Controls.Add(bttnEntrar);
-            Controls.Add(lbllnkCrear);
-            Controls.Add(txtbxClave);
-            Controls.Add(txtbxUsuario);
-            Controls.Add(lblSesion);
+            Controls.Add(pnlLogin);
             Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Iniciar sesion";
             Load += Login_Load;
+            pnlLogin.ResumeLayout(false);
+            pnlLogin.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -124,7 +126,7 @@
         private Label lblSesion;
         private TextBox txtbxUsuario;
         private TextBox txtbxClave;
-        private LinkLabel lbllnkCrear;
         private Button bttnEntrar;
+        private Panel pnlLogin;
     }
 }

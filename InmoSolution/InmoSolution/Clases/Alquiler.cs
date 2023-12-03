@@ -11,17 +11,18 @@ namespace InmoSolution.Clases
     public class Alquiler : Inmueble
     {
         //atributos
-        [ProtoMember(11)]
+        [ProtoMember(10)]
         private int precioMensual;
 
         //constructores
-        public Alquiler(int id, string direccion, int habitaciones, 
+        public Alquiler(string direccion, int habitaciones, 
             int baños, int metrosCuadrados, int antiguedad, bool disponible, 
-            Cliente propietario, string localidad, int precioMensual) 
-            : base(id, direccion, habitaciones, baños, metrosCuadrados, 
+            Cliente propietario, string localidad) 
+            : base(direccion, habitaciones, baños, metrosCuadrados, 
                   antiguedad, disponible, propietario, localidad)
         {
-            this.PrecioMensual = precioMensual;
+            this.Id = ControladorAlquiler.ListaAlquileres.Count + 1;
+            this.PrecioMensual = GenerarPrecioMensual();
         }
         public Alquiler() { }
 
@@ -32,6 +33,41 @@ namespace InmoSolution.Clases
         public override string ToString()
         {
             return base.ToString() + " Precio: " + this.PrecioMensual;
+        }
+        public int GenerarPrecioMensual()
+        {
+            double multiLocal;
+            double sumanBaños = this.Baños * 100;
+            double sumanHabitaciones = this.Habitaciones * 50;
+            double susAntiguedad = this.Antiguedad * 50;
+            double sumanMetros = this.MetrosCuadrados * 2;
+
+            switch (this.Localidad)
+            {
+                case "Madrid":
+                    multiLocal = 4;
+                    break;
+                case "Alcalá de Henares":
+                    multiLocal = 1;
+                    break;
+                case "Getafe":
+                    multiLocal = 1;
+                    break;
+                case "Móstoles":
+                    multiLocal = 3;
+                    break;
+                case "Alcorcón":
+                    multiLocal = 2;
+                    break;
+                case "Fuenlabrada":
+                    multiLocal = 3;
+                    break;
+                default:
+                    multiLocal = 0;
+                    break;
+            }
+            
+            return (int)(200* multiLocal + ((sumanBaños + sumanHabitaciones+ sumanMetros) - susAntiguedad));
         }
     }
 }

@@ -10,7 +10,6 @@ namespace InmoSolution.Controladores
     public class ControladorUsuario
     {
         public static List<Usuario> ListaUsuarios = new List<Usuario>();
-        public static int id = 10;
         public static bool cambios;
         public static bool Cambios { get => cambios; set => cambios = value; }
         public static void LeerUsuarios()
@@ -34,7 +33,6 @@ namespace InmoSolution.Controladores
         {
             try
             {
-                MessageBox.Show("Escribiendo usuarios...");
                 using (FileStream fs = new FileStream("usuarios.bin", FileMode.Create))
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
@@ -61,11 +59,11 @@ namespace InmoSolution.Controladores
             }
         }
 
-        public static Usuario GetUsuario(string nombre)
+        public static Usuario GetUsuario(string login)
         {
             foreach (Usuario user in ListaUsuarios)
             {
-                if (user.Nombre == nombre)
+                if (user.Login == login)
                 {
                     return user;
                 }
@@ -85,11 +83,12 @@ namespace InmoSolution.Controladores
             return null;
         }
 
-        public static bool ExisteUsuario(string nombre, string clave)
+
+        public static bool ExisteUsuario(string login, string clave)
         {
             foreach (Usuario user in ListaUsuarios)
             {
-                if (user.Nombre == nombre && user.Clave == clave)
+                if (user.Login == login && user.Clave == clave)
                 {
                     return true;
                 }
@@ -108,9 +107,19 @@ namespace InmoSolution.Controladores
                 user.Clave = clave;
             }
         }
+
         public static bool ExisteFichero()
         {
             return File.Exists("usuarios.bin");
+        }
+
+        public static Usuario GenerarUsuario(string nom, string apellidos)
+        {
+            int id = ListaUsuarios.Count + 10;
+            string login = nom.ElementAt(0) + apellidos.Substring(0,4);
+            string nombre = nom;
+            string clave = "clave$1";
+            return new Usuario(id,login,nombre,clave);
         }
     }
 }

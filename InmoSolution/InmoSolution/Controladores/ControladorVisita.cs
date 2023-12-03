@@ -66,15 +66,16 @@ namespace InmoSolution.Controladores
                             case "Inmueble":
                                 var tablaInmueble = (TomlTable)parVisita.Value;
                                 Inmueble inmueble = null;
+                                if (tablaInmueble.ContainsKey("PrecioMensual"))
+                                {
+                                    inmueble = new Alquiler();
+                                }
+                                else
+                                {
+                                    inmueble = new EnVenta();
+                                }
                                 foreach (KeyValuePair<string, object> parInmueble in tablaInmueble)
                                 {
-                                    if (tablaInmueble.ContainsKey("PrecioMensual"))
-                                    {
-                                        inmueble = new Alquiler();
-                                    } else
-                                    {
-                                        inmueble = new EnVenta();
-                                    }
                                     switch (parInmueble.Key)
                                     {
                                         case "Id":
@@ -302,6 +303,26 @@ namespace InmoSolution.Controladores
         public static bool ExisteFichero()
         {
             return File.Exists("visitas.toml");
+        }
+        public static Cliente GetNoPropietario(Inmueble inmueble)
+        {
+            Random r = new Random();
+            Cliente c = ControladorCliente.ListaClientes[r.Next(ControladorCliente.ListaClientes.Count)];
+            while (c==inmueble.Propietario)
+            {
+                c = ControladorCliente.ListaClientes[r.Next(ControladorCliente.ListaClientes.Count)];
+            }
+            return c;
+        }
+
+        public static Visita GenerarVisita()
+        {
+            Random r = new Random();
+            DateTime fechaHora = DateTime.Now;
+            Inmueble inmueble = ControladorInmueble.ListaInmuebles[r.Next(ControladorInmueble.ListaInmuebles.Count)];
+            Cliente cliente = GetNoPropietario(inmueble);
+            Empleado empleado = ControladorEmpleado.ListaEmpleados[r.Next(ControladorEmpleado.ListaEmpleados.Count)];
+            return new Visita(fechaHora, cliente, inmueble, empleado);
         }
     }
 }

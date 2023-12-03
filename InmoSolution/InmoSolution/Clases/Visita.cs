@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using InmoSolution.Controladores;
+using ProtoBuf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace InmoSolution.Clases
         private Empleado empleado;
 
         //constructores
-        public Visita(int id, DateTime fechaHora, Cliente cliente, Inmueble inmueble, Empleado empleado)
+        public Visita(DateTime fechaHora, Cliente cliente, Inmueble inmueble, Empleado empleado)
         {
-            this.Id = id;
+            this.Id = ControladorVisita.ListaVisitas.Count + 1;
             this.FechaHora = fechaHora;
             this.Cliente = cliente;
             this.Inmueble = inmueble;

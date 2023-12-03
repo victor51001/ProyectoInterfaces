@@ -48,5 +48,29 @@ namespace InmoSolution.Controladores
         {
             return File.Exists("clientes.yml");
         }
+        public static char CalcularLetraDNI(int numerosDNI)
+        {
+            char[] letrasDNI = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E' };
+
+            int resto = numerosDNI % 23;
+
+            return letrasDNI[resto];
+        }
+        public static Cliente GenerarCliente()
+        {
+            string[] nombres = { "Antonio", "Elena", "Javier", "Carmen", "Alberto", "María", "Pedro", "Isabel", "Luis", "Ana" };
+            string[] apelli2 = { "Gómez", "Fernández", "Martínez", "Rodríguez", "Sánchez", "López", "García", "Pérez", "Martín", "Ruiz" };
+            string[] dominiosEmail = { "gmail.com", "hotmail.com", "yahoo.com", "outlook.com" };
+            Random rand = new Random();
+
+            int numerosDNI = rand.Next(10000000, 99999999);
+            string dni = numerosDNI.ToString() + CalcularLetraDNI(numerosDNI);
+            string nombre = nombres[rand.Next(nombres.Length)];
+            string apellidos = $"{apelli2[rand.Next(apelli2.Length)]} {apelli2[rand.Next(apelli2.Length)]}";
+            int telefono = (int)rand.Next(600000000, 799999999);
+            string email = $"{nombre.ToLower()}@{dominiosEmail[rand.Next(dominiosEmail.Length)]}";
+
+            return new Cliente(dni, nombre, apellidos, telefono, email);
+        }
     }
 }

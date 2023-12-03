@@ -21,6 +21,10 @@ namespace InmoSolution.Formularios.Usuarios
             InitializeComponent();
             user = usu;
             contraseñaDevuelta = null;
+            if (!usu.iniciado)
+            {
+                bttnCancelar.Enabled = false;
+            }
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)

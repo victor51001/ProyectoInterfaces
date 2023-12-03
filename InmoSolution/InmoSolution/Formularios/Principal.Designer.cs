@@ -33,6 +33,7 @@ namespace InmoSolution.Formularios
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             lblUltima = new Label();
             lblInmuebles = new Label();
@@ -42,7 +43,7 @@ namespace InmoSolution.Formularios
             txtbxAlquileres = new TextBox();
             lblEnVenta = new Label();
             txtbxEnVenta = new TextBox();
-            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            chrtEstadistica = new System.Windows.Forms.DataVisualization.Charting.Chart();
             dgvUltiTransacc = new DataGridView();
             tsmiInicio = new ToolStripMenuItem();
             tsmiPerfil = new ToolStripMenuItem();
@@ -65,7 +66,6 @@ namespace InmoSolution.Formularios
             tsmiNuevoEmpleado = new ToolStripMenuItem();
             tsmiUsuarios = new ToolStripMenuItem();
             tsmiListaUsuarios = new ToolStripMenuItem();
-            tsmiNuevoUsuario = new ToolStripMenuItem();
             tsmiConfiguracion = new ToolStripMenuItem();
             tsmiAyuda = new ToolStripMenuItem();
             tsmiDocumentacion = new ToolStripMenuItem();
@@ -75,15 +75,16 @@ namespace InmoSolution.Formularios
             tsmiListaTransacciones = new ToolStripMenuItem();
             tsmiNuevaTransaccion = new ToolStripMenuItem();
             grpbxTotales.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chrtEstadistica).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvUltiTransacc).BeginInit();
             msPrincipal.SuspendLayout();
             SuspendLayout();
             // 
             // lblUltima
             // 
+            lblUltima.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblUltima.AutoSize = true;
-            lblUltima.Location = new Point(514, 332);
+            lblUltima.Location = new Point(676, 396);
             lblUltima.Margin = new Padding(2, 0, 2, 0);
             lblUltima.Name = "lblUltima";
             lblUltima.Size = new Size(123, 15);
@@ -103,6 +104,7 @@ namespace InmoSolution.Formularios
             // txtbxInmuebles
             // 
             txtbxInmuebles.Enabled = false;
+            txtbxInmuebles.ForeColor = SystemColors.WindowText;
             txtbxInmuebles.Location = new Point(163, 16);
             txtbxInmuebles.Margin = new Padding(2);
             txtbxInmuebles.Name = "txtbxInmuebles";
@@ -112,6 +114,7 @@ namespace InmoSolution.Formularios
             // 
             // grpbxTotales
             // 
+            grpbxTotales.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             grpbxTotales.BackColor = Color.FromArgb(148, 224, 255, 255);
             grpbxTotales.Controls.Add(lblAlquileres);
             grpbxTotales.Controls.Add(txtbxAlquileres);
@@ -168,29 +171,37 @@ namespace InmoSolution.Formularios
             txtbxEnVenta.Size = new Size(31, 23);
             txtbxEnVenta.TabIndex = 6;
             // 
-            // chart1
+            // chrtEstadistica
             // 
+            chrtEstadistica.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
+            chrtEstadistica.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
-            chart1.Location = new Point(21, 310);
-            chart1.Margin = new Padding(2);
-            chart1.Name = "chart1";
+            chrtEstadistica.Legends.Add(legend1);
+            chrtEstadistica.Location = new Point(28, 358);
+            chrtEstadistica.Margin = new Padding(2);
+            chrtEstadistica.Name = "chrtEstadistica";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            chart1.Series.Add(series1);
-            chart1.Size = new Size(262, 282);
-            chart1.TabIndex = 7;
-            chart1.Text = "chart1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            chrtEstadistica.Series.Add(series1);
+            chrtEstadistica.Series.Add(series2);
+            chrtEstadistica.Size = new Size(408, 294);
+            chrtEstadistica.TabIndex = 7;
+            chrtEstadistica.Text = "Transacciones";
             // 
             // dgvUltiTransacc
             // 
             dgvUltiTransacc.AllowUserToAddRows = false;
             dgvUltiTransacc.AllowUserToDeleteRows = false;
+            dgvUltiTransacc.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             dgvUltiTransacc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUltiTransacc.Location = new Point(370, 363);
+            dgvUltiTransacc.Location = new Point(532, 427);
             dgvUltiTransacc.Margin = new Padding(2);
             dgvUltiTransacc.Name = "dgvUltiTransacc";
             dgvUltiTransacc.ReadOnly = true;
@@ -231,12 +242,14 @@ namespace InmoSolution.Formularios
             tsmiListaClientes.Name = "tsmiListaClientes";
             tsmiListaClientes.Size = new Size(159, 22);
             tsmiListaClientes.Text = "Lista de Clientes";
+            tsmiListaClientes.Click += tsmiListaClientes_Click;
             // 
             // tsmiNuevoCliente
             // 
             tsmiNuevoCliente.Name = "tsmiNuevoCliente";
             tsmiNuevoCliente.Size = new Size(159, 22);
             tsmiNuevoCliente.Text = "Nuevo Cliente";
+            tsmiNuevoCliente.Click += tsmiNuevoCliente_Click;
             // 
             // tsmiInmuebles
             // 
@@ -257,12 +270,14 @@ namespace InmoSolution.Formularios
             tsmiListaAlquileres.Name = "tsmiListaAlquileres";
             tsmiListaAlquileres.Size = new Size(169, 22);
             tsmiListaAlquileres.Text = "Lista de Alquileres";
+            tsmiListaAlquileres.Click += tsmiListaAlquileres_Click;
             // 
             // tsmiNuevoAlquiler
             // 
             tsmiNuevoAlquiler.Name = "tsmiNuevoAlquiler";
             tsmiNuevoAlquiler.Size = new Size(169, 22);
             tsmiNuevoAlquiler.Text = "Nuevo Alquiler";
+            tsmiNuevoAlquiler.Click += tsmiNuevoAlquiler_Click;
             // 
             // tsmiEnVenta
             // 
@@ -276,12 +291,14 @@ namespace InmoSolution.Formularios
             tsmiListaEnVenta.Name = "tsmiListaEnVenta";
             tsmiListaEnVenta.Size = new Size(157, 22);
             tsmiListaEnVenta.Text = "Lista en Venta";
+            tsmiListaEnVenta.Click += tsmiListaEnVenta_Click;
             // 
             // tsmiNuevoEnVenta
             // 
             tsmiNuevoEnVenta.Name = "tsmiNuevoEnVenta";
             tsmiNuevoEnVenta.Size = new Size(157, 22);
             tsmiNuevoEnVenta.Text = "Nuevo en Venta";
+            tsmiNuevoEnVenta.Click += tsmiNuevoEnVenta_Click;
             // 
             // tsmiVisitas
             // 
@@ -295,12 +312,14 @@ namespace InmoSolution.Formularios
             tsmiListaVisitas.Name = "tsmiListaVisitas";
             tsmiListaVisitas.Size = new Size(150, 22);
             tsmiListaVisitas.Text = "Lista de Visitas";
+            tsmiListaVisitas.Click += tsmiListaVisitas_Click;
             // 
             // tsmiNuevaVisita
             // 
             tsmiNuevaVisita.Name = "tsmiNuevaVisita";
             tsmiNuevaVisita.Size = new Size(150, 22);
             tsmiNuevaVisita.Text = "Nueva Visita";
+            tsmiNuevaVisita.Click += tsmiNuevaVisita_Click;
             // 
             // tsmiEmpleados
             // 
@@ -315,6 +334,7 @@ namespace InmoSolution.Formularios
             tsmiListaEmpleados.Name = "tsmiListaEmpleados";
             tsmiListaEmpleados.Size = new Size(165, 22);
             tsmiListaEmpleados.Text = "Lista Empleados";
+            tsmiListaEmpleados.Click += tsmiListaEmpleados_Click;
             // 
             // tsmiNuevoEmpleado
             // 
@@ -325,7 +345,7 @@ namespace InmoSolution.Formularios
             // 
             // tsmiUsuarios
             // 
-            tsmiUsuarios.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaUsuarios, tsmiNuevoUsuario });
+            tsmiUsuarios.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaUsuarios });
             tsmiUsuarios.Name = "tsmiUsuarios";
             tsmiUsuarios.Size = new Size(64, 20);
             tsmiUsuarios.Text = "Usuarios";
@@ -338,18 +358,12 @@ namespace InmoSolution.Formularios
             tsmiListaUsuarios.Text = "Listado de Usuarios";
             tsmiListaUsuarios.Click += listadoDeUsuariosToolStripMenuItem_Click;
             // 
-            // tsmiNuevoUsuario
-            // 
-            tsmiNuevoUsuario.Name = "tsmiNuevoUsuario";
-            tsmiNuevoUsuario.Size = new Size(176, 22);
-            tsmiNuevoUsuario.Text = "Nuevo Usuario";
-            tsmiNuevoUsuario.Click += nuevoUsuarioToolStripMenuItem_Click;
-            // 
             // tsmiConfiguracion
             // 
             tsmiConfiguracion.Name = "tsmiConfiguracion";
             tsmiConfiguracion.Size = new Size(95, 20);
             tsmiConfiguracion.Text = "Configuracion";
+            tsmiConfiguracion.Click += tsmiConfiguracion_Click;
             // 
             // tsmiAyuda
             // 
@@ -363,19 +377,21 @@ namespace InmoSolution.Formularios
             tsmiDocumentacion.Name = "tsmiDocumentacion";
             tsmiDocumentacion.Size = new Size(159, 22);
             tsmiDocumentacion.Text = "Documentación";
+            tsmiDocumentacion.Click += tsmiDocumentacion_Click;
             // 
             // tsmiAcercaDe
             // 
             tsmiAcercaDe.Name = "tsmiAcercaDe";
             tsmiAcercaDe.Size = new Size(159, 22);
             tsmiAcercaDe.Text = "Acerca de";
+            tsmiAcercaDe.Click += tsmiAcercaDe_Click;
             // 
             // msPrincipal
             // 
             msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, tsmiTransacciones, tsmiVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
             msPrincipal.Location = new Point(0, 0);
             msPrincipal.Name = "msPrincipal";
-            msPrincipal.Size = new Size(778, 24);
+            msPrincipal.Size = new Size(936, 24);
             msPrincipal.TabIndex = 6;
             msPrincipal.Text = "menuStrip1";
             // 
@@ -391,12 +407,14 @@ namespace InmoSolution.Formularios
             tsmiListaTransacciones.Name = "tsmiListaTransacciones";
             tsmiListaTransacciones.Size = new Size(190, 22);
             tsmiListaTransacciones.Text = "Lista de Transacciones";
+            tsmiListaTransacciones.Click += tsmiListaTransacciones_Click;
             // 
             // tsmiNuevaTransaccion
             // 
             tsmiNuevaTransaccion.Name = "tsmiNuevaTransaccion";
             tsmiNuevaTransaccion.Size = new Size(190, 22);
             tsmiNuevaTransaccion.Text = "Nueva Transaccion";
+            tsmiNuevaTransaccion.Click += tsmiNuevaTransaccion_Click;
             // 
             // Principal
             // 
@@ -404,9 +422,9 @@ namespace InmoSolution.Formularios
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.Fondo_Principal;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(778, 614);
+            ClientSize = new Size(936, 676);
             Controls.Add(dgvUltiTransacc);
-            Controls.Add(chart1);
+            Controls.Add(chrtEstadistica);
             Controls.Add(msPrincipal);
             Controls.Add(grpbxTotales);
             Controls.Add(lblUltima);
@@ -418,7 +436,7 @@ namespace InmoSolution.Formularios
             Load += Principal_Load;
             grpbxTotales.ResumeLayout(false);
             grpbxTotales.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chrtEstadistica).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvUltiTransacc).EndInit();
             msPrincipal.ResumeLayout(false);
             msPrincipal.PerformLayout();
@@ -435,7 +453,7 @@ namespace InmoSolution.Formularios
         private TextBox txtbxEnVenta;
         private Label lblAlquileres;
         private TextBox txtbxAlquileres;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtEstadistica;
         private DataGridView dgvUltiTransacc;
         private ToolStripMenuItem tsmiInicio;
         private ToolStripMenuItem tsmiPerfil;
@@ -467,7 +485,6 @@ namespace InmoSolution.Formularios
         private ToolStripMenuItem tsmiAcercaDe;
         private MenuStrip msPrincipal;
         private ToolStripMenuItem tsmiListaUsuarios;
-        private ToolStripMenuItem tsmiNuevoUsuario;
         private ToolStripMenuItem tsmiTransacciones;
         private ToolStripMenuItem tsmiListaTransacciones;
         private ToolStripMenuItem tsmiNuevaTransaccion;

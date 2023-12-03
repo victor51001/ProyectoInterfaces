@@ -58,6 +58,7 @@
   <ItemGroup>
     <Folder Include="Formularios\Inmuebles\Alquileres\" />
     <Folder Include="Formularios\Inmuebles\EnVenta\" />
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InmoSolution.Controladores;
 using ProtoBuf;
 
 namespace InmoSolution.Clases
@@ -31,13 +32,10 @@ namespace InmoSolution.Clases
         private Cliente propietario;
         [ProtoMember(9)]
         private string localidad;
-        [ProtoMember(10)]
-        private bool libre;
         
         //constructores
-        public Inmueble(int id, string direccion, int habitaciones, int baños, int metrosCuadrados, int antiguedad, bool disponible, Cliente propietario, string localidad)
+        public Inmueble(string direccion, int habitaciones, int baños, int metrosCuadrados, int antiguedad, bool disponible, Cliente propietario, string localidad)
         {
-            this.Id = id;
             this.Direccion = direccion;
             this.Habitaciones = habitaciones;
             this.Baños = baños;
@@ -46,7 +44,6 @@ namespace InmoSolution.Clases
             this.Disponible = disponible;
             this.Propietario = propietario;
             this.Localidad = localidad;
-            this.libre = true;
         }
         public Inmueble() { }
 
@@ -60,12 +57,25 @@ namespace InmoSolution.Clases
         public bool Disponible { get => disponible; set => disponible = value; }
         public Cliente Propietario { get => propietario; set => propietario = value; }
         public string Localidad { get => localidad; set => localidad = value; }
-        public bool Libre { get => libre; set => libre = value; }
 
         //metodos
         public override string ToString()
         {
-            return "Id: " + this.Id + " Direccion: " + this.Direccion + " Habitaciones: " + this.Habitaciones + " Baños: " + this.Baños + " Metros Cuadrados: " + this.MetrosCuadrados + " Antiguedad: " + this.Antiguedad + " Disponible: " + this.Disponible + " Propietario: " + this.Propietario + " Localidad: " + this.Localidad + " Libre: " + this.Libre;
+            return "Id: " + this.Id + " Direccion: " + this.Direccion + " Habitaciones: " + this.Habitaciones + " Baños: " + this.Baños + " Metros Cuadrados: " + this.MetrosCuadrados + " Antiguedad: " + this.Antiguedad + " Disponible: " + this.Disponible + " Propietario: " + this.Propietario + " Localidad: " + this.Localidad;
+        }
+        public Visita[] GetVisitas()
+        {
+            List<Visita> visitas = new List<Visita>();
+            foreach (Visita visita in ControladorVisita.ListaVisitas)
+            {
+                if (visita.Inmueble.Equals(this))
+                {
+                    visitas.Add(visita);
+                }
+            }
+            Visita[] visitasArray;
+            visitasArray = visitas.ToArray();
+            return visitasArray;
         }
     }
 }

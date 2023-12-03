@@ -21,21 +21,11 @@ namespace InmoSolution
             else
             {
                 // Crear usuarios
-                Usuario adminUser = new Usuario(0, "admin", "1234");
-                Usuario usuario1 = new Usuario("Juan", "5678");
-                Usuario usuario2 = new Usuario("Ana", "9012");
-                Usuario usuario3 = new Usuario("Pedro", "3456");
-                Usuario usuario4 = new Usuario("María", "7890");
-                Usuario usuario5 = new Usuario("Carlos", "2345");
-                ControladorUsuario.ListaUsuarios.AddRange(new List<Usuario> { adminUser, usuario1, usuario2, usuario3, usuario4, usuario5 });
+                Usuario adminUser = new Usuario(0, "admin", "Juan", "1234");
+                adminUser.iniciado = true;
+                ControladorUsuario.ListaUsuarios.Add(adminUser);
                 ControladorUsuario.EscribirUsuarios();
             }
-        }
-
-        private void lbllnkCrear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            NuevoUsuario frmNuevoUsuario = new NuevoUsuario();
-            frmNuevoUsuario.ShowDialog();
         }
 
         private int vueltas = 0;
@@ -43,7 +33,15 @@ namespace InmoSolution
         {
             if (ControladorUsuario.ExisteUsuario(txtbxUsuario.Text, txtbxClave.Text))
             {
-                Principal FrmP = new Principal(ControladorUsuario.GetUsuario(txtbxUsuario.Text));
+                Usuario usuario = ControladorUsuario.GetUsuario(txtbxUsuario.Text);
+                if (!usuario.iniciado)
+                {
+                    MessageBox.Show("Es la primera vez que inicia sesión, debe cambiar la contraseña", "Cambio de contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CambioDeContraseña FrmCambio = new CambioDeContraseña(usuario);                    
+                    FrmCambio.ShowDialog();
+                    usuario.iniciado = true;
+                }
+                Principal FrmP = new Principal(usuario);
                 txtbxUsuario.Clear();
                 txtbxClave.Clear();
                 FrmP.ShowDialog();

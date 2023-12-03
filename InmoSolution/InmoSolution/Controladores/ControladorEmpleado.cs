@@ -57,16 +57,19 @@ namespace InmoSolution.Controladores
             }
         }
 
-        public static string GetPuesto(Usuario user)
+        public static Empleado.Puestos GetPuesto()
         {
-            foreach (Empleado emp in ListaEmpleados)
+            switch (new Random().Next(1, 4))
             {
-                if (emp.Usuario.Id == user.Id)
-                {
-                    return emp.Puesto.ToString();
-                }
+                case 1:
+                    return Empleado.Puestos.Administrativo;
+                case 2:
+                    return Empleado.Puestos.Agente;
+                case 3:
+                    return Empleado.Puestos.Jefe;
+                default:
+                    return Empleado.Puestos.nulo;
             }
-            return "nulo";
         }
 
         public static void EliminarEmpleado(Empleado empleado)
@@ -100,6 +103,36 @@ namespace InmoSolution.Controladores
         {
             return File.Exists("empleados.xml");
         }
+        public static char CalcularLetraDNI(int numerosDNI)
+        {
+            char[] letrasDNI = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E' };
+
+            int resto = numerosDNI % 23;
+
+            return letrasDNI[resto];
+        }
+        public static Empleado GenerarEmpleado()
+        {
+            string[] nombres = { "Carlos", "Laura", "Alejandro", "Sofía", "José", "Beatriz", "Miguel", "Lucía", "David", "Eva" };
+            string[] apelli2 = { "González", "López", "Díaz", "Martínez", "Pérez", "García", "Fernández", "Moreno", "Hernández", "Ruiz" };
+
+            Random rand = new Random();
+
+            int numerosDNI = rand.Next(10000000, 99999999);
+            string dni = numerosDNI.ToString() + CalcularLetraDNI(numerosDNI);
+            string nombre = nombres[rand.Next(nombres.Length)];
+            string apellidos = $"{apelli2[rand.Next(apelli2.Length)]} {apelli2[rand.Next(apelli2.Length)]}";
+            int telefono = rand.Next(600000000, 799999999);
+            string email = $"{nombre.ToLower()}_{apellidos.ToLower()}@inmosolution.com";
+
+            Usuario usuario = ControladorUsuario.GenerarUsuario(nombre, apellidos);
+            ControladorUsuario.ListaUsuarios.Add(usuario);
+
+            Empleado.Puestos puesto = GetPuesto();
+
+            return new Empleado(dni, nombre, apellidos, email, telefono, usuario, puesto);
+        }
+
         public static Empleado.Puestos ParseString(string texto)
         {
             switch (texto)
