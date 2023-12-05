@@ -39,7 +39,7 @@ namespace InmoSolution.Clases
             double multiLocal;
             double sumanBaños = this.Baños * 100;
             double sumanHabitaciones = this.Habitaciones * 50;
-            double susAntiguedad = this.Antiguedad * 50;
+            double susAntiguedad = this.Antiguedad * 10;
             double sumanMetros = this.MetrosCuadrados * 2;
 
             switch (this.Localidad)
@@ -67,7 +67,7 @@ namespace InmoSolution.Clases
                     break;
             }
             
-            return (int)(200* multiLocal + ((sumanBaños + sumanHabitaciones+ sumanMetros) - susAntiguedad));
+            return (int)(200* multiLocal + (sumanBaños + sumanHabitaciones+ sumanMetros - susAntiguedad));
         }
     }
 }

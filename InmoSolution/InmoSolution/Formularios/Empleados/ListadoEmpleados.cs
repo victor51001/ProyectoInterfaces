@@ -73,7 +73,7 @@ namespace InmoSolution.Formularios.Empleados
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un empleado para modificar", "Modificar empleado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un solo empleado para modificar", "Modificar empleado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

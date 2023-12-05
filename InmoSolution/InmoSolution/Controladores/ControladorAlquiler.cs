@@ -50,7 +50,7 @@ public class ControladorAlquiler
         int habitaciones = r.Next(1, 6);
         int baños = r.Next(1, 4);
         int metrosCuadrados = r.Next(40, 201);
-        int antiguedad = r.Next(1, 51);
+        int antiguedad = r.Next(0, 11);
         Cliente propietario = ControladorCliente.ListaClientes[r.Next(ControladorCliente.ListaClientes.Count)];
         string localidad = dirLoc.Key;
         bool disponible = true;

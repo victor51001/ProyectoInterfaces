@@ -146,6 +146,22 @@ namespace InmoSolution.Formularios
             colId.HeaderText = "Id";
             colId.Width = 50;
             colId.ReadOnly = true;
+            DataGridViewTextBoxColumn colTipo = new DataGridViewTextBoxColumn();
+            colId.DataPropertyName = "Inmueble";
+            colId.HeaderText = "Tipo";
+            colId.Width = 50;
+            colId.ReadOnly = true;
+            dgvUltiTransacc.CellFormatting += (s, e) =>
+            {
+                if (e.Value is Alquiler)
+                {
+                    e.Value = "Alquiler";
+                }
+                else if (e.Value is EnVenta)
+                {
+                    e.Value = "EnVenta";
+                }
+            };
             DataGridViewTextBoxColumn colFecha = new DataGridViewTextBoxColumn();
             colFecha.DataPropertyName = "Fecha";
             colFecha.HeaderText = "Fecha";
@@ -161,7 +177,7 @@ namespace InmoSolution.Formularios
             colBeneficio.HeaderText = "Beneficio";
             colBeneficio.Width = 75;
             colBeneficio.ReadOnly = true;
-            dgvUltiTransacc.Columns.AddRange(new DataGridViewColumn[] { colId, colFecha, colPrecio, colBeneficio });
+            dgvUltiTransacc.Columns.AddRange(new DataGridViewColumn[] { colId, colTipo, colFecha, colPrecio, colBeneficio });
             dgvUltiTransacc.Invalidate();
             dgvUltiTransacc.Update();
         }
