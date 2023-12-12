@@ -49,7 +49,6 @@
             pbxClave2.SizeMode = PictureBoxSizeMode.StretchImage;
             pbxClave2.TabIndex = 16;
             pbxClave2.TabStop = false;
-            pbxClave2.Visible = false;
             pbxClave2.Click += pbxClave2_Click;
             // 
             // pbxClave1
@@ -63,7 +62,6 @@
             pbxClave1.SizeMode = PictureBoxSizeMode.StretchImage;
             pbxClave1.TabIndex = 15;
             pbxClave1.TabStop = false;
-            pbxClave1.Visible = false;
             pbxClave1.Click += pbxClave1_Click;
             // 
             // txtbxClave2
@@ -74,7 +72,6 @@
             txtbxClave2.PlaceholderText = "Reintroduce la nueva contraseña:";
             txtbxClave2.Size = new Size(184, 23);
             txtbxClave2.TabIndex = 14;
-            txtbxClave2.Visible = false;
             // 
             // txtbxClave1
             // 
@@ -84,7 +81,6 @@
             txtbxClave1.PlaceholderText = "Introduce la nueva contraseña:";
             txtbxClave1.Size = new Size(184, 23);
             txtbxClave1.TabIndex = 13;
-            txtbxClave1.Visible = false;
             // 
             // bttnAceptar
             // 

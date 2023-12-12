@@ -61,21 +61,8 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return "Id: " + this.Id + " Direccion: " + this.Direccion + " Habitaciones: " + this.Habitaciones + " Baños: " + this.Baños + " Metros Cuadrados: " + this.MetrosCuadrados + " Antiguedad: " + this.Antiguedad + " Disponible: " + this.Disponible + " Propietario: " + this.Propietario + " Localidad: " + this.Localidad;
-        }
-        public Visita[] GetVisitas()
-        {
-            List<Visita> visitas = new List<Visita>();
-            foreach (Visita visita in ControladorVisita.ListaVisitas)
-            {
-                if (visita.Inmueble.Equals(this))
-                {
-                    visitas.Add(visita);
-                }
-            }
-            Visita[] visitasArray;
-            visitasArray = visitas.ToArray();
-            return visitasArray;
+            return $"{Direccion,-30}    {Localidad,-20}";
+
         }
     }
 }

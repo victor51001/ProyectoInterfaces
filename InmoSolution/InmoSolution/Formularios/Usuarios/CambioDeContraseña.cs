@@ -15,20 +15,20 @@ namespace InmoSolution.Formularios.Usuarios
     public partial class CambioDeContraseña : Form
     {
         private Usuario user;
-        public static string contraseñaDevuelta;
         public CambioDeContraseña(Usuario usu)
         {
             InitializeComponent();
             user = usu;
-            contraseñaDevuelta = null;
             if (!usu.iniciado)
             {
                 bttnCancelar.Enabled = false;
             }
         }
+        public string ContraseñaDevuelta { get; set; }
 
         private void bttnCancelar_Click(object sender, EventArgs e)
         {
+            ContraseñaDevuelta = null;
             Close();
         }
 
@@ -36,7 +36,7 @@ namespace InmoSolution.Formularios.Usuarios
         {
             if (txtbxClave1.Text.Equals(txtbxClave2.Text))
             {
-                contraseñaDevuelta = txtbxClave1.Text.ToString();
+                ContraseñaDevuelta = txtbxClave1.Text.ToString();
                 Close();
             }
             else

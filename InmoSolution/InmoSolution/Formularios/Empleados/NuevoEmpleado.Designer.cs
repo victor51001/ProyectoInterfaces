@@ -163,6 +163,7 @@
             // 
             nudTelefono.InterceptArrowKeys = false;
             nudTelefono.Location = new Point(526, 134);
+            nudTelefono.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             nudTelefono.Name = "nudTelefono";
             nudTelefono.Size = new Size(169, 23);
             nudTelefono.TabIndex = 21;

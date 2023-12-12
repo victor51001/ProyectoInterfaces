@@ -21,13 +21,7 @@ namespace InmoSolution.Formularios.Usuarios
 
         private void ListadoUsuarios_Load(object sender, EventArgs e)
         {
-            chklstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
-            chklstbxUsuarios.DisplayMember = "Nombre";
-        }
-
-        private void OrdenarListBox()
-        {
-            chklstbxUsuarios.Sorted = true;
+            ImprimirUsuarios();
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)
@@ -35,47 +29,77 @@ namespace InmoSolution.Formularios.Usuarios
             Close();
         }
 
-        private void bttnOrdenar_Click(object sender, EventArgs e)
-        {
-            OrdenarListBox();
-        }
-
-        private void bttnEliminar_Click(object sender, EventArgs e)
-        {
-            if (chklstbxUsuarios.CheckedItems.Count > 0)
-            {
-                DialogResult respuesta = MessageBox.Show("¿Está seguro que desea eliminar los usuarios seleccionados?", "Eliminar usuarios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (respuesta == DialogResult.Yes)
-                {
-                    foreach (Usuario user in chklstbxUsuarios.CheckedItems)
-                    {
-                        ControladorUsuario.EliminarUsuario(user);
-                    }
-                    chklstbxUsuarios.DataSource = null;
-                    chklstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
-                    chklstbxUsuarios.DisplayMember = "Nombre";
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar al menos un usuario para eliminar", "Eliminar usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void bttnModificar_Click(object sender, EventArgs e)
         {
-            if (chklstbxUsuarios.CheckedItems.Count == 1)
+            RadioButton rdbttn = null;
+            for (int i = 0; i < pnlUsuarios.Controls.Count; i++)
             {
-                Usuario usuario = (Usuario)chklstbxUsuarios.SelectedItem;
-                ModificarUsuario modificarUsuario = new ModificarUsuario(usuario);
-                modificarUsuario.ShowDialog();
-                chklstbxUsuarios.DataSource = null;
-                chklstbxUsuarios.DataSource = ControladorUsuario.ListaUsuarios;
-                chklstbxUsuarios.DisplayMember = "Nombre";
+                if (pnlUsuarios.Controls[i] is RadioButton)
+                {
+                    if (((RadioButton)pnlUsuarios.Controls[i]).Checked)
+                    {
+                        rdbttn = (RadioButton)pnlUsuarios.Controls[i];
+                    }
+                }
             }
-            else
+            if (rdbttn == null)
             {
-                MessageBox.Show("Debe seleccionar un usuario para modificar", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar un usuario para modificar", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Usuario usuario = (Usuario)rdbttn.Tag;
+            ModificarUsuario modificarUsuario = new ModificarUsuario(usuario);
+            modificarUsuario.ShowDialog();
+            ImprimirUsuarios();
+        }
+        private void ImprimirUsuarios()
+        {
+            pnlUsuarios.Controls.Clear();
+            int posicion = 40, contador = 1;
+            for (int i = 0; i < ControladorUsuario.ListaUsuarios.Count; i++)
+            {
+                CrearRadioButton(ControladorUsuario.ListaUsuarios[i], posicion, contador);
+                posicion += 40;
+                contador++;
+            }
+        }
+        private void CrearRadioButton(Usuario usuario, int posicion, int contador)
+        {
+            RadioButton rdbttn = new RadioButton();
+            rdbttn.Name = "rdbttn" + contador;
+            rdbttn.Font = new Font("Microsoft Sans Serif", 8);
+            rdbttn.Location = new Point(30, posicion);
+            rdbttn.Size = new Size(200, 30);
+            rdbttn.Text = usuario.ToString();
+            rdbttn.Tag = usuario;
+            rdbttn.TabIndex = 1;
+            pnlUsuarios.Controls.Add(rdbttn);
+        }
+
+        private void rdbttnId_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbttnId.Checked)
+            {
+                ControladorUsuario.ListaUsuarios.Sort((x, y) => x.Id.CompareTo(y.Id));
+                ImprimirUsuarios();
+            }
+        }
+
+        private void rdbttnLogin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbttnLogin.Checked)
+            {
+                ControladorUsuario.ListaUsuarios.Sort((x, y) => x.Login.CompareTo(y.Login));
+                ImprimirUsuarios();
+            }
+        }
+
+        private void rdbttnNombre_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbttnNombre.Checked)
+            {
+                ControladorUsuario.ListaUsuarios.Sort((x, y) => x.Nombre.CompareTo(y.Nombre));
+                ImprimirUsuarios();
             }
         }
     }

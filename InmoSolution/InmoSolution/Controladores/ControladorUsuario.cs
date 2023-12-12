@@ -96,18 +96,6 @@ namespace InmoSolution.Controladores
             return false;
         }
 
-        public static void ModificarUsuario(Usuario user, string nombre, string clave)
-        {
-            if (nombre != null)
-            {
-                user.Nombre = nombre;
-            }
-            if (clave != null)
-            {
-                user.Clave = clave;
-            }
-        }
-
         public static bool ExisteFichero()
         {
             return File.Exists("usuarios.bin");

@@ -61,19 +61,26 @@ namespace InmoSolution.Controladores
         public static Inmueble GetInmueble()
         {
             Random random = new Random();
-            Inmueble inmueble = ControladorVisita.ListaVisitas[random.Next(ControladorVisita.ListaVisitas.Count)].Inmueble;
-            while (!inmueble.Disponible)
-            {
-                inmueble = ControladorVisita.ListaVisitas[random.Next(ControladorVisita.ListaVisitas.Count)].Inmueble;
-            }
-            return inmueble;
+            return ControladorInmueble.ListaInmuebles[random.Next(ControladorInmueble.ListaInmuebles.Count)];
+        }
+        public static Empleado GetEmpleado()
+        {
+            Random random = new Random();
+            return ControladorEmpleado.ListaEmpleados[random.Next(ControladorEmpleado.ListaEmpleados.Count)];
+        }
+        public static Cliente GetCliente()
+        {
+            Random random = new Random();
+            return ControladorCliente.ListaClientes[random.Next(ControladorCliente.ListaClientes.Count)];
         }
 
         public static Transaccion GenerarTransaccion()
         {
             DateOnly fecha = GenerarFecha();
             Inmueble inmueble = GetInmueble();
-            return new Transaccion(fecha, inmueble);
+            Empleado empleado = GetEmpleado();
+            Cliente cliente = GetCliente();
+            return new Transaccion(fecha, inmueble, empleado, cliente);
         }
         public static DateOnly GenerarFecha()
         {

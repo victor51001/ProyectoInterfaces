@@ -33,8 +33,8 @@
             txtbxNombre = new TextBox();
             txtbxClave = new TextBox();
             lblNombre = new Label();
-            lblId = new Label();
-            txtId = new TextBox();
+            lblDni = new Label();
+            txtDni = new TextBox();
             bttnAceptar = new Button();
             bttnCancelar = new Button();
             bttnCambiarContraseña = new Button();
@@ -82,25 +82,26 @@
             lblNombre.TabIndex = 5;
             lblNombre.Text = "Nombre de usuario:";
             // 
-            // lblId
+            // lblDni
             // 
-            lblId.AutoSize = true;
-            lblId.BackColor = Color.FromArgb(158, 255, 255, 255);
-            lblId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblId.Location = new Point(87, 144);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(103, 21);
-            lblId.TabIndex = 6;
-            lblId.Text = "Id de usuario:";
+            lblDni.AutoSize = true;
+            lblDni.BackColor = Color.FromArgb(158, 255, 255, 255);
+            lblDni.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDni.Location = new Point(87, 144);
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(37, 21);
+            lblDni.TabIndex = 6;
+            lblDni.Text = "Dni:";
             // 
-            // txtId
+            // txtDni
             // 
-            txtId.BackColor = SystemColors.ScrollBar;
-            txtId.Enabled = false;
-            txtId.Location = new Point(284, 142);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(184, 23);
-            txtId.TabIndex = 7;
+            txtDni.BackColor = SystemColors.ScrollBar;
+            txtDni.Enabled = false;
+            txtDni.Location = new Point(284, 142);
+            txtDni.Name = "txtDni";
+            txtDni.PlaceholderText = "Introduce el DNI:";
+            txtDni.Size = new Size(184, 23);
+            txtDni.TabIndex = 7;
             // 
             // bttnAceptar
             // 
@@ -156,8 +157,8 @@
             Controls.Add(bttnCambiarContraseña);
             Controls.Add(bttnCancelar);
             Controls.Add(bttnAceptar);
-            Controls.Add(txtId);
-            Controls.Add(lblId);
+            Controls.Add(txtDni);
+            Controls.Add(lblDni);
             Controls.Add(lblNombre);
             Controls.Add(txtbxClave);
             Controls.Add(txtbxNombre);
@@ -176,8 +177,8 @@
         private TextBox txtbxNombre;
         private TextBox txtbxClave;
         private Label lblNombre;
-        private Label lblId;
-        private TextBox txtId;
+        private Label lblDni;
+        private TextBox txtDni;
         private Button bttnAceptar;
         private Button bttnCancelar;
         private Button bttnCambiarContraseña;

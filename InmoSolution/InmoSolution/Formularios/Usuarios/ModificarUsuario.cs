@@ -25,7 +25,7 @@ namespace InmoSolution.Formularios.Usuarios
 
         private void ModificarUsuario_Load(object sender, EventArgs e)
         {
-            txtId.Text = user.Id.ToString();
+            txtDni.Text = user.Id.ToString();
             txtbxNombre.Text = user.Nombre;
             txtbxClave.Text = user.Clave;
         }
@@ -33,9 +33,8 @@ namespace InmoSolution.Formularios.Usuarios
         private bool ValidarNombre()
         {
             bool ok = false;
-            if (ControladorUsuario.GetUsuario(txtbxNombre.Text) == null &&
-                txtbxNombre.Text.Any<char>(char.IsDigit))
-            {
+            if (!txtbxNombre.Text.Any<char>(char.IsDigit))
+            {                
                 ok = true;
             }
             return ok;
@@ -43,13 +42,13 @@ namespace InmoSolution.Formularios.Usuarios
 
         private void txtbxNombre_TextChanged(object sender, EventArgs e)
         {
-            if (ValidarNombre())
+            if (txtbxNombre.Text.Equals(user.Nombre))
             {
-                cambios[0] = true;
+                cambios[0] = false;
             }
             else
             {
-                cambios[0] = false;
+                cambios[0] = ValidarNombre();
             }
         }
 
@@ -57,9 +56,10 @@ namespace InmoSolution.Formularios.Usuarios
         {
             CambioDeContraseña frmCambio = new CambioDeContraseña(user);
             frmCambio.ShowDialog();
-            if (CambioDeContraseña.contraseñaDevuelta != null)
+            string clave = frmCambio.ContraseñaDevuelta;
+            if (!String.IsNullOrEmpty(clave))
             {
-                txtbxClave.Text = CambioDeContraseña.contraseñaDevuelta;
+                txtbxClave.Text = clave;
                 cambios[1] = true;
             }
             else
@@ -79,19 +79,31 @@ namespace InmoSolution.Formularios.Usuarios
             string clave = null;
             int c = 0;
             c = cambios.Count(x => x == true);
-            switch (c)
+            if (cambios[0])
             {
-                case 0:
-                    MessageBox.Show("No se han realizado cambios", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 1:
-                    nombre = txtbxNombre.Text;
-                    break;
-                case 2:
-                    clave = txtbxClave.Text;
-                    break;
+                nombre = txtbxNombre.Text;
             }
-            ControladorUsuario.ModificarUsuario(user,nombre, clave);
+            if (cambios[1])
+            {
+                clave = txtbxClave.Text;
+            }
+            if (nombre != null)
+            {
+                user.Nombre = nombre;
+            }
+            if (clave != null)
+            {
+                user.Clave = clave;
+            }
+            if (c > 0)
+            {
+                MessageBox.Show("Usuario modificado correctamente", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ControladorUsuario.Cambios = true;
+                Close();
+            } else
+            {
+                MessageBox.Show("No se ha modificado ningún campo", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

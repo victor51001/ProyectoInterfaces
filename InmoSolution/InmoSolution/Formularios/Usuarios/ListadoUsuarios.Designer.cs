@@ -32,9 +32,12 @@
             lblUsuarios = new Label();
             bttnModificar = new Button();
             bttnCancelar = new Button();
-            bttnOrdenar = new Button();
-            chklstbxUsuarios = new CheckedListBox();
-            bttnEliminar = new Button();
+            grpbxOrdenar = new GroupBox();
+            rdbttnNombre = new RadioButton();
+            rdbttnLogin = new RadioButton();
+            rdbttnId = new RadioButton();
+            pnlUsuarios = new Panel();
+            grpbxOrdenar.SuspendLayout();
             SuspendLayout();
             // 
             // lblUsuarios
@@ -57,26 +60,43 @@
             bttnCancelar.UseVisualStyleBackColor = true;
             bttnCancelar.Click += bttnCancelar_Click;
             // 
-            // bttnOrdenar
+            // grpbxOrdenar
             // 
-            resources.ApplyResources(bttnOrdenar, "bttnOrdenar");
-            bttnOrdenar.Name = "bttnOrdenar";
-            bttnOrdenar.UseVisualStyleBackColor = true;
-            bttnOrdenar.Click += bttnOrdenar_Click;
+            grpbxOrdenar.Controls.Add(rdbttnNombre);
+            grpbxOrdenar.Controls.Add(rdbttnLogin);
+            grpbxOrdenar.Controls.Add(rdbttnId);
+            resources.ApplyResources(grpbxOrdenar, "grpbxOrdenar");
+            grpbxOrdenar.Name = "grpbxOrdenar";
+            grpbxOrdenar.TabStop = false;
             // 
-            // chklstbxUsuarios
+            // rdbttnNombre
             // 
-            chklstbxUsuarios.BackColor = SystemColors.Menu;
-            chklstbxUsuarios.FormattingEnabled = true;
-            resources.ApplyResources(chklstbxUsuarios, "chklstbxUsuarios");
-            chklstbxUsuarios.Name = "chklstbxUsuarios";
+            resources.ApplyResources(rdbttnNombre, "rdbttnNombre");
+            rdbttnNombre.Name = "rdbttnNombre";
+            rdbttnNombre.TabStop = true;
+            rdbttnNombre.UseVisualStyleBackColor = true;
+            rdbttnNombre.CheckedChanged += rdbttnNombre_CheckedChanged;
             // 
-            // bttnEliminar
+            // rdbttnLogin
             // 
-            resources.ApplyResources(bttnEliminar, "bttnEliminar");
-            bttnEliminar.Name = "bttnEliminar";
-            bttnEliminar.UseVisualStyleBackColor = true;
-            bttnEliminar.Click += bttnEliminar_Click;
+            resources.ApplyResources(rdbttnLogin, "rdbttnLogin");
+            rdbttnLogin.Name = "rdbttnLogin";
+            rdbttnLogin.TabStop = true;
+            rdbttnLogin.UseVisualStyleBackColor = true;
+            rdbttnLogin.CheckedChanged += rdbttnLogin_CheckedChanged;
+            // 
+            // rdbttnId
+            // 
+            resources.ApplyResources(rdbttnId, "rdbttnId");
+            rdbttnId.Name = "rdbttnId";
+            rdbttnId.TabStop = true;
+            rdbttnId.UseVisualStyleBackColor = true;
+            rdbttnId.CheckedChanged += rdbttnId_CheckedChanged;
+            // 
+            // pnlUsuarios
+            // 
+            resources.ApplyResources(pnlUsuarios, "pnlUsuarios");
+            pnlUsuarios.Name = "pnlUsuarios";
             // 
             // ListadoUsuarios
             // 
@@ -84,14 +104,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.fondo_Listas;
             CancelButton = bttnCancelar;
-            Controls.Add(bttnEliminar);
-            Controls.Add(chklstbxUsuarios);
-            Controls.Add(bttnOrdenar);
+            Controls.Add(pnlUsuarios);
+            Controls.Add(grpbxOrdenar);
             Controls.Add(bttnCancelar);
             Controls.Add(bttnModificar);
             Controls.Add(lblUsuarios);
             Name = "ListadoUsuarios";
             Load += ListadoUsuarios_Load;
+            grpbxOrdenar.ResumeLayout(false);
+            grpbxOrdenar.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -100,8 +121,10 @@
         private Label lblUsuarios;
         private Button bttnModificar;
         private Button bttnCancelar;
-        private Button bttnOrdenar;
-        private CheckedListBox chklstbxUsuarios;
-        private Button bttnEliminar;
+        private GroupBox grpbxOrdenar;
+        private RadioButton rdbttnId;
+        private RadioButton rdbttnNombre;
+        private RadioButton rdbttnLogin;
+        private Panel pnlUsuarios;
     }
 }

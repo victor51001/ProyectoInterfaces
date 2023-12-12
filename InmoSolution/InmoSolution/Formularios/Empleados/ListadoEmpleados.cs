@@ -26,8 +26,32 @@ namespace InmoSolution.Formularios.Empleados
         }
 
         private void OrdenarListBox()
-        {
-            chklstbxEmpleados.Sorted = true;
+        {/*
+            if (rdbtnId.Checked)
+            {
+                chklstbxEmpleados.DataSource = null;
+                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Id).ToList();
+            }
+            else if (rdbtnNombre.Checked)
+            {
+                chklstbxEmpleados.DataSource = null;
+                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Nombre).ToList();
+            }
+            else if (rdbtnApellido.Checked)
+            {
+                chklstbxEmpleados.DataSource = null;
+                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Apellido).ToList();
+            }
+            else if (rdbtnDni.Checked)
+            {
+                chklstbxEmpleados.DataSource = null;
+                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Dni).ToList();
+            }
+            else if (rdbtnPuesto.Checked)
+            {
+                chklstbxEmpleados.DataSource = null;
+                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Puesto).ToList();
+            }*/
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)

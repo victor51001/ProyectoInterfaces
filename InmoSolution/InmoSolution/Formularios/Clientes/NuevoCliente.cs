@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InmoSolution.Clases;
+using InmoSolution.Controladores;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,21 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using InmoSolution.Clases;
-using InmoSolution.Controladores;
 
-namespace InmoSolution.Formularios.Empleados
+namespace InmoSolution.Formularios.Clientes
 {
-    public partial class NuevoEmpleado : Form
+    public partial class NuevoCliente : Form
     {
-        public NuevoEmpleado()
+        public NuevoCliente()
         {
             InitializeComponent();
-        }
-
-        private void NuevoEmpleado_Load(object sender, EventArgs e)
-        {
-            cmbxPuesto.DataSource = Enum.GetValues(typeof(Empleado.Puestos));
             nudTelefono.Controls[0].Visible = false;
         }
 
@@ -33,7 +28,7 @@ namespace InmoSolution.Formularios.Empleados
                 validado = false;
                 MessageBox.Show("Debes ingresar un DNI valido", "Error");
             }
-            if (!ValidarNombre())
+            if (txtbxNombre.Text == "" || txtbxNombre.Text.Any<char>(char.IsDigit))
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar un nombre valido", "Error");
@@ -52,11 +47,6 @@ namespace InmoSolution.Formularios.Empleados
             {
                 validado = false;
                 MessageBox.Show("Debe introducir un numero de telefono valido", "Error");
-            }
-            if (cmbxPuesto.SelectedIndex == -1)
-            {
-                validado = false;
-                MessageBox.Show("Debe seleccionar un puesto", "Error");
             }
             return validado;
         }
@@ -77,24 +67,12 @@ namespace InmoSolution.Formularios.Empleados
             }
             return false;
         }
-
-        private bool ValidarNombre()
-        {
-            if (ControladorUsuario.GetUsuario(txtbxNombre.Text) != null)
-            {
-                return true;
-            }            
-            return false;
-        }
         private bool ValidarEmail()
         {
-            if (txtbxEmail.Text.Contains("@") || txtbxEmail.Text.Contains("."))
+            if (txtbxEmail.Text.Split("@").Length == 2 &&
+                txtbxEmail.Text.Split("@")[1].Split(".").Length == 2)
             {
-                if (txtbxEmail.Text.Split("@").Length == 2 &&
-                    txtbxEmail.Text.Split("@")[1].Split(".").Length == 2)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }
@@ -105,7 +83,6 @@ namespace InmoSolution.Formularios.Empleados
             int dni = int.Parse(txtbxDni.Text.Substring(0, 8));
             return letras[dni % 23];
         }
-
         private void bttnCancelar_Click(object sender, EventArgs e)
         {
             Close();
@@ -115,12 +92,14 @@ namespace InmoSolution.Formularios.Empleados
         {
             if (ValidarCampos())
             {
-                Usuario user = ControladorUsuario.GetUsuario(txtbxNombre.Text);
-                Empleado empleado = new Empleado(txtbxDni.Text, txtbxNombre.Text,
-                    txtbxApellidos.Text, txtbxEmail.Text, (int)nudTelefono.Value,
-                    user, (Empleado.Puestos)cmbxPuesto.SelectedItem);
-                ControladorEmpleado.ListaEmpleados.Add(empleado);
-                MessageBox.Show("Empleado creado correctamente", "Info");
+                string dni = txtbxDni.Text;
+                string nombre = txtbxNombre.Text;
+                string apellidos = txtbxApellidos.Text;
+                int telefono = Convert.ToInt32(nudTelefono.Value);
+                string email = txtbxEmail.Text;
+                Cliente cliente = new Cliente(dni, nombre, apellidos, telefono, email);
+                ControladorCliente.ListaClientes.Add(cliente);
+                MessageBox.Show("Cliente creado correctamente", "Informacion");
                 Close();
             }
         }

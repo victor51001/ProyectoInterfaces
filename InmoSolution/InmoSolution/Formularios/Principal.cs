@@ -1,6 +1,9 @@
 ﻿using InmoSolution.Clases;
 using InmoSolution.Controladores;
 using InmoSolution.Formularios.Clientes;
+using InmoSolution.Formularios.Inmuebles.Alquileres;
+using InmoSolution.Formularios.Inmuebles.EnVenta;
+using InmoSolution.Formularios.Transacciones;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -26,18 +29,10 @@ namespace InmoSolution.Formularios
         {
             InitializeComponent();
             user = usu;
-            cambios.Add("Usuario", ControladorUsuario.Cambios);
-            cambios.Add("Empleado", ControladorEmpleado.Cambios);
-            cambios.Add("Cliente", ControladorCliente.Cambios);
-            cambios.Add("Alquiler", ControladorAlquiler.Cambios);
-            cambios.Add("EnVenta", ControladorEnVenta.Cambios);
-            cambios.Add("Transaccion", ControladorTransaccion.Cambios);
-            cambios.Add("Visita", ControladorVisita.Cambios);
             ficherosExist.Add(ControladorEmpleado.ExisteFichero());
             ficherosExist.Add(ControladorCliente.ExisteFichero());
             ficherosExist.Add(ControladorAlquiler.ExisteFichero());
             ficherosExist.Add(ControladorEnVenta.ExisteFichero());
-            ficherosExist.Add(ControladorVisita.ExisteFichero());
             ficherosExist.Add(ControladorTransaccion.ExisteFichero());
         }
 
@@ -96,17 +91,6 @@ namespace InmoSolution.Formularios
                         }
                         break;
                     case 4:
-                        if (ficherosExist[i])
-                        {
-                            ControladorVisita.LeerVisitas();
-                        }
-                        else
-                        {
-                            CargarVisitas();
-                            ControladorVisita.EscribirVisitas();
-                        }
-                        break;
-                    case 5:
                         if (ficherosExist[i])
                         {
                             ControladorTransaccion.LeerTransacciones();
@@ -262,14 +246,6 @@ namespace InmoSolution.Formularios
                 ControladorEnVenta.ListaEnVenta.Add(ControladorEnVenta.GenerarEnVenta());
             }
         }
-        private void CargarVisitas()
-        {
-            // Crear visitas
-            for (int i = 0; i < 500; i++)
-            {
-                ControladorVisita.ListaVisitas.Add(ControladorVisita.GenerarVisita());
-            }
-        }
         private void CargarTransacciones()
         {
             // Crear transacciones
@@ -282,6 +258,7 @@ namespace InmoSolution.Formularios
         private void tsmiPerfil_Click(object sender, EventArgs e)
         {
             Usuarios.ModificarUsuario frmPerfil = new Usuarios.ModificarUsuario(user);
+            frmPerfil.ShowDialog();
         }
         private void tsmiCerrar_Click(object sender, EventArgs e)
         {
@@ -290,6 +267,12 @@ namespace InmoSolution.Formularios
 
         private void Principal_FormClosing(object sender, FormClosingEventArgs e)
         {
+            cambios.Add("Usuario", ControladorUsuario.Cambios);
+            cambios.Add("Empleado", ControladorEmpleado.Cambios);
+            cambios.Add("Cliente", ControladorCliente.Cambios);
+            cambios.Add("Alquiler", ControladorAlquiler.Cambios);
+            cambios.Add("EnVenta", ControladorEnVenta.Cambios);
+            cambios.Add("Transaccion", ControladorTransaccion.Cambios);
             bool ok = false;
             foreach (KeyValuePair<string, bool> par in cambios)
             {
@@ -346,12 +329,6 @@ namespace InmoSolution.Formularios
                                     ControladorTransaccion.EscribirTransacciones();
                                 }
                                 break;
-                            case "Visita":
-                                if (cambio)
-                                {
-                                    ControladorVisita.EscribirVisitas();
-                                }
-                                break;
                         }
                     }
                 }
@@ -366,48 +343,48 @@ namespace InmoSolution.Formularios
 
         private void tsmiNuevoCliente_Click(object sender, EventArgs e)
         {
-
+            NuevoCliente frmNuevoCliente = new NuevoCliente();
+            frmNuevoCliente.ShowDialog();
         }
 
         private void tsmiListaAlquileres_Click(object sender, EventArgs e)
         {
-
+            ListadoAlquileres frmListado = new ListadoAlquileres();
+            frmListado.ShowDialog();
         }
 
         private void tsmiNuevoAlquiler_Click(object sender, EventArgs e)
         {
-
+            NuevoAlquiler frmNuevoAlquiler = new NuevoAlquiler();
+            frmNuevoAlquiler.ShowDialog();
         }
 
         private void tsmiListaEnVenta_Click(object sender, EventArgs e)
         {
-
+            ListadoEnVenta frmListado = new ListadoEnVenta();
+            frmListado.ShowDialog();
         }
 
         private void tsmiNuevoEnVenta_Click(object sender, EventArgs e)
         {
-
+            NuevoEnVenta frmNuevoEnVenta = new NuevoEnVenta();
+            frmNuevoEnVenta.ShowDialog();
         }
 
         private void tsmiListaTransacciones_Click(object sender, EventArgs e)
         {
-
+            ListadoTransacciones frmListado = new ListadoTransacciones();
+            frmListado.ShowDialog();
+            ActualizarDataGrid();
+            ActualizarGrafico();
         }
 
         private void tsmiNuevaTransaccion_Click(object sender, EventArgs e)
         {
-
+            NuevaTransaccion frmNuevaTransaccion = new NuevaTransaccion();
+            frmNuevaTransaccion.ShowDialog();
             ActualizarGrafico();
-        }
-
-        private void tsmiListaVisitas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmiNuevaVisita_Click(object sender, EventArgs e)
-        {
-
+            ActualizarDataGrid();
         }
 
         private void tsmiListaEmpleados_Click(object sender, EventArgs e)
@@ -425,25 +402,6 @@ namespace InmoSolution.Formularios
         {
             Usuarios.ListadoUsuarios frmListado = new Usuarios.ListadoUsuarios();
             frmListado.ShowDialog();
-        }
-
-        private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void tsmiConfiguracion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmiDocumentacion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmiAcercaDe_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

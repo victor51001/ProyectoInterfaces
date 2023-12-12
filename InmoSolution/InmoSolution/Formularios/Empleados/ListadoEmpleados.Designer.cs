@@ -35,7 +35,6 @@ namespace InmoSolution.Formularios.Empleados
             chklstbxEmpleados = new CheckedListBox();
             lblEmpleados = new Label();
             bttnEliminar = new Button();
-            bttnOrdenar = new Button();
             bttnCancelar = new Button();
             bttnModificar = new Button();
             SuspendLayout();
@@ -43,7 +42,7 @@ namespace InmoSolution.Formularios.Empleados
             // chklstbxEmpleados
             // 
             chklstbxEmpleados.FormattingEnabled = true;
-            chklstbxEmpleados.Location = new Point(166, 160);
+            chklstbxEmpleados.Location = new Point(169, 165);
             chklstbxEmpleados.Name = "chklstbxEmpleados";
             chklstbxEmpleados.ScrollAlwaysVisible = true;
             chklstbxEmpleados.Size = new Size(445, 256);
@@ -64,7 +63,7 @@ namespace InmoSolution.Formularios.Empleados
             // bttnEliminar
             // 
             bttnEliminar.ImeMode = ImeMode.NoControl;
-            bttnEliminar.Location = new Point(412, 487);
+            bttnEliminar.Location = new Point(341, 489);
             bttnEliminar.Name = "bttnEliminar";
             bttnEliminar.Size = new Size(106, 37);
             bttnEliminar.TabIndex = 10;
@@ -72,21 +71,10 @@ namespace InmoSolution.Formularios.Empleados
             bttnEliminar.UseVisualStyleBackColor = true;
             bttnEliminar.Click += bttnEliminar_Click;
             // 
-            // bttnOrdenar
-            // 
-            bttnOrdenar.ImeMode = ImeMode.NoControl;
-            bttnOrdenar.Location = new Point(257, 487);
-            bttnOrdenar.Name = "bttnOrdenar";
-            bttnOrdenar.Size = new Size(106, 37);
-            bttnOrdenar.TabIndex = 9;
-            bttnOrdenar.Text = "Ordenar";
-            bttnOrdenar.UseVisualStyleBackColor = true;
-            bttnOrdenar.Click += bttnOrdenar_Click;
-            // 
             // bttnCancelar
             // 
             bttnCancelar.ImeMode = ImeMode.NoControl;
-            bttnCancelar.Location = new Point(555, 487);
+            bttnCancelar.Location = new Point(567, 489);
             bttnCancelar.Name = "bttnCancelar";
             bttnCancelar.Size = new Size(106, 37);
             bttnCancelar.TabIndex = 8;
@@ -97,7 +85,7 @@ namespace InmoSolution.Formularios.Empleados
             // bttnModificar
             // 
             bttnModificar.ImeMode = ImeMode.NoControl;
-            bttnModificar.Location = new Point(113, 487);
+            bttnModificar.Location = new Point(125, 489);
             bttnModificar.Name = "bttnModificar";
             bttnModificar.Size = new Size(106, 37);
             bttnModificar.TabIndex = 7;
@@ -113,14 +101,14 @@ namespace InmoSolution.Formularios.Empleados
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = bttnCancelar;
             ClientSize = new Size(781, 647);
+            Controls.Add(chklstbxEmpleados);
             Controls.Add(bttnEliminar);
-            Controls.Add(bttnOrdenar);
             Controls.Add(bttnCancelar);
             Controls.Add(bttnModificar);
             Controls.Add(lblEmpleados);
-            Controls.Add(chklstbxEmpleados);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ListadoEmpleados";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ListadoEmpleados";
             Load += ListadoEmpleados_Load;
             ResumeLayout(false);
@@ -143,7 +131,6 @@ namespace InmoSolution.Formularios.Empleados
         private CheckedListBox chklstbxEmpleados;
         private Label lblEmpleados;
         private Button bttnEliminar;
-        private Button bttnOrdenar;
         private Button bttnCancelar;
         private Button bttnModificar;
     }

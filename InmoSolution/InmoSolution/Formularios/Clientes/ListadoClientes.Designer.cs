@@ -28,87 +28,173 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoClientes));
             bttnEliminar = new Button();
-            bttnOrdenar = new Button();
             bttnCancelar = new Button();
             bttnModificar = new Button();
-            lblEmpleados = new Label();
-            chklstbxEmpleados = new CheckedListBox();
+            lblClientes = new Label();
+            chklstbxClientes = new CheckedListBox();
+            grpbxOrdenar = new GroupBox();
+            rdbttnEmail = new RadioButton();
+            rdbttnTelefono = new RadioButton();
+            rdbttnNombre = new RadioButton();
+            rdbttnApellidos = new RadioButton();
+            rdbttnDni = new RadioButton();
+            grpbxOrdenar.SuspendLayout();
             SuspendLayout();
             // 
             // bttnEliminar
             // 
             bttnEliminar.ImeMode = ImeMode.NoControl;
-            bttnEliminar.Location = new Point(425, 404);
+            bttnEliminar.Location = new Point(351, 467);
             bttnEliminar.Name = "bttnEliminar";
             bttnEliminar.Size = new Size(106, 37);
             bttnEliminar.TabIndex = 16;
             bttnEliminar.Text = "Eliminar";
             bttnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // bttnOrdenar
-            // 
-            bttnOrdenar.ImeMode = ImeMode.NoControl;
-            bttnOrdenar.Location = new Point(270, 404);
-            bttnOrdenar.Name = "bttnOrdenar";
-            bttnOrdenar.Size = new Size(106, 37);
-            bttnOrdenar.TabIndex = 15;
-            bttnOrdenar.Text = "Ordenar";
-            bttnOrdenar.UseVisualStyleBackColor = true;
+            bttnEliminar.Click += bttnEliminar_Click;
             // 
             // bttnCancelar
             // 
             bttnCancelar.ImeMode = ImeMode.NoControl;
-            bttnCancelar.Location = new Point(568, 404);
+            bttnCancelar.Location = new Point(553, 467);
             bttnCancelar.Name = "bttnCancelar";
             bttnCancelar.Size = new Size(106, 37);
             bttnCancelar.TabIndex = 14;
             bttnCancelar.Text = "Cancelar";
             bttnCancelar.UseVisualStyleBackColor = true;
+            bttnCancelar.Click += bttnCancelar_Click;
             // 
             // bttnModificar
             // 
             bttnModificar.ImeMode = ImeMode.NoControl;
-            bttnModificar.Location = new Point(126, 404);
+            bttnModificar.Location = new Point(156, 467);
             bttnModificar.Name = "bttnModificar";
             bttnModificar.Size = new Size(106, 37);
             bttnModificar.TabIndex = 13;
             bttnModificar.Text = "Modificar";
             bttnModificar.UseVisualStyleBackColor = true;
+            bttnModificar.Click += bttnModificar_Click;
             // 
-            // lblEmpleados
+            // lblClientes
             // 
-            lblEmpleados.AutoSize = true;
-            lblEmpleados.BackColor = Color.FromArgb(138, 70, 130, 180);
-            lblEmpleados.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblEmpleados.Location = new Point(330, 10);
-            lblEmpleados.Name = "lblEmpleados";
-            lblEmpleados.Size = new Size(148, 37);
-            lblEmpleados.TabIndex = 12;
-            lblEmpleados.Text = "Empleados";
+            lblClientes.AutoSize = true;
+            lblClientes.BackColor = Color.FromArgb(138, 70, 130, 180);
+            lblClientes.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            lblClientes.Location = new Point(315, 73);
+            lblClientes.Name = "lblClientes";
+            lblClientes.Size = new Size(111, 37);
+            lblClientes.TabIndex = 12;
+            lblClientes.Text = "Clientes";
             // 
-            // chklstbxEmpleados
+            // chklstbxClientes
             // 
-            chklstbxEmpleados.FormattingEnabled = true;
-            chklstbxEmpleados.Location = new Point(179, 77);
-            chklstbxEmpleados.Name = "chklstbxEmpleados";
-            chklstbxEmpleados.ScrollAlwaysVisible = true;
-            chklstbxEmpleados.Size = new Size(445, 256);
-            chklstbxEmpleados.TabIndex = 11;
+            chklstbxClientes.FormattingEnabled = true;
+            chklstbxClientes.Location = new Point(142, 140);
+            chklstbxClientes.Name = "chklstbxClientes";
+            chklstbxClientes.ScrollAlwaysVisible = true;
+            chklstbxClientes.Size = new Size(500, 256);
+            chklstbxClientes.TabIndex = 11;
+            // 
+            // grpbxOrdenar
+            // 
+            grpbxOrdenar.Controls.Add(rdbttnEmail);
+            grpbxOrdenar.Controls.Add(rdbttnTelefono);
+            grpbxOrdenar.Controls.Add(rdbttnNombre);
+            grpbxOrdenar.Controls.Add(rdbttnApellidos);
+            grpbxOrdenar.Controls.Add(rdbttnDni);
+            grpbxOrdenar.Location = new Point(648, 140);
+            grpbxOrdenar.Name = "grpbxOrdenar";
+            grpbxOrdenar.Size = new Size(76, 144);
+            grpbxOrdenar.TabIndex = 17;
+            grpbxOrdenar.TabStop = false;
+            grpbxOrdenar.Text = "Ordenar";
+            // 
+            // rdbttnEmail
+            // 
+            rdbttnEmail.AutoSize = true;
+            rdbttnEmail.ImeMode = ImeMode.NoControl;
+            rdbttnEmail.Location = new Point(0, 119);
+            rdbttnEmail.Name = "rdbttnEmail";
+            rdbttnEmail.Size = new Size(54, 19);
+            rdbttnEmail.TabIndex = 4;
+            rdbttnEmail.TabStop = true;
+            rdbttnEmail.Text = "Email";
+            rdbttnEmail.UseVisualStyleBackColor = true;
+            rdbttnEmail.CheckedChanged += rdbttnEmail_CheckedChanged;
+            // 
+            // rdbttnTelefono
+            // 
+            rdbttnTelefono.AutoSize = true;
+            rdbttnTelefono.ImeMode = ImeMode.NoControl;
+            rdbttnTelefono.Location = new Point(0, 97);
+            rdbttnTelefono.Name = "rdbttnTelefono";
+            rdbttnTelefono.Size = new Size(70, 19);
+            rdbttnTelefono.TabIndex = 3;
+            rdbttnTelefono.TabStop = true;
+            rdbttnTelefono.Text = "Telefono";
+            rdbttnTelefono.UseVisualStyleBackColor = true;
+            rdbttnTelefono.CheckedChanged += rdbttnTelefono_CheckedChanged;
+            // 
+            // rdbttnNombre
+            // 
+            rdbttnNombre.AutoSize = true;
+            rdbttnNombre.ImeMode = ImeMode.NoControl;
+            rdbttnNombre.Location = new Point(0, 47);
+            rdbttnNombre.Name = "rdbttnNombre";
+            rdbttnNombre.Size = new Size(69, 19);
+            rdbttnNombre.TabIndex = 2;
+            rdbttnNombre.TabStop = true;
+            rdbttnNombre.Text = "Nombre";
+            rdbttnNombre.UseVisualStyleBackColor = true;
+            rdbttnNombre.CheckedChanged += rdbttnNombre_CheckedChanged;
+            // 
+            // rdbttnApellidos
+            // 
+            rdbttnApellidos.AutoSize = true;
+            rdbttnApellidos.ImeMode = ImeMode.NoControl;
+            rdbttnApellidos.Location = new Point(0, 72);
+            rdbttnApellidos.Name = "rdbttnApellidos";
+            rdbttnApellidos.Size = new Size(74, 19);
+            rdbttnApellidos.TabIndex = 1;
+            rdbttnApellidos.TabStop = true;
+            rdbttnApellidos.Text = "Apellidos";
+            rdbttnApellidos.UseVisualStyleBackColor = true;
+            rdbttnApellidos.CheckedChanged += rdbttnApellidos_CheckedChanged;
+            // 
+            // rdbttnDni
+            // 
+            rdbttnDni.AutoSize = true;
+            rdbttnDni.ImeMode = ImeMode.NoControl;
+            rdbttnDni.Location = new Point(0, 22);
+            rdbttnDni.Name = "rdbttnDni";
+            rdbttnDni.Size = new Size(43, 19);
+            rdbttnDni.TabIndex = 0;
+            rdbttnDni.TabStop = true;
+            rdbttnDni.Text = "Dni";
+            rdbttnDni.UseVisualStyleBackColor = true;
+            rdbttnDni.CheckedChanged += rdbttnDni_CheckedChanged;
             // 
             // ListadoClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.fondo_Listas;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(781, 647);
+            Controls.Add(grpbxOrdenar);
             Controls.Add(bttnEliminar);
-            Controls.Add(bttnOrdenar);
             Controls.Add(bttnCancelar);
             Controls.Add(bttnModificar);
-            Controls.Add(lblEmpleados);
-            Controls.Add(chklstbxEmpleados);
+            Controls.Add(lblClientes);
+            Controls.Add(chklstbxClientes);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ListadoClientes";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ListadoClientes";
+            Load += ListadoClientes_Load;
+            grpbxOrdenar.ResumeLayout(false);
+            grpbxOrdenar.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -116,10 +202,15 @@
         #endregion
 
         private Button bttnEliminar;
-        private Button bttnOrdenar;
         private Button bttnCancelar;
         private Button bttnModificar;
-        private Label lblEmpleados;
-        private CheckedListBox chklstbxEmpleados;
+        private Label lblClientes;
+        private CheckedListBox chklstbxClientes;
+        private GroupBox grpbxOrdenar;
+        private RadioButton rdbttnNombre;
+        private RadioButton rdbttnApellidos;
+        private RadioButton rdbttnDni;
+        private RadioButton rdbttnEmail;
+        private RadioButton rdbttnTelefono;
     }
 }

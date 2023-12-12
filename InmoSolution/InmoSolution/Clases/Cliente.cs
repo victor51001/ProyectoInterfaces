@@ -43,7 +43,8 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return " Dni: " + this.Dni + " Nombre: " + this.Nombre + " Apellido: " + this.Apellidos + " Telefono: " + this.Telefono + " Email: " + this.Email;
+            return $"{Dni}     {Nombre,-15}     {Apellidos,-15}     {Telefono} {Email,-15}";
+
         }
     }
 }

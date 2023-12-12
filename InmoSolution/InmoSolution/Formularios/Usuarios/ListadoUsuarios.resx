@@ -147,14 +147,14 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblUsuarios.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bttnModificar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="bttnModificar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 486</value>
+    <value>198, 499</value>
   </data>
   <data name="bttnModificar.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 37</value>
@@ -175,13 +175,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bttnModificar.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="bttnCancelar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="bttnCancelar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>556, 486</value>
+    <value>486, 499</value>
   </data>
   <data name="bttnCancelar.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 37</value>
@@ -202,84 +202,141 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bttnCancelar.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="bttnOrdenar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttnOrdenar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>258, 486</value>
-  </data>
-  <data name="bttnOrdenar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 37</value>
-  </data>
-  <data name="bttnOrdenar.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="bttnOrdenar.Text" xml:space="preserve">
-    <value>Ordenar</value>
-  </data>
-  <data name="&gt;&gt;bttnOrdenar.Name" xml:space="preserve">
-    <value>bttnOrdenar</value>
-  </data>
-  <data name="&gt;&gt;bttnOrdenar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttnOrdenar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bttnOrdenar.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="chklstbxUsuarios.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 158</value>
-  </data>
-  <data name="chklstbxUsuarios.ScrollAlwaysVisible" type="System.Boolean, mscorlib">
+  <data name="rdbttnNombre.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="chklstbxUsuarios.Size" type="System.Drawing.Size, System.Drawing">
-    <value>445, 256</value>
-  </data>
-  <data name="chklstbxUsuarios.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;chklstbxUsuarios.Name" xml:space="preserve">
-    <value>chklstbxUsuarios</value>
-  </data>
-  <data name="&gt;&gt;chklstbxUsuarios.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chklstbxUsuarios.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;chklstbxUsuarios.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="bttnEliminar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="rdbttnNombre.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="bttnEliminar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 486</value>
+  <data name="rdbttnNombre.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 72</value>
   </data>
-  <data name="bttnEliminar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 37</value>
+  <data name="rdbttnNombre.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 19</value>
   </data>
-  <data name="bttnEliminar.TabIndex" type="System.Int32, mscorlib">
+  <data name="rdbttnNombre.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="rdbttnNombre.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="&gt;&gt;rdbttnNombre.Name" xml:space="preserve">
+    <value>rdbttnNombre</value>
+  </data>
+  <data name="&gt;&gt;rdbttnNombre.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdbttnNombre.Parent" xml:space="preserve">
+    <value>grpbxOrdenar</value>
+  </data>
+  <data name="&gt;&gt;rdbttnNombre.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rdbttnLogin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdbttnLogin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rdbttnLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 47</value>
+  </data>
+  <data name="rdbttnLogin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 19</value>
+  </data>
+  <data name="rdbttnLogin.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rdbttnLogin.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="&gt;&gt;rdbttnLogin.Name" xml:space="preserve">
+    <value>rdbttnLogin</value>
+  </data>
+  <data name="&gt;&gt;rdbttnLogin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdbttnLogin.Parent" xml:space="preserve">
+    <value>grpbxOrdenar</value>
+  </data>
+  <data name="&gt;&gt;rdbttnLogin.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rdbttnId.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdbttnId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 22</value>
+  </data>
+  <data name="rdbttnId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 19</value>
+  </data>
+  <data name="rdbttnId.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rdbttnId.Text" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="&gt;&gt;rdbttnId.Name" xml:space="preserve">
+    <value>rdbttnId</value>
+  </data>
+  <data name="&gt;&gt;rdbttnId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdbttnId.Parent" xml:space="preserve">
+    <value>grpbxOrdenar</value>
+  </data>
+  <data name="&gt;&gt;rdbttnId.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpbxOrdenar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>600, 171</value>
+  </data>
+  <data name="grpbxOrdenar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 95</value>
+  </data>
+  <data name="grpbxOrdenar.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="bttnEliminar.Text" xml:space="preserve">
-    <value>Eliminar</value>
+  <data name="grpbxOrdenar.Text" xml:space="preserve">
+    <value>Ordenar</value>
   </data>
-  <data name="&gt;&gt;bttnEliminar.Name" xml:space="preserve">
-    <value>bttnEliminar</value>
+  <data name="&gt;&gt;grpbxOrdenar.Name" xml:space="preserve">
+    <value>grpbxOrdenar</value>
   </data>
-  <data name="&gt;&gt;bttnEliminar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;grpbxOrdenar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;bttnEliminar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpbxOrdenar.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bttnEliminar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;grpbxOrdenar.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlUsuarios.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="pnlUsuarios.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 171</value>
+  </data>
+  <data name="pnlUsuarios.Size" type="System.Drawing.Size, System.Drawing">
+    <value>383, 266</value>
+  </data>
+  <data name="pnlUsuarios.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;pnlUsuarios.Name" xml:space="preserve">
+    <value>pnlUsuarios</value>
+  </data>
+  <data name="&gt;&gt;pnlUsuarios.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlUsuarios.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlUsuarios.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

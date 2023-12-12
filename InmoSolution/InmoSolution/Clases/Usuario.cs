@@ -46,8 +46,9 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return Id + " " + Login ;
+            return $"{Id}     {Login}     {Nombre}";
         }
+
 
         public string GetPuesto()
         {
