@@ -57,6 +57,11 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
                 validado = false;
                 MessageBox.Show("Debes ingresar una localidad valida", "Error");
             }
+            if (cmbxDisponible.SelectedItem == null)
+            {
+                validado = false;
+                MessageBox.Show("Debes seleccionar si esta disponible o no", "Error");
+            }
             return validado;
         }
 

@@ -114,7 +114,7 @@ namespace InmoSolution.Formularios.Clientes
             if (c > 0)
             {
                 MessageBox.Show("Cliente modificado correctamente", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ControladorUsuario.Cambios = true;
+                ControladorCliente.Cambios = true;
                 Close();
             } else
             {
