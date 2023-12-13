@@ -262,10 +262,12 @@
             // 
             // NuevoEnVenta
             // 
+            AcceptButton = bttnAceptar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.fondo_Altas;
             BackgroundImageLayout = ImageLayout.Stretch;
+            CancelButton = bttnCancelar;
             ClientSize = new Size(726, 481);
             Controls.Add(nudPrecioMetro);
             Controls.Add(lblPrecioMetro);

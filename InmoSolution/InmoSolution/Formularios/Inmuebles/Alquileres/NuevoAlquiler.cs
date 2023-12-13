@@ -80,6 +80,7 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
                 Cliente propietario = (Cliente)cmbxPropietario.SelectedItem;
                 Alquiler alquiler = new Alquiler(direccion, baños, habitaciones, metros, antiguedad, disponible, propietario, localidad);
                 ControladorAlquiler.ListaAlquileres.Add(alquiler);
+                ControladorAlquiler.Cambios = true;
                 MessageBox.Show("Alquiler creado correctamente", "Informacion");
                 Close();
             }

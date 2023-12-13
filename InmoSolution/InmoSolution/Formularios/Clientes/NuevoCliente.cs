@@ -99,6 +99,7 @@ namespace InmoSolution.Formularios.Clientes
                 string email = txtbxEmail.Text;
                 Cliente cliente = new Cliente(dni, nombre, apellidos, telefono, email);
                 ControladorCliente.ListaClientes.Add(cliente);
+                ControladorCliente.Cambios = true;
                 MessageBox.Show("Cliente creado correctamente", "Informacion");
                 Close();
             }

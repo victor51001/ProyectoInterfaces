@@ -23,45 +23,11 @@ namespace InmoSolution.Formularios.Empleados
         private void ListadoEmpleados_Load(object sender, EventArgs e)
         {
             chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados;
-        }
-
-        private void OrdenarListBox()
-        {/*
-            if (rdbtnId.Checked)
-            {
-                chklstbxEmpleados.DataSource = null;
-                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Id).ToList();
-            }
-            else if (rdbtnNombre.Checked)
-            {
-                chklstbxEmpleados.DataSource = null;
-                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Nombre).ToList();
-            }
-            else if (rdbtnApellido.Checked)
-            {
-                chklstbxEmpleados.DataSource = null;
-                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Apellido).ToList();
-            }
-            else if (rdbtnDni.Checked)
-            {
-                chklstbxEmpleados.DataSource = null;
-                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Dni).ToList();
-            }
-            else if (rdbtnPuesto.Checked)
-            {
-                chklstbxEmpleados.DataSource = null;
-                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados.OrderBy(x => x.Puesto).ToList();
-            }*/
-        }
+        }        
 
         private void bttnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void bttnOrdenar_Click(object sender, EventArgs e)
-        {
-            OrdenarListBox();
         }
 
         private void bttnEliminar_Click(object sender, EventArgs e)
@@ -77,6 +43,7 @@ namespace InmoSolution.Formularios.Empleados
                     }
                     chklstbxEmpleados.DataSource = null;
                     chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados;
+                    ControladorEmpleado.Cambios = true;
                 }
             }
             else
@@ -92,8 +59,11 @@ namespace InmoSolution.Formularios.Empleados
                 Empleado empleado = (Empleado)chklstbxEmpleados.SelectedItem;
                 ModificarEmpleado modificarEmpleado = new ModificarEmpleado(empleado);
                 modificarEmpleado.ShowDialog();
-                chklstbxEmpleados.DataSource = null;
-                chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados;
+                if (ControladorEmpleado.Cambios)
+                {
+                    chklstbxEmpleados.DataSource = null;
+                    chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados;
+                }
             }
             else
             {

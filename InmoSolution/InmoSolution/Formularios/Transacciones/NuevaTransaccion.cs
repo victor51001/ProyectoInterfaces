@@ -33,11 +33,36 @@ namespace InmoSolution.Formularios.Transacciones
 
         private void bttnAceptar_Click(object sender, EventArgs e)
         {
-            DateOnly dateOnly = new DateOnly(dtmpckrFecha.Value.Date.Year, dtmpckrFecha.Value.Date.Month, dtmpckrFecha.Value.Date.Day);
-            Transaccion transaccion = new Transaccion(dateOnly, (Inmueble)cmbxInmueble.SelectedItem, (Empleado)cmbxEmpleado.SelectedItem, (Cliente)cmbxCliente.SelectedItem);
-            ControladorTransaccion.ListaTransacciones.Add(transaccion);
-            MessageBox.Show("Transaccion creada correctamente", "Info");
-            Close();
+            if (ValidarDatos())
+            {
+                DateOnly dateOnly = new DateOnly(dtmpckrFecha.Value.Date.Year, dtmpckrFecha.Value.Date.Month, dtmpckrFecha.Value.Date.Day);
+                Transaccion transaccion = new Transaccion(dateOnly, (Inmueble)cmbxInmueble.SelectedItem, (Empleado)cmbxEmpleado.SelectedItem, (Cliente)cmbxCliente.SelectedItem);
+                ControladorTransaccion.ListaTransacciones.Add(transaccion);
+                ControladorTransaccion.Cambios = true;
+                MessageBox.Show("Transaccion creada correctamente", "Info");
+                Close();
+            }
+        }
+
+        private bool ValidarDatos()
+        {
+            bool ok = true;
+            if (cmbxInmueble.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar un inmueble", "Error");
+                ok = false;
+            }
+            if (cmbxCliente.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Error");
+                ok = false;
+            }
+            if (cmbxEmpleado.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar un empleado", "Error");
+                ok = false;
+            }
+            return ok;
         }
     }
 }

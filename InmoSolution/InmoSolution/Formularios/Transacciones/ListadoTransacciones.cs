@@ -51,26 +51,6 @@ namespace InmoSolution.Formularios.Transacciones
             {
                 MessageBox.Show("Debe seleccionar al menos una transaccion para eliminarlo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            /*
-            if (chklstbxAlquileres.CheckedItems.Count > 0)
-            {
-                DialogResult dialogResult = MessageBox.Show("¿Está seguro de que desea eliminar los alquileres seleccionados?", "Eliminar alquileres", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    foreach (Alquiler alquiler in chklstbxAlquileres.CheckedItems)
-                    {
-                        ControladorAlquiler.ListaAlquileres.Remove(alquiler);
-                    }
-                    ControladorAlquiler.Cambios = true;
-                    chklstbxAlquileres.DataSource = null;
-                    chklstbxAlquileres.DataSource = ControladorAlquiler.ListaAlquileres;
-                    chklstbxAlquileres.DisplayMember = "ToString";
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar al menos un alquiler para eliminarlo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
         }
 
         private void rdbttnFecha_CheckedChanged(object sender, EventArgs e)

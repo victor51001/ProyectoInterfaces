@@ -120,6 +120,7 @@ namespace InmoSolution.Formularios.Empleados
                     txtbxApellidos.Text, txtbxEmail.Text, (int)nudTelefono.Value,
                     user, (Empleado.Puestos)cmbxPuesto.SelectedItem);
                 ControladorEmpleado.ListaEmpleados.Add(empleado);
+                ControladorEmpleado.Cambios = true;
                 MessageBox.Show("Empleado creado correctamente", "Info");
                 Close();
             }

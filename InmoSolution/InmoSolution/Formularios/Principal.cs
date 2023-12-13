@@ -131,10 +131,10 @@ namespace InmoSolution.Formularios
             colId.Width = 50;
             colId.ReadOnly = true;
             DataGridViewTextBoxColumn colTipo = new DataGridViewTextBoxColumn();
-            colId.DataPropertyName = "Inmueble";
-            colId.HeaderText = "Tipo";
-            colId.Width = 50;
-            colId.ReadOnly = true;
+            colTipo.DataPropertyName = "Inmueble";
+            colTipo.HeaderText = "Tipo";
+            colTipo.Width = 50;
+            colTipo.ReadOnly = true;
             dgvUltiTransacc.CellFormatting += (s, e) =>
             {
                 if (e.Value is Alquiler)

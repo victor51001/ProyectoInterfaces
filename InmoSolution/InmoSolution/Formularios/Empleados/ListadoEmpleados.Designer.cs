@@ -63,7 +63,7 @@ namespace InmoSolution.Formularios.Empleados
             // bttnEliminar
             // 
             bttnEliminar.ImeMode = ImeMode.NoControl;
-            bttnEliminar.Location = new Point(341, 489);
+            bttnEliminar.Location = new Point(342, 482);
             bttnEliminar.Name = "bttnEliminar";
             bttnEliminar.Size = new Size(106, 37);
             bttnEliminar.TabIndex = 10;
@@ -74,7 +74,7 @@ namespace InmoSolution.Formularios.Empleados
             // bttnCancelar
             // 
             bttnCancelar.ImeMode = ImeMode.NoControl;
-            bttnCancelar.Location = new Point(567, 489);
+            bttnCancelar.Location = new Point(491, 482);
             bttnCancelar.Name = "bttnCancelar";
             bttnCancelar.Size = new Size(106, 37);
             bttnCancelar.TabIndex = 8;
@@ -85,7 +85,7 @@ namespace InmoSolution.Formularios.Empleados
             // bttnModificar
             // 
             bttnModificar.ImeMode = ImeMode.NoControl;
-            bttnModificar.Location = new Point(125, 489);
+            bttnModificar.Location = new Point(194, 482);
             bttnModificar.Name = "bttnModificar";
             bttnModificar.Size = new Size(106, 37);
             bttnModificar.TabIndex = 7;

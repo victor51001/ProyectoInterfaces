@@ -107,28 +107,32 @@ namespace InmoSolution.Formularios.Usuarios
 
             int c = 0;
             c += cambios.Count(b => b == true);
-            switch (c)
+            if (c > 0)
             {
-                case 0:
-                    MessageBox.Show("No se ha modificado ningún campo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 1:
-                    telefono = (int)nudTelefono.Value;
-                    break;
-                case 2:
-                    email = txtbxEmail.Text;
-                    break;
-                case 3:
-                    puesto = (Empleado.Puestos)cmbxPuesto.SelectedItem;
-                    break;
+                switch (c)
+                {
+                    case 1:
+                        telefono = (int)nudTelefono.Value;
+                        break;
+                    case 2:
+                        email = txtbxEmail.Text;
+                        break;
+                    case 3:
+                        puesto = (Empleado.Puestos)cmbxPuesto.SelectedItem;
+                        break;
+                }
+                ControladorEmpleado.ModificarEmpleado(
+                    empleado,
+                    telefono,
+                    email,
+                    puesto
+                    );
+                ControladorEmpleado.Cambios = true;
+                Close();
+            } else
+            {
+                MessageBox.Show("No se ha modificado ningún campo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            ControladorEmpleado.ModificarEmpleado(
-                empleado,
-                telefono,
-                email,
-                puesto
-                );
-            Close();
         }
     }
 }

@@ -84,6 +84,7 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
                 Cliente propietario = (Cliente)cmbxPropietario.SelectedItem;
                 Clases.EnVenta enVenta = new Clases.EnVenta(direccion, baños, habitaciones, metros, antiguedad, disponible, propietario, localidad, precioMetro);
                 ControladorEnVenta.ListaEnVenta.Add(enVenta);
+                ControladorEnVenta.Cambios = true;
                 MessageBox.Show("En Venta creado correctamente", "Informacion");
                 Close();
             }
