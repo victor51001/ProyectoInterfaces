@@ -24,13 +24,22 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
         private void ModificarEnVenta_Load(object sender, EventArgs e)
         {
             nudBaños.Controls[0].Visible = false;
+            nudBaños.Width += nudBaños.Controls[0].Width;
             nudBaños.Minimum = 1;
             nudBaños.Maximum = 10;
             nudHabitaciones.Controls[0].Visible = false;
+            nudHabitaciones.Width += nudHabitaciones.Controls[0].Width;
             nudHabitaciones.Minimum = 1;
             nudHabitaciones.Maximum = 10;
             nudMetros.Controls[0].Visible = false;
+            nudMetros.Width += nudMetros.Controls[0].Width;
             nudAntiguedad.Controls[0].Visible = false;
+            nudAntiguedad.Width += nudAntiguedad.Controls[0].Width;
+            nudPrecioMetro.Controls[0].Visible = false;
+            nudPrecioMetro.Width += nudPrecioMetro.Controls[0].Width;
+            nudPrecio.Controls[0].Visible = false;
+            nudPrecio.Width += nudPrecio.Controls[0].Width;
+
             txtbxDireccion.Text = enVenta.Direccion;
             nudMetros.Value = enVenta.MetrosCuadrados;
             nudHabitaciones.Value = enVenta.Habitaciones;
@@ -38,20 +47,12 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
             nudAntiguedad.Value = enVenta.Antiguedad;
             txtbxLocalidad.Text = enVenta.Localidad;
             nudMetros.Value = enVenta.MetrosCuadrados;
+            nudPrecioMetro.Value = enVenta.PrecioMetroCuadrado;
             nudPrecio.Value = enVenta.Precio;
             cmbxPropietario.DataSource = ControladorCliente.ListaClientes;
             cmbxPropietario.DisplayMember = "dni";
             cmbxPropietario.SelectedItem = enVenta.Propietario;
-            cmbxPropietario.Enabled = false;
-            cmbxDisponible.Enabled = false;
-            if (enVenta.Disponible)
-            {
-                cmbxDisponible.SelectedIndex = 0;
-            }
-            else
-            {
-                cmbxDisponible.SelectedIndex = 1;
-            }
+            cmbxDisponible.SelectedIndex = Convert.ToInt32(enVenta.Disponible);
         }
 
         private void nudHabitaciones_ValueChanged(object sender, EventArgs e)
@@ -78,35 +79,12 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
             }
         }
 
-        private void cmbxDisponible_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbxDisponible.SelectedValue == "Si")
-            {
-                cambios[2] = true;
-            }
-            else
-            {
-                cambios[2] = false;
-            }
-        }
-
-        private void cmbxPropietario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbxPropietario.SelectedValue != enVenta.Propietario)
-            {
-                cambios[3] = true;
-            }
-            else
-            {
-                cambios[3] = false;
-            }
-        }
-
         private void nudPrecioMetro_ValueChanged(object sender, EventArgs e)
         {
             if (nudPrecioMetro.Value != enVenta.PrecioMetroCuadrado)
             {
                 cambios[4] = true;
+                nudPrecio.Value = nudPrecioMetro.Value * nudMetros.Value;
             }
             else
             {
@@ -121,18 +99,43 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
                 DialogResult resultado = MessageBox.Show("¿Está seguro que desea modificar el inmueble?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado == DialogResult.Yes)
                 {
-                    enVenta.Habitaciones = Convert.ToInt32(nudHabitaciones.Value);
-                    enVenta.Baños = Convert.ToInt32(nudBaños.Value);
-                    enVenta.Disponible = Convert.ToBoolean(cmbxDisponible.SelectedValue);
-                    enVenta.Propietario = (Clases.Cliente)cmbxPropietario.SelectedValue;
-                    enVenta.PrecioMetroCuadrado = Convert.ToInt32(nudPrecioMetro.Value);
-                    enVenta.Precio = Convert.ToInt32(nudPrecio.Value);
-                    enVenta.Direccion = txtbxDireccion.Text;
-                    enVenta.Localidad = txtbxLocalidad.Text;
-                    enVenta.MetrosCuadrados = Convert.ToInt32(nudMetros.Value);
-                    enVenta.Antiguedad = Convert.ToInt32(nudAntiguedad.Value);
+                    for (int i = 0; i < cambios.Length; i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                if (cambios[i])
+                                {
+                                    enVenta.Habitaciones = Convert.ToInt32(nudHabitaciones.Value);
+                                }
+                                break;
+                            case 1:
+                                if (cambios[i])
+                                {
+                                    enVenta.Baños = Convert.ToInt32(nudBaños.Value);
+                                }
+                                break;
+                            case 2:
+                                if (cambios[i])
+                                {
+                                    enVenta.Antiguedad = Convert.ToInt32(nudAntiguedad.Value);
+                                }
+                                break;
+                            case 3:
+                                if (cambios[i])
+                                {
+                                    enVenta.Disponible = Convert.ToBoolean(cmbxDisponible.SelectedIndex);
+                                }
+                                break;
+                            case 4:
+                                if (cambios[i])
+                                {
+                                    enVenta.PrecioMetroCuadrado = Convert.ToInt32(nudPrecioMetro.Value);
+                                }
+                                break;
+                        }
+                    }
                     ControladorEnVenta.Cambios = true;
-                    MessageBox.Show("Inmueble modificado correctamente", "Modificar inmueble", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
             }
@@ -140,6 +143,11 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
             {
                 MessageBox.Show("No se han realizado cambios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void bttnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

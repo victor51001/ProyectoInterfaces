@@ -33,6 +33,8 @@ namespace InmoSolution.Clases
             Id = ControladorTransaccion.ListaTransacciones.Count + 1;
             Fecha = fecha.ToDateTime(new TimeOnly(0,0,0));
             Inmueble = inmueble;
+            Inmueble.Disponible = false;
+            Inmueble.Propietario = cliente;
             Empleado = empleado;
             Cliente = cliente;
             Inmueble.Disponible = false;

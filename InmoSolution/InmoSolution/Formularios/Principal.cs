@@ -40,7 +40,7 @@ namespace InmoSolution.Formularios
         {
             for (int i = 0; i < ficherosExist.Count; i++)
             {
-                if (i==4)
+                if (i == 4)
                 {
                     ControladorInmueble.RellenarListaInmuebles();
                 }
@@ -120,11 +120,14 @@ namespace InmoSolution.Formularios
             txtbxEnVenta.Text = ControladorEnVenta.ListaEnVenta.Count.ToString();
             CargarDataGrid();
             InicializarGrafico();
+            dgvUltiTransacc.Height = dgvUltiTransacc.Rows.Cast<DataGridViewRow>().Sum(r => r.Height) + dgvUltiTransacc.ColumnHeadersHeight + 2;
+            dgvUltiTransacc.Width = dgvUltiTransacc.Columns.Cast<DataGridViewColumn>().Sum(c => c.Width) + 2;
         }
         private void CargarDataGrid()
         {
             dgvUltiTransacc.DataSource = ControladorTransaccion.ListaTransacciones.OrderByDescending(t => t.Fecha).Take(5).ToList();
             dgvUltiTransacc.Columns.Clear();
+            dgvUltiTransacc.RowHeadersVisible = false;
             DataGridViewTextBoxColumn colId = new DataGridViewTextBoxColumn();
             colId.DataPropertyName = "Id";
             colId.HeaderText = "Id";
@@ -149,7 +152,7 @@ namespace InmoSolution.Formularios
             DataGridViewTextBoxColumn colFecha = new DataGridViewTextBoxColumn();
             colFecha.DataPropertyName = "Fecha";
             colFecha.HeaderText = "Fecha";
-            colFecha.Width = 150;
+            colFecha.Width = 125;
             colFecha.ReadOnly = true;
             DataGridViewTextBoxColumn colPrecio = new DataGridViewTextBoxColumn();
             colPrecio.DataPropertyName = "Precio";
@@ -184,7 +187,7 @@ namespace InmoSolution.Formularios
             Series serieAlquiler = chrtEstadistica.Series[0];
             serieAlquiler.Name = "Alquileres";
             serieAlquiler.ChartType = SeriesChartType.Line;
-            serieAlquiler.XValueMember = "Key"; 
+            serieAlquiler.XValueMember = "Key";
             serieAlquiler.YValueMembers = "Value";
 
             Series serieEnVenta = chrtEstadistica.Series[1];

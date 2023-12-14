@@ -192,14 +192,15 @@ namespace InmoSolution.Formularios
             // 
             dgvUltiTransacc.AllowUserToAddRows = false;
             dgvUltiTransacc.AllowUserToDeleteRows = false;
+            dgvUltiTransacc.AllowUserToResizeColumns = false;
+            dgvUltiTransacc.AllowUserToResizeRows = false;
             dgvUltiTransacc.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            dgvUltiTransacc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUltiTransacc.Location = new Point(532, 427);
             dgvUltiTransacc.Margin = new Padding(2);
             dgvUltiTransacc.Name = "dgvUltiTransacc";
             dgvUltiTransacc.ReadOnly = true;
             dgvUltiTransacc.RowTemplate.Height = 24;
-            dgvUltiTransacc.Size = new Size(393, 145);
+            dgvUltiTransacc.Size = new Size(375, 145);
             dgvUltiTransacc.TabIndex = 8;
             // 
             // tsmiInicio
@@ -212,14 +213,14 @@ namespace InmoSolution.Formularios
             // tsmiPerfil
             // 
             tsmiPerfil.Name = "tsmiPerfil";
-            tsmiPerfil.Size = new Size(180, 22);
+            tsmiPerfil.Size = new Size(142, 22);
             tsmiPerfil.Text = "Perfil";
             tsmiPerfil.Click += tsmiPerfil_Click;
             // 
             // tsmiCerrar
             // 
             tsmiCerrar.Name = "tsmiCerrar";
-            tsmiCerrar.Size = new Size(180, 22);
+            tsmiCerrar.Size = new Size(142, 22);
             tsmiCerrar.Text = "Cerrar sesion";
             tsmiCerrar.Click += tsmiCerrar_Click;
             // 
@@ -255,7 +256,7 @@ namespace InmoSolution.Formularios
             // 
             tsmiAlquileres.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaAlquileres, tsmiNuevoAlquiler });
             tsmiAlquileres.Name = "tsmiAlquileres";
-            tsmiAlquileres.Size = new Size(180, 22);
+            tsmiAlquileres.Size = new Size(126, 22);
             tsmiAlquileres.Text = "Alquileres";
             // 
             // tsmiListaAlquileres
@@ -276,20 +277,20 @@ namespace InmoSolution.Formularios
             // 
             tsmiEnVenta.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaEnVenta, tsmiNuevoEnVenta });
             tsmiEnVenta.Name = "tsmiEnVenta";
-            tsmiEnVenta.Size = new Size(180, 22);
+            tsmiEnVenta.Size = new Size(126, 22);
             tsmiEnVenta.Text = "En venta";
             // 
             // tsmiListaEnVenta
             // 
             tsmiListaEnVenta.Name = "tsmiListaEnVenta";
-            tsmiListaEnVenta.Size = new Size(180, 22);
+            tsmiListaEnVenta.Size = new Size(157, 22);
             tsmiListaEnVenta.Text = "Lista en Venta";
             tsmiListaEnVenta.Click += tsmiListaEnVenta_Click;
             // 
             // tsmiNuevoEnVenta
             // 
             tsmiNuevoEnVenta.Name = "tsmiNuevoEnVenta";
-            tsmiNuevoEnVenta.Size = new Size(180, 22);
+            tsmiNuevoEnVenta.Size = new Size(157, 22);
             tsmiNuevoEnVenta.Text = "Nuevo en Venta";
             tsmiNuevoEnVenta.Click += tsmiNuevoEnVenta_Click;
             // 
@@ -304,14 +305,14 @@ namespace InmoSolution.Formularios
             // tsmiListaEmpleados
             // 
             tsmiListaEmpleados.Name = "tsmiListaEmpleados";
-            tsmiListaEmpleados.Size = new Size(180, 22);
+            tsmiListaEmpleados.Size = new Size(165, 22);
             tsmiListaEmpleados.Text = "Lista Empleados";
             tsmiListaEmpleados.Click += tsmiListaEmpleados_Click;
             // 
             // tsmiNuevoEmpleado
             // 
             tsmiNuevoEmpleado.Name = "tsmiNuevoEmpleado";
-            tsmiNuevoEmpleado.Size = new Size(180, 22);
+            tsmiNuevoEmpleado.Size = new Size(165, 22);
             tsmiNuevoEmpleado.Text = "Nuevo Empleado";
             tsmiNuevoEmpleado.Click += tsmiNuevoEmpleado_Click;
             // 

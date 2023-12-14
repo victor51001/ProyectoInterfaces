@@ -67,7 +67,7 @@
             // 
             // txtbxDni
             // 
-            txtbxDni.BackColor = SystemColors.ScrollBar;
+            txtbxDni.BackColor = SystemColors.Window;
             txtbxDni.Enabled = false;
             txtbxDni.Location = new Point(280, 131);
             txtbxDni.Name = "txtbxDni";
@@ -100,7 +100,6 @@
             // 
             txtbxNombre.Location = new Point(280, 186);
             txtbxNombre.Name = "txtbxNombre";
-            txtbxNombre.PlaceholderText = "Introduce el nombre del cliente:";
             txtbxNombre.Size = new Size(184, 23);
             txtbxNombre.TabIndex = 16;
             txtbxNombre.TextChanged += txtbxNombre_TextChanged;
@@ -131,7 +130,6 @@
             // 
             txtbxApellidos.Location = new Point(280, 236);
             txtbxApellidos.Name = "txtbxApellidos";
-            txtbxApellidos.PlaceholderText = "Introduce los apellidos del cliente:";
             txtbxApellidos.Size = new Size(184, 23);
             txtbxApellidos.TabIndex = 25;
             txtbxApellidos.TextChanged += txtbxApellidos_TextChanged;
@@ -151,7 +149,6 @@
             // 
             txtbxEmail.Location = new Point(280, 326);
             txtbxEmail.Name = "txtbxEmail";
-            txtbxEmail.PlaceholderText = "Introduce el email del cliente:";
             txtbxEmail.Size = new Size(184, 23);
             txtbxEmail.TabIndex = 29;
             txtbxEmail.TextChanged += txtbxEmail_TextChanged;

@@ -62,17 +62,18 @@
             // 
             // cmbxPropietario
             // 
+            cmbxPropietario.BackColor = SystemColors.Window;
+            cmbxPropietario.Enabled = false;
             cmbxPropietario.FormattingEnabled = true;
             cmbxPropietario.Items.AddRange(new object[] { "Si", "No" });
             cmbxPropietario.Location = new Point(561, 146);
             cmbxPropietario.Name = "cmbxPropietario";
             cmbxPropietario.Size = new Size(184, 23);
             cmbxPropietario.TabIndex = 77;
-            cmbxPropietario.SelectedIndexChanged += cmbxPropietario_SelectedIndexChanged;
             // 
             // txtbxLocalidad
             // 
-            txtbxLocalidad.BackColor = SystemColors.ScrollBar;
+            txtbxLocalidad.BackColor = SystemColors.Window;
             txtbxLocalidad.Enabled = false;
             txtbxLocalidad.Location = new Point(561, 183);
             txtbxLocalidad.Name = "txtbxLocalidad";
@@ -103,13 +104,13 @@
             // 
             // cmbxDisponible
             // 
+            cmbxDisponible.Enabled = false;
             cmbxDisponible.FormattingEnabled = true;
             cmbxDisponible.Items.AddRange(new object[] { "Si", "No" });
             cmbxDisponible.Location = new Point(612, 97);
             cmbxDisponible.Name = "cmbxDisponible";
             cmbxDisponible.Size = new Size(77, 23);
             cmbxDisponible.TabIndex = 71;
-            cmbxDisponible.SelectedIndexChanged += cmbxDisponible_SelectedIndexChanged;
             // 
             // lblDisponible
             // 
@@ -124,9 +125,10 @@
             // 
             // nudAntiguedad
             // 
-            nudAntiguedad.BackColor = SystemColors.ScrollBar;
+            nudAntiguedad.BackColor = SystemColors.Window;
             nudAntiguedad.Enabled = false;
             nudAntiguedad.Location = new Point(253, 286);
+            nudAntiguedad.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
             nudAntiguedad.Name = "nudAntiguedad";
             nudAntiguedad.Size = new Size(77, 23);
             nudAntiguedad.TabIndex = 69;
@@ -134,29 +136,37 @@
             // nudBaños
             // 
             nudBaños.Location = new Point(253, 200);
+            nudBaños.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudBaños.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudBaños.Name = "nudBaños";
             nudBaños.Size = new Size(77, 23);
             nudBaños.TabIndex = 68;
+            nudBaños.Value = new decimal(new int[] { 1, 0, 0, 0 });
             nudBaños.ValueChanged += nudBaños_ValueChanged;
             // 
             // nudHabitaciones
             // 
             nudHabitaciones.Location = new Point(253, 148);
+            nudHabitaciones.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudHabitaciones.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudHabitaciones.Name = "nudHabitaciones";
             nudHabitaciones.Size = new Size(77, 23);
             nudHabitaciones.TabIndex = 67;
+            nudHabitaciones.Value = new decimal(new int[] { 1, 0, 0, 0 });
             nudHabitaciones.ValueChanged += nudHabitaciones_ValueChanged;
             // 
             // nudMetros
             // 
-            nudMetros.BackColor = SystemColors.ScrollBar;
+            nudMetros.BackColor = SystemColors.Window;
             nudMetros.Enabled = false;
             nudMetros.ForeColor = SystemColors.WindowText;
             nudMetros.Location = new Point(253, 238);
             nudMetros.Maximum = new decimal(new int[] { 20000, 0, 0, 0 });
+            nudMetros.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudMetros.Name = "nudMetros";
             nudMetros.Size = new Size(77, 23);
             nudMetros.TabIndex = 66;
+            nudMetros.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // lblAntiguedad
             // 
@@ -199,6 +209,7 @@
             bttnCancelar.TabIndex = 62;
             bttnCancelar.Text = "Cancelar";
             bttnCancelar.UseVisualStyleBackColor = true;
+            bttnCancelar.Click += bttnCancelar_Click;
             // 
             // bttnAceptar
             // 
@@ -212,7 +223,7 @@
             // 
             // txtbxDireccion
             // 
-            txtbxDireccion.BackColor = SystemColors.ScrollBar;
+            txtbxDireccion.BackColor = SystemColors.Window;
             txtbxDireccion.Enabled = false;
             txtbxDireccion.Location = new Point(172, 97);
             txtbxDireccion.Name = "txtbxDireccion";
@@ -257,9 +268,11 @@
             nudPrecioMetro.BackColor = SystemColors.Window;
             nudPrecioMetro.Location = new Point(561, 241);
             nudPrecioMetro.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            nudPrecioMetro.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             nudPrecioMetro.Name = "nudPrecioMetro";
             nudPrecioMetro.Size = new Size(91, 23);
             nudPrecioMetro.TabIndex = 81;
+            nudPrecioMetro.Value = new decimal(new int[] { 10, 0, 0, 0 });
             nudPrecioMetro.ValueChanged += nudPrecioMetro_ValueChanged;
             // 
             // lblPrecioMetro
@@ -275,13 +288,14 @@
             // 
             // nudPrecio
             // 
-            nudPrecio.BackColor = SystemColors.ScrollBar;
+            nudPrecio.BackColor = SystemColors.Window;
             nudPrecio.Enabled = false;
             nudPrecio.Location = new Point(561, 290);
             nudPrecio.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             nudPrecio.Name = "nudPrecio";
             nudPrecio.Size = new Size(91, 23);
             nudPrecio.TabIndex = 79;
+            nudPrecio.Value = new decimal(new int[] { 100, 0, 0, 0 });
             // 
             // lblPrecio
             // 
