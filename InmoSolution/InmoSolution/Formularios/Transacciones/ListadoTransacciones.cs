@@ -57,7 +57,6 @@ namespace InmoSolution.Formularios.Transacciones
         {
             if (rdbttnFecha.Checked)
             {
-                ControladorTransaccion.ListaTransacciones = ControladorTransaccion.ListaTransacciones.OrderBy(t => t.Fecha).ToList();
                 chklstbxTransacciones.DataSource = null;
                 chklstbxTransacciones.DataSource = ControladorTransaccion.ListaTransacciones.OrderBy(t => t.Fecha).ToList();
                 chklstbxTransacciones.DisplayMember = "ToString";
@@ -68,7 +67,6 @@ namespace InmoSolution.Formularios.Transacciones
         {
             if (rdbttnBeneficio.Checked)
             {
-                ControladorTransaccion.ListaTransacciones = ControladorTransaccion.ListaTransacciones.OrderBy(t => t.Beneficio).ToList();
                 chklstbxTransacciones.DataSource = null;
                 chklstbxTransacciones.DataSource = ControladorTransaccion.ListaTransacciones.OrderBy(t => t.Beneficio).ToList();
                 chklstbxTransacciones.DisplayMember = "ToString";

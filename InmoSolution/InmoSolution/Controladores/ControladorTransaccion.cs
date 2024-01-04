@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using ProtoBuf;
+using System.ComponentModel;
 
 namespace InmoSolution.Controladores
 {
     public class ControladorTransaccion
     {
-        public static List<Transaccion> ListaTransacciones = new List<Transaccion>();
+        public static BindingList<Transaccion> ListaTransacciones = new BindingList<Transaccion>();
         public static Dictionary<DateTime, int> ContadorPorFechasAlquileres = new Dictionary<DateTime, int>();
         public static Dictionary<DateTime, int> ContadorPorFechasVentas = new Dictionary<DateTime, int>();
         public static bool cambios;
@@ -20,7 +21,7 @@ namespace InmoSolution.Controladores
             {
                 using (FileStream fs = new FileStream("transacciones.dat", FileMode.Open))
                 {
-                    ListaTransacciones = Serializer.Deserialize<List<Transaccion>>(fs);
+                    ListaTransacciones = Serializer.Deserialize<BindingList<Transaccion>>(fs);
                 }
                 foreach (Transaccion transaccion in ListaTransacciones)
                 {

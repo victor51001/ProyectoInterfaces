@@ -106,7 +106,7 @@
             // 
             cmbxDisponible.Enabled = false;
             cmbxDisponible.FormattingEnabled = true;
-            cmbxDisponible.Items.AddRange(new object[] { "Si", "No" });
+            cmbxDisponible.Items.AddRange(new object[] { "No", "Si" });
             cmbxDisponible.Location = new Point(612, 97);
             cmbxDisponible.Name = "cmbxDisponible";
             cmbxDisponible.Size = new Size(77, 23);

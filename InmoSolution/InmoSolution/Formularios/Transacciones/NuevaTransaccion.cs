@@ -22,8 +22,11 @@ namespace InmoSolution.Formularios.Transacciones
         private void NuevaTransaccion_Load(object sender, EventArgs e)
         {
             cmbxInmueble.DataSource = ControladorInmueble.ListaInmuebles;
+            cmbxInmueble.DisplayMember = "Direccion";
             cmbxCliente.DataSource = ControladorCliente.ListaClientes;
+            cmbxCliente.DisplayMember = "Dni";
             cmbxEmpleado.DataSource = ControladorEmpleado.ListaEmpleados;
+            cmbxEmpleado.DisplayMember = "Dni";
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)
@@ -36,7 +39,9 @@ namespace InmoSolution.Formularios.Transacciones
             if (ValidarDatos())
             {
                 DateOnly dateOnly = new DateOnly(dtmpckrFecha.Value.Date.Year, dtmpckrFecha.Value.Date.Month, dtmpckrFecha.Value.Date.Day);
-                Transaccion transaccion = new Transaccion(dateOnly, (Inmueble)cmbxInmueble.SelectedItem, (Empleado)cmbxEmpleado.SelectedItem, (Cliente)cmbxCliente.SelectedItem);
+                Inmueble inmueble = (Inmueble)cmbxInmueble.SelectedItem;
+                inmueble.Disponible = false;
+                Transaccion transaccion = new Transaccion(dateOnly, inmueble, (Empleado)cmbxEmpleado.SelectedItem, (Cliente)cmbxCliente.SelectedItem);
                 ControladorTransaccion.ListaTransacciones.Add(transaccion);
                 ControladorTransaccion.Cambios = true;
                 MessageBox.Show("Transaccion creada correctamente", "Info");

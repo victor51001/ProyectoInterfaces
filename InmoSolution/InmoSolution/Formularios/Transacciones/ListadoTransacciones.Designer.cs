@@ -43,7 +43,7 @@
             // 
             grpbxOrdenar.Controls.Add(rdbttnBeneficio);
             grpbxOrdenar.Controls.Add(rdbttnFecha);
-            grpbxOrdenar.Location = new Point(605, 175);
+            grpbxOrdenar.Location = new Point(661, 175);
             grpbxOrdenar.Name = "grpbxOrdenar";
             grpbxOrdenar.Size = new Size(76, 73);
             grpbxOrdenar.TabIndex = 29;
@@ -112,10 +112,10 @@
             // chklstbxTransacciones
             // 
             chklstbxTransacciones.FormattingEnabled = true;
-            chklstbxTransacciones.Location = new Point(99, 175);
+            chklstbxTransacciones.Location = new Point(72, 175);
             chklstbxTransacciones.Name = "chklstbxTransacciones";
             chklstbxTransacciones.ScrollAlwaysVisible = true;
-            chklstbxTransacciones.Size = new Size(500, 256);
+            chklstbxTransacciones.Size = new Size(583, 256);
             chklstbxTransacciones.TabIndex = 24;
             // 
             // ListadoTransacciones

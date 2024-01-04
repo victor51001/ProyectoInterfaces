@@ -2,6 +2,7 @@
 using ProtoBuf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return $"{Id,-10} {Fecha,-15} {Empleado,-15} {Cliente,-15} {Inmueble,-15} {Precio,-10} {Beneficio,-10}";
+            return $"{Id,-10:D2} {new DateOnly(Fecha.Year,Fecha.Month,Fecha.Day),-15} {Empleado.Dni,-15} {Cliente.Dni,-15} {Inmueble.Direccion,-30} {Precio,-15:C} {Beneficio,0:C}";
         }
     }
 }

@@ -32,7 +32,7 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return base.ToString() + "    " + this.PrecioMensual;
+            return $"{base.ToString()} {PrecioMensual,-5:C0}";
         }
         public int GenerarPrecioMensual()
         {

@@ -61,8 +61,7 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return $"{Direccion,-30}    {Localidad,-20}";
-
+            return $"{Id,-10} {Direccion,-30} {Disponible, -10} {Propietario.Dni,-15} {Localidad,-20}";
         }
     }
 }

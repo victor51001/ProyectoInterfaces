@@ -120,10 +120,13 @@ namespace InmoSolution.Formularios
             txtbxEnVenta.Text = ControladorEnVenta.ListaEnVenta.Count.ToString();
             CargarDataGrid();
             InicializarGrafico();
-            dgvUltiTransacc.Height = dgvUltiTransacc.Rows.Cast<DataGridViewRow>().Sum(r => r.Height) + dgvUltiTransacc.ColumnHeadersHeight + 2;
-            dgvUltiTransacc.Width = dgvUltiTransacc.Columns.Cast<DataGridViewColumn>().Sum(c => c.Width) + 2;
         }
         private void CargarDataGrid()
+        {
+            GenerarColumnas();
+            AjustarGrid();
+        }
+        private void GenerarColumnas()
         {
             dgvUltiTransacc.DataSource = ControladorTransaccion.ListaTransacciones.OrderByDescending(t => t.Fecha).Take(5).ToList();
             dgvUltiTransacc.Columns.Clear();
@@ -165,14 +168,21 @@ namespace InmoSolution.Formularios
             colBeneficio.Width = 75;
             colBeneficio.ReadOnly = true;
             dgvUltiTransacc.Columns.AddRange(new DataGridViewColumn[] { colId, colTipo, colFecha, colPrecio, colBeneficio });
-            dgvUltiTransacc.Invalidate();
-            dgvUltiTransacc.Update();
         }
-        private void ActualizarDataGrid()
+        private void AjustarGrid()
         {
-            dgvUltiTransacc.DataSource = ControladorTransaccion.ListaTransacciones.OrderByDescending(t => t.Fecha).Take(5).ToList();
-            dgvUltiTransacc.Invalidate();
-            dgvUltiTransacc.Update();
+            int altura = 0;
+            foreach (DataGridViewRow row in dgvUltiTransacc.Rows)
+            {
+                altura += row.Height;
+            }
+            dgvUltiTransacc.Height = altura + 2 + dgvUltiTransacc.ColumnHeadersHeight;
+            int ancho = 0;
+            foreach (DataGridViewColumn col in dgvUltiTransacc.Columns)
+            {
+                ancho += col.Width;
+            }
+            dgvUltiTransacc.Width = ancho + 3;
         }
         private void InicializarGrafico()
         {
@@ -378,8 +388,8 @@ namespace InmoSolution.Formularios
         {
             ListadoTransacciones frmListado = new ListadoTransacciones();
             frmListado.ShowDialog();
-            ActualizarDataGrid();
             ActualizarGrafico();
+            CargarDataGrid();
         }
 
         private void tsmiNuevaTransaccion_Click(object sender, EventArgs e)
@@ -387,7 +397,7 @@ namespace InmoSolution.Formularios
             NuevaTransaccion frmNuevaTransaccion = new NuevaTransaccion();
             frmNuevaTransaccion.ShowDialog();
             ActualizarGrafico();
-            ActualizarDataGrid();
+            CargarDataGrid();
         }
 
         private void tsmiListaEmpleados_Click(object sender, EventArgs e)

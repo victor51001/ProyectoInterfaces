@@ -37,7 +37,7 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return base.ToString() + " Precio por metro cuadrado: " + this.PrecioMetroCuadrado + " Precio: " + this.Precio;
+            return $"{base.ToString()} {PrecioMetroCuadrado,-10:C0} {Precio,10:C0}";
         }
     }
 }
