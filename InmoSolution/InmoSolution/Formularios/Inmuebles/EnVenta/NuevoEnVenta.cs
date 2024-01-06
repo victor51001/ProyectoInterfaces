@@ -47,12 +47,12 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
         private bool ValidarCampos()
         {
             bool validado = true;
-            if (txtbxDireccion.Text == "")
+            if (String.IsNullOrEmpty(txtbxDireccion.Text))
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar una direccion valida", "Error");
             }
-            if (txtbxLocalidad.Text == "")
+            if (String.IsNullOrEmpty(txtbxLocalidad.Text))
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar una localidad valida", "Error");
@@ -85,6 +85,7 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
                 Clases.EnVenta enVenta = new Clases.EnVenta(direccion, baños, habitaciones, metros, antiguedad, disponible, propietario, localidad, precioMetro);
                 ControladorEnVenta.ListaEnVenta.Add(enVenta);
                 ControladorEnVenta.Cambios = true;
+                ControladorInmueble.ListaInmuebles.Add(enVenta);
                 MessageBox.Show("En Venta creado correctamente", "Informacion");
                 Close();
             }

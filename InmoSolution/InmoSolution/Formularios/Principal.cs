@@ -205,12 +205,17 @@ namespace InmoSolution.Formularios
             serieEnVenta.ChartType = SeriesChartType.Line;
             serieEnVenta.XValueMember = "Key";
             serieEnVenta.YValueMembers = "Value";
+
+
             ControladorTransaccion.ContadorPorFechasAlquileres = ControladorTransaccion.ContadorPorFechasAlquileres.OrderBy(t => t.Key).ToDictionary(t => t.Key, t => t.Value);
             ControladorTransaccion.ContadorPorFechasVentas = ControladorTransaccion.ContadorPorFechasVentas.OrderBy(t => t.Key).ToDictionary(t => t.Key, t => t.Value);
+
+            serieAlquiler.Points.Clear();
             foreach (KeyValuePair<DateTime, int> par in ControladorTransaccion.ContadorPorFechasAlquileres)
             {
                 serieAlquiler.Points.AddXY(par.Key, par.Value);
             }
+            serieEnVenta.Points.Clear();
             foreach (KeyValuePair<DateTime, int> par in ControladorTransaccion.ContadorPorFechasVentas)
             {
                 serieEnVenta.Points.AddXY(par.Key, par.Value);
@@ -220,201 +225,207 @@ namespace InmoSolution.Formularios
 
             chrtEstadistica.DataBind();
         }
-        private void ActualizarGrafico()
+        private void ActualizarTotales()
         {
-            chrtEstadistica.DataBind();
+            txtbxInmuebles.Text = ControladorInmueble.ListaInmuebles.Count.ToString();
+            txtbxAlquileres.Text = ControladorAlquiler.ListaAlquileres.Count.ToString();
+            txtbxEnVenta.Text = ControladorEnVenta.ListaEnVenta.Count.ToString();
         }
 
-        private void CargarClientes()
+    private void CargarClientes()
+    {
+        // Crear clientes
+        for (int i = 0; i < 400; i++)
         {
-            // Crear clientes
-            for (int i = 0; i < 400; i++)
-            {
-                ControladorCliente.ListaClientes.Add(ControladorCliente.GenerarCliente());
-            }
+            ControladorCliente.ListaClientes.Add(ControladorCliente.GenerarCliente());
         }
-        private void CargarEmpleados()
+    }
+    private void CargarEmpleados()
+    {
+        ControladorEmpleado.ListaEmpleados.Add(new Empleado("54750696R", "Juan", "Perez", "admin@admin.com", 611546200, user, Empleado.Puestos.Administrador));
+        // Crear empleados
+        for (int i = 0; i < 20; i++)
         {
-            ControladorEmpleado.ListaEmpleados.Add(new Empleado("54750696R", "Juan", "Perez", "admin@admin.com", 611546200, user, Empleado.Puestos.Administrador));
-            // Crear empleados
-            for (int i = 0; i < 20; i++)
-            {
-                ControladorEmpleado.ListaEmpleados.Add(ControladorEmpleado.GenerarEmpleado());
-            }
-            ControladorUsuario.EscribirUsuarios();
+            ControladorEmpleado.ListaEmpleados.Add(ControladorEmpleado.GenerarEmpleado());
         }
-        private void CargarAlquileres()
+        ControladorUsuario.EscribirUsuarios();
+    }
+    private void CargarAlquileres()
+    {
+        // Crear alquileres
+        for (int i = 0; i < 150; i++)
         {
-            // Crear alquileres
-            for (int i = 0; i < 150; i++)
-            {
-                ControladorAlquiler.ListaAlquileres.Add(ControladorAlquiler.GenerarAlquiler());
-            }
+            ControladorAlquiler.ListaAlquileres.Add(ControladorAlquiler.GenerarAlquiler());
         }
-        private void CargarEnVenta()
+    }
+    private void CargarEnVenta()
+    {
+        // Crear en venta
+        for (int i = 0; i < 150; i++)
         {
-            // Crear en venta
-            for (int i = 0; i < 150; i++)
-            {
-                ControladorEnVenta.ListaEnVenta.Add(ControladorEnVenta.GenerarEnVenta());
-            }
+            ControladorEnVenta.ListaEnVenta.Add(ControladorEnVenta.GenerarEnVenta());
         }
-        private void CargarTransacciones()
+    }
+    private void CargarTransacciones()
+    {
+        // Crear transacciones
+        for (int i = 0; i < 70; i++)
         {
-            // Crear transacciones
-            for (int i = 0; i < 70; i++)
-            {
-                ControladorTransaccion.ListaTransacciones.Add(ControladorTransaccion.GenerarTransaccion());
-            }
+            ControladorTransaccion.ListaTransacciones.Add(ControladorTransaccion.GenerarTransaccion());
         }
+    }
 
-        private void tsmiPerfil_Click(object sender, EventArgs e)
-        {
-            Usuarios.ModificarUsuario frmPerfil = new Usuarios.ModificarUsuario(user);
-            frmPerfil.ShowDialog();
-        }
-        private void tsmiCerrar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+    private void tsmiPerfil_Click(object sender, EventArgs e)
+    {
+        Usuarios.ModificarUsuario frmPerfil = new Usuarios.ModificarUsuario(user);
+        frmPerfil.ShowDialog();
+    }
+    private void tsmiCerrar_Click(object sender, EventArgs e)
+    {
+        Close();
+    }
 
-        private void Principal_FormClosing(object sender, FormClosingEventArgs e)
+    private void Principal_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        cambios.Add("Usuario", ControladorUsuario.Cambios);
+        cambios.Add("Empleado", ControladorEmpleado.Cambios);
+        cambios.Add("Cliente", ControladorCliente.Cambios);
+        cambios.Add("Alquiler", ControladorAlquiler.Cambios);
+        cambios.Add("EnVenta", ControladorEnVenta.Cambios);
+        cambios.Add("Transaccion", ControladorTransaccion.Cambios);
+        bool ok = false;
+        foreach (KeyValuePair<string, bool> par in cambios)
         {
-            cambios.Add("Usuario", ControladorUsuario.Cambios);
-            cambios.Add("Empleado", ControladorEmpleado.Cambios);
-            cambios.Add("Cliente", ControladorCliente.Cambios);
-            cambios.Add("Alquiler", ControladorAlquiler.Cambios);
-            cambios.Add("EnVenta", ControladorEnVenta.Cambios);
-            cambios.Add("Transaccion", ControladorTransaccion.Cambios);
-            bool ok = false;
-            foreach (KeyValuePair<string, bool> par in cambios)
+            if (par.Value)
             {
-                if (par.Value)
+                ok = true;
+                break;
+            }
+        }
+        if (ok)
+        {
+            DialogResult dr = MessageBox.Show("Hay cambios sin guardar, ¿desea guardarlos?", "Cambios sin guardar", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                foreach (KeyValuePair<string, bool> par in cambios)
                 {
-                    ok = true;
-                    break;
-                }
-            }
-            if (ok)
-            {
-                DialogResult dr = MessageBox.Show("Hay cambios sin guardar, ¿desea guardarlos?", "Cambios sin guardar", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
-                    foreach (KeyValuePair<string, bool> par in cambios)
+                    bool cambio = par.Value;
+                    string clase = par.Key;
+                    switch (clase)
                     {
-                        bool cambio = par.Value;
-                        string clase = par.Key;
-                        switch (clase)
-                        {
-                            case "Usuario":
-                                if (cambio)
-                                {
-                                    ControladorUsuario.EscribirUsuarios();
-                                }
-                                break;
-                            case "Empleado":
-                                if (cambio)
-                                {
-                                    ControladorEmpleado.EscribirEmpleados();
-                                }
-                                break;
-                            case "Cliente":
-                                if (cambio)
-                                {
-                                    ControladorCliente.EscribirClientes();
-                                }
-                                break;
-                            case "Alquiler":
-                                if (cambio)
-                                {
-                                    ControladorAlquiler.EscribirAlquileres();
-                                }
-                                break;
-                            case "EnVenta":
-                                if (cambio)
-                                {
-                                    ControladorEnVenta.EscribirEnVentas();
-                                }
-                                break;
-                            case "Transaccion":
-                                if (cambio)
-                                {
-                                    ControladorTransaccion.EscribirTransacciones();
-                                }
-                                break;
-                        }
+                        case "Usuario":
+                            if (cambio)
+                            {
+                                ControladorUsuario.EscribirUsuarios();
+                            }
+                            break;
+                        case "Empleado":
+                            if (cambio)
+                            {
+                                ControladorEmpleado.EscribirEmpleados();
+                            }
+                            break;
+                        case "Cliente":
+                            if (cambio)
+                            {
+                                ControladorCliente.EscribirClientes();
+                            }
+                            break;
+                        case "Alquiler":
+                            if (cambio)
+                            {
+                                ControladorAlquiler.EscribirAlquileres();
+                            }
+                            break;
+                        case "EnVenta":
+                            if (cambio)
+                            {
+                                ControladorEnVenta.EscribirEnVentas();
+                            }
+                            break;
+                        case "Transaccion":
+                            if (cambio)
+                            {
+                                ControladorTransaccion.EscribirTransacciones();
+                            }
+                            break;
                     }
                 }
             }
         }
-
-        private void tsmiListaClientes_Click(object sender, EventArgs e)
-        {
-            ListadoClientes frmListado = new ListadoClientes();
-            frmListado.ShowDialog();
-        }
-
-        private void tsmiNuevoCliente_Click(object sender, EventArgs e)
-        {
-            NuevoCliente frmNuevoCliente = new NuevoCliente();
-            frmNuevoCliente.ShowDialog();
-        }
-
-        private void tsmiListaAlquileres_Click(object sender, EventArgs e)
-        {
-            ListadoAlquileres frmListado = new ListadoAlquileres();
-            frmListado.ShowDialog();
-        }
-
-        private void tsmiNuevoAlquiler_Click(object sender, EventArgs e)
-        {
-            NuevoAlquiler frmNuevoAlquiler = new NuevoAlquiler();
-            frmNuevoAlquiler.ShowDialog();
-        }
-
-        private void tsmiListaEnVenta_Click(object sender, EventArgs e)
-        {
-            ListadoEnVenta frmListado = new ListadoEnVenta();
-            frmListado.ShowDialog();
-        }
-
-        private void tsmiNuevoEnVenta_Click(object sender, EventArgs e)
-        {
-            NuevoEnVenta frmNuevoEnVenta = new NuevoEnVenta();
-            frmNuevoEnVenta.ShowDialog();
-        }
-
-        private void tsmiListaTransacciones_Click(object sender, EventArgs e)
-        {
-            ListadoTransacciones frmListado = new ListadoTransacciones();
-            frmListado.ShowDialog();
-            ActualizarGrafico();
-            CargarDataGrid();
-        }
-
-        private void tsmiNuevaTransaccion_Click(object sender, EventArgs e)
-        {
-            NuevaTransaccion frmNuevaTransaccion = new NuevaTransaccion();
-            frmNuevaTransaccion.ShowDialog();
-            ActualizarGrafico();
-            CargarDataGrid();
-        }
-
-        private void tsmiListaEmpleados_Click(object sender, EventArgs e)
-        {
-            Empleados.ListadoEmpleados frmListado = new Empleados.ListadoEmpleados();
-            frmListado.ShowDialog();
-        }
-
-        private void tsmiNuevoEmpleado_Click(object sender, EventArgs e)
-        {
-            Empleados.NuevoEmpleado frmNuevoEmpleado = new Empleados.NuevoEmpleado();
-            frmNuevoEmpleado.ShowDialog();
-        }
-        private void listadoDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Usuarios.ListadoUsuarios frmListado = new Usuarios.ListadoUsuarios();
-            frmListado.ShowDialog();
-        }
     }
+
+    private void tsmiListaClientes_Click(object sender, EventArgs e)
+    {
+        ListadoClientes frmListado = new ListadoClientes();
+        frmListado.ShowDialog();
+    }
+
+    private void tsmiNuevoCliente_Click(object sender, EventArgs e)
+    {
+        NuevoCliente frmNuevoCliente = new NuevoCliente();
+        frmNuevoCliente.ShowDialog();
+    }
+
+    private void tsmiListaAlquileres_Click(object sender, EventArgs e)
+    {
+        ListadoAlquileres frmListado = new ListadoAlquileres();
+        frmListado.ShowDialog();
+        ActualizarTotales();
+    }
+
+    private void tsmiNuevoAlquiler_Click(object sender, EventArgs e)
+    {
+        NuevoAlquiler frmNuevoAlquiler = new NuevoAlquiler();
+        frmNuevoAlquiler.ShowDialog();
+        ActualizarTotales();
+    }
+
+    private void tsmiListaEnVenta_Click(object sender, EventArgs e)
+    {
+        ListadoEnVenta frmListado = new ListadoEnVenta();
+        frmListado.ShowDialog();
+        ActualizarTotales();
+    }
+
+    private void tsmiNuevoEnVenta_Click(object sender, EventArgs e)
+    {
+        NuevoEnVenta frmNuevoEnVenta = new NuevoEnVenta();
+        frmNuevoEnVenta.ShowDialog();
+        ActualizarTotales();
+    }
+
+    private void tsmiListaTransacciones_Click(object sender, EventArgs e)
+    {
+        ListadoTransacciones frmListado = new ListadoTransacciones();
+        frmListado.ShowDialog();
+        InicializarGrafico();
+        CargarDataGrid();
+    }
+
+    private void tsmiNuevaTransaccion_Click(object sender, EventArgs e)
+    {
+        NuevaTransaccion frmNuevaTransaccion = new NuevaTransaccion();
+        frmNuevaTransaccion.ShowDialog();
+        InicializarGrafico();
+        CargarDataGrid();
+    }
+
+    private void tsmiListaEmpleados_Click(object sender, EventArgs e)
+    {
+        Empleados.ListadoEmpleados frmListado = new Empleados.ListadoEmpleados();
+        frmListado.ShowDialog();
+    }
+
+    private void tsmiNuevoEmpleado_Click(object sender, EventArgs e)
+    {
+        Empleados.NuevoEmpleado frmNuevoEmpleado = new Empleados.NuevoEmpleado();
+        frmNuevoEmpleado.ShowDialog();
+    }
+    private void listadoDeUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Usuarios.ListadoUsuarios frmListado = new Usuarios.ListadoUsuarios();
+        frmListado.ShowDialog();
+    }
+}
 }

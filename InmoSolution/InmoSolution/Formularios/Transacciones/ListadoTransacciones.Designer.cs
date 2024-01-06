@@ -112,6 +112,7 @@
             // chklstbxTransacciones
             // 
             chklstbxTransacciones.FormattingEnabled = true;
+            chklstbxTransacciones.HorizontalScrollbar = true;
             chklstbxTransacciones.Location = new Point(72, 175);
             chklstbxTransacciones.Name = "chklstbxTransacciones";
             chklstbxTransacciones.ScrollAlwaysVisible = true;

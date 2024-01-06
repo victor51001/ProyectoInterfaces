@@ -90,6 +90,7 @@
             // chklstbxClientes
             // 
             chklstbxClientes.FormattingEnabled = true;
+            chklstbxClientes.HorizontalScrollbar = true;
             chklstbxClientes.Location = new Point(142, 140);
             chklstbxClientes.Name = "chklstbxClientes";
             chklstbxClientes.ScrollAlwaysVisible = true;

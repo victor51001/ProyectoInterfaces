@@ -23,6 +23,7 @@ namespace InmoSolution.Formularios.Empleados
         private void ListadoEmpleados_Load(object sender, EventArgs e)
         {
             chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados;
+            chklstbxEmpleados.DisplayMember = "ToString";
         }        
 
         private void bttnCancelar_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace InmoSolution.Formularios.Empleados
                 {
                     foreach (Empleado empleado in chklstbxEmpleados.CheckedItems)
                     {
-                        ControladorEmpleado.EliminarEmpleado(empleado);
+                        ControladorEmpleado.ListaEmpleados.Remove(empleado);
                     }
                     chklstbxEmpleados.DataSource = null;
                     chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados;

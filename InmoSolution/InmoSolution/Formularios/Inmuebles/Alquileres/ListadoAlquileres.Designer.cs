@@ -139,6 +139,7 @@
             // chklstbxAlquileres
             // 
             chklstbxAlquileres.FormattingEnabled = true;
+            chklstbxAlquileres.HorizontalScrollbar = true;
             chklstbxAlquileres.Location = new Point(129, 142);
             chklstbxAlquileres.Name = "chklstbxAlquileres";
             chklstbxAlquileres.ScrollAlwaysVisible = true;

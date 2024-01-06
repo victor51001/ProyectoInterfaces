@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,12 +29,12 @@ namespace InmoSolution.Formularios.Clientes
                 validado = false;
                 MessageBox.Show("Debes ingresar un DNI valido", "Error");
             }
-            if (txtbxNombre.Text == "" || txtbxNombre.Text.Any<char>(char.IsDigit))
+            if (!ValidarNombre())
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar un nombre valido", "Error");
             }
-            if (txtbxApellidos.Text == "" || txtbxApellidos.Text.Any<char>(char.IsDigit))
+            if (!ValidarApellidos())
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar apellidos validos", "Error");
@@ -64,6 +65,26 @@ namespace InmoSolution.Formularios.Clientes
                         return true;
                     }
                 }
+            }
+            return false;
+        }
+        private bool ValidarNombre()
+        {
+            if (!String.IsNullOrEmpty(txtbxNombre.Text))
+            {
+                string patron = "^[a-zA-Z]+$";
+                Regex regex = new Regex(patron);
+                return regex.IsMatch(txtbxNombre.Text);
+            }
+            return false;
+        }
+        private bool ValidarApellidos()
+        {
+            if (!String.IsNullOrEmpty(txtbxApellidos.Text))
+            {
+                string patron = "^[a-zA-Z]+$";
+                Regex regex = new Regex(patron);
+                return regex.IsMatch(txtbxApellidos.Text);
             }
             return false;
         }

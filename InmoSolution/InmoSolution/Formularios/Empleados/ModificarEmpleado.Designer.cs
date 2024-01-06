@@ -76,6 +76,7 @@
             bttnAceptar.TabIndex = 21;
             bttnAceptar.Text = "Aceptar";
             bttnAceptar.UseVisualStyleBackColor = true;
+            bttnAceptar.Click += bttnAceptar_Click;
             // 
             // txtDni
             // 
@@ -200,10 +201,12 @@
             // 
             // ModificarEmpleado
             // 
+            AcceptButton = bttnAceptar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.fondo_Modificaciones;
             BackgroundImageLayout = ImageLayout.Stretch;
+            CancelButton = bttnCancelar;
             ClientSize = new Size(800, 579);
             Controls.Add(cmbxPuesto);
             Controls.Add(nudTelefono);

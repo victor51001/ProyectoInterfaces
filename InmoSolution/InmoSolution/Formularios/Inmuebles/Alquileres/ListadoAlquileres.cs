@@ -1,4 +1,5 @@
 ﻿using InmoSolution.Clases;
+using InmoSolution.Controladores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,11 +40,12 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
                     foreach (Alquiler alquiler in chklstbxAlquileres.CheckedItems)
                     {
                         ControladorAlquiler.ListaAlquileres.Remove(alquiler);
+                        ControladorInmueble.ListaInmuebles.Remove(alquiler);
                     }
-                    ControladorAlquiler.Cambios = true;
                     chklstbxAlquileres.DataSource = null;
                     chklstbxAlquileres.DataSource = ControladorAlquiler.ListaAlquileres;
                     chklstbxAlquileres.DisplayMember = "ToString";
+                    ControladorAlquiler.Cambios = true;
                 }
             }
             else

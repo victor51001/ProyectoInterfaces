@@ -37,14 +37,27 @@ namespace InmoSolution.Formularios.Transacciones
                 DialogResult dialogResult = MessageBox.Show("¿Está seguro de que desea eliminar las transacciones seleccionadas?", "Eliminar transaccion", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    foreach (Transaccion transaccion in chklstbxTransacciones.CheckedItems)
+                    List<Transaccion> transacciones = new List<Transaccion>();
+                    for (int i=0; i<chklstbxTransacciones.CheckedItems.Count;i++)
+                    {
+                        transacciones.Add((Transaccion)chklstbxTransacciones.CheckedItems[i]);
+                    }
+                    foreach (Transaccion transaccion in transacciones)
                     {
                         ControladorTransaccion.ListaTransacciones.Remove(transaccion);
+                        if (transaccion.Inmueble is Alquiler)
+                        {
+                            ControladorTransaccion.MinusFechaAlquiler(transaccion.Fecha);
+                        }
+                        else
+                        {
+                            ControladorTransaccion.MinusFechaVenta(transaccion.Fecha);
+                        }
                     }
-                    ControladorTransaccion.Cambios = true;
                     chklstbxTransacciones.DataSource = null;
                     chklstbxTransacciones.DataSource = ControladorTransaccion.ListaTransacciones;
                     chklstbxTransacciones.DisplayMember = "ToString";
+                    ControladorTransaccion.Cambios = true;
                 }
             }
             else

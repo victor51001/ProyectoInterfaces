@@ -112,6 +112,17 @@ namespace InmoSolution.Controladores
                 ContadorPorFechasAlquileres.Add((fechaMes), 1);
             }
         }
+        public static void MinusFechaAlquiler(DateTime fecha)
+        {
+            DateTime fechaMes = new DateTime(fecha.Year, fecha.Month, 1);
+            if (ContadorPorFechasAlquileres.ContainsKey(fechaMes))
+            {
+                if (ContadorPorFechasAlquileres[fechaMes]-1==0)
+                {
+                    ContadorPorFechasAlquileres.Remove(fechaMes);
+                }
+            }
+        }
         public static void AddFechaVenta(DateTime fecha)
         {
             DateTime fechaMes = new DateTime(fecha.Year, fecha.Month, 1);
@@ -122,6 +133,17 @@ namespace InmoSolution.Controladores
             else
             {
                 ContadorPorFechasVentas.Add(fechaMes, 1);
+            }
+        }
+        public static void MinusFechaVenta(DateTime fecha)
+        {
+            DateTime fechaMes = new DateTime(fecha.Year, fecha.Month, 1);
+            if (ContadorPorFechasVentas.ContainsKey(fechaMes))
+            {
+                if (ContadorPorFechasVentas[fechaMes]-1==0)
+                {
+                    ContadorPorFechasVentas.Remove(fechaMes);
+                }
             }
         }
     }

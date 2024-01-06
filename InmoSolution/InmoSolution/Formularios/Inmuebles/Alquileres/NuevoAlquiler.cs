@@ -44,12 +44,12 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
         private bool ValidarCampos()
         {
             bool validado = true;
-            if (txtbxDireccion.Text == "")
+            if (String.IsNullOrEmpty(txtbxDireccion.Text))
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar una direccion valida", "Error");
             }
-            if (txtbxLocalidad.Text == "")
+            if (String.IsNullOrEmpty(txtbxLocalidad.Text))
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar una localidad valida", "Error");
@@ -81,6 +81,7 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
                 Alquiler alquiler = new Alquiler(direccion, baños, habitaciones, metros, antiguedad, disponible, propietario, localidad);
                 ControladorAlquiler.ListaAlquileres.Add(alquiler);
                 ControladorAlquiler.Cambios = true;
+                ControladorInmueble.ListaInmuebles.Add(alquiler);
                 MessageBox.Show("Alquiler creado correctamente", "Informacion");
                 Close();
             }

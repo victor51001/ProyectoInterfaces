@@ -104,23 +104,28 @@ namespace InmoSolution.Formularios.Usuarios
             int telefono = 0;
             string email = null;
             Empleado.Puestos puesto = Empleado.Puestos.nulo;
-
             int c = 0;
             c += cambios.Count(b => b == true);
             if (c > 0)
             {
-                switch (c)
+                for (int i = 0; i < cambios.Length; i++)
                 {
-                    case 1:
-                        telefono = (int)nudTelefono.Value;
-                        break;
-                    case 2:
-                        email = txtbxEmail.Text;
-                        break;
-                    case 3:
-                        puesto = (Empleado.Puestos)cmbxPuesto.SelectedItem;
-                        break;
-                }
+                    switch (i)
+                    {
+                        case 0:
+                            if (cambios[i])
+                            telefono = (int)nudTelefono.Value;
+                            break;
+                        case 1:
+                            if (cambios[i])
+                            email = txtbxEmail.Text;
+                            break;
+                        case 2:
+                            if (cambios[i])
+                            puesto = (Empleado.Puestos)cmbxPuesto.SelectedItem;
+                            break;
+                    }
+                }                
                 ControladorEmpleado.ModificarEmpleado(
                     empleado,
                     telefono,
@@ -128,6 +133,7 @@ namespace InmoSolution.Formularios.Usuarios
                     puesto
                     );
                 ControladorEmpleado.Cambios = true;
+                MessageBox.Show("Empleado modificado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             } else
             {

@@ -139,6 +139,7 @@
             // chklstbxEnVenta
             // 
             chklstbxEnVenta.FormattingEnabled = true;
+            chklstbxEnVenta.HorizontalScrollbar = true;
             chklstbxEnVenta.Location = new Point(99, 175);
             chklstbxEnVenta.Name = "chklstbxEnVenta";
             chklstbxEnVenta.ScrollAlwaysVisible = true;

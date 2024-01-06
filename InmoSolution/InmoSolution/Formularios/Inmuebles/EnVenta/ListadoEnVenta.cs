@@ -40,6 +40,7 @@ namespace InmoSolution.Formularios.Inmuebles.EnVenta
                     foreach (Clases.EnVenta enVenta in chklstbxEnVenta.CheckedItems)
                     {
                         ControladorEnVenta.ListaEnVenta.Remove(enVenta);
+                        ControladorInmueble.ListaInmuebles.Remove(enVenta);
                     }
                     ControladorEnVenta.Cambios = true;
                     chklstbxEnVenta.DataSource = null;

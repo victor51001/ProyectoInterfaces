@@ -72,18 +72,6 @@ namespace InmoSolution.Controladores
             }
         }
 
-        public static void EliminarEmpleado(Empleado empleado)
-        {
-            foreach (Empleado emp in ListaEmpleados)
-            {
-                if (emp == empleado)
-                {
-                    ListaEmpleados.Remove(emp);
-                    return;
-                }
-            }
-        }
-
         public static void ModificarEmpleado(Empleado empleado, int telefono, string email, Empleado.Puestos puesto)
         {
             if (telefono != 0)

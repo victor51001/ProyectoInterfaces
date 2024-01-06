@@ -42,6 +42,7 @@ namespace InmoSolution.Formularios.Empleados
             // chklstbxEmpleados
             // 
             chklstbxEmpleados.FormattingEnabled = true;
+            chklstbxEmpleados.HorizontalScrollbar = true;
             chklstbxEmpleados.Location = new Point(169, 165);
             chklstbxEmpleados.Name = "chklstbxEmpleados";
             chklstbxEmpleados.ScrollAlwaysVisible = true;

@@ -75,14 +75,7 @@ namespace InmoSolution.Clases
         //metodos
         public override string ToString()
         {
-            return "Dni: " + this.dni +
-                   " Nombre: " + this.nombre +
-                   " Apellidos: " + this.apellidos +
-                   " Teléfono: " + this.telefono +
-                   " Email: " + this.email +
-                   " Puesto: " + this.puesto +
-                   " Sueldo: " + this.sueldo +
-                   " Usuario: " + this.usuario.ToString();
+            return $"{Dni, -10} {Nombre, -10} {Apellidos, -20} {Telefono, -10} {Email, -20} {Puesto, -10} {Sueldo, -10} {Usuario.Id}";
         }
 
         public double CalcularComision(int alquileres, int ventas)

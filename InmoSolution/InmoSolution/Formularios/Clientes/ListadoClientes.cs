@@ -40,11 +40,11 @@ namespace InmoSolution.Formularios.Clientes
                     foreach (Cliente cliente in chklstbxClientes.CheckedItems)
                     {
                         ControladorCliente.ListaClientes.Remove(cliente);
-                        ControladorCliente.Cambios = true;
                     }
                     chklstbxClientes.DataSource = null;
                     chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
                     chklstbxClientes.DisplayMember = "ToString";
+                    ControladorCliente.Cambios = true;
                 }
             }
             else

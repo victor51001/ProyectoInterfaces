@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InmoSolution.Clases;
 using InmoSolution.Controladores;
+using InmoSolution.Formularios.Usuarios;
 
 namespace InmoSolution.Formularios.Empleados
 {
@@ -38,7 +40,7 @@ namespace InmoSolution.Formularios.Empleados
                 validado = false;
                 MessageBox.Show("Debes ingresar un nombre valido", "Error");
             }
-            if (txtbxApellidos.Text == "" || txtbxApellidos.Text.Any<char>(char.IsDigit))
+            if (!ValidarApellidos())
             {
                 validado = false;
                 MessageBox.Show("Debes ingresar apellidos validos", "Error");
@@ -80,10 +82,25 @@ namespace InmoSolution.Formularios.Empleados
 
         private bool ValidarNombre()
         {
-            if (ControladorUsuario.GetUsuario(txtbxNombre.Text) != null)
+            if (ControladorUsuario.GetUsuario(txtbxNombre.Text) == null)
             {
-                return true;
-            }            
+                if (!String.IsNullOrEmpty(txtbxNombre.Text))
+                {
+                    string patron = "^[a-zA-Z]+$";
+                    Regex regex = new Regex(patron);
+                    return regex.IsMatch(txtbxNombre.Text);
+                }
+            }
+            return false;
+        }
+        private bool ValidarApellidos()
+        {
+            if (!String.IsNullOrEmpty(txtbxApellidos.Text) && txtbxApellidos.Text.Length>4)
+            {
+                string patron = "^[a-zA-Z]+$";
+                Regex regex = new Regex(patron);
+                return regex.IsMatch(txtbxApellidos.Text);
+            }
             return false;
         }
         private bool ValidarEmail()
@@ -115,7 +132,12 @@ namespace InmoSolution.Formularios.Empleados
         {
             if (ValidarCampos())
             {
-                Usuario user = ControladorUsuario.GetUsuario(txtbxNombre.Text);
+                int id = ControladorUsuario.ListaUsuarios.Count + 10;
+                string login = txtbxNombre.Text.ElementAt(0) + txtbxApellidos.Text.Substring(0, 4);
+                Usuario user = new Usuario(id, login, txtbxNombre.Text, "clave$1");
+                user.iniciado = false;
+                ControladorUsuario.ListaUsuarios.Add(user);
+                ControladorUsuario.Cambios = true;
                 Empleado empleado = new Empleado(txtbxDni.Text, txtbxNombre.Text,
                     txtbxApellidos.Text, txtbxEmail.Text, (int)nudTelefono.Value,
                     user, (Empleado.Puestos)cmbxPuesto.SelectedItem);
