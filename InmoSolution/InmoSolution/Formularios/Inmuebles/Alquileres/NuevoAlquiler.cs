@@ -54,10 +54,15 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
                 validado = false;
                 MessageBox.Show("Debes ingresar una localidad valida", "Error");
             }
-            if (cmbxDisponible.SelectedItem == null)
+            if (cmbxDisponible.SelectedIndex == -1)
             {
                 validado = false;
                 MessageBox.Show("Debes seleccionar si esta disponible o no", "Error");
+            }
+            if (cmbxPropietario.SelectedIndex == -1)
+            {
+                validado = false;
+                MessageBox.Show("Debes seleccionar un propietario", "Error");
             }
             return validado;
         }
