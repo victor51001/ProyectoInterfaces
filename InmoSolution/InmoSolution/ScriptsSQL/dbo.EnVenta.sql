@@ -1,6 +1,8 @@
-﻿CREATE TABLE EnVenta (
-    id INT PRIMARY KEY,
-    precioMetroCuadrado INT,
-    precio INT,
-    FOREIGN KEY (id) REFERENCES Inmueble(id)
+﻿CREATE TABLE [dbo].[EnVenta] (
+    [id]                  INT NOT NULL,
+    [precioMetroCuadrado] INT NULL,
+    [precio]              INT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC),
+    FOREIGN KEY ([id]) REFERENCES [dbo].[Inmueble] ([id])
 );
+
