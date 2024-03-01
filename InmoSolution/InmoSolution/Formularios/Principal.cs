@@ -4,18 +4,7 @@ using InmoSolution.Formularios.Clientes;
 using InmoSolution.Formularios.Inmuebles.Alquileres;
 using InmoSolution.Formularios.Inmuebles.EnVenta;
 using InmoSolution.Formularios.Transacciones;
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace InmoSolution.Formularios

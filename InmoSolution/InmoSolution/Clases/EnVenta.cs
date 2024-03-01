@@ -1,5 +1,4 @@
-﻿using InmoSolution.Controladores;
-using ProtoBuf;
+﻿using ProtoBuf;
 
 namespace InmoSolution.Clases
 {
