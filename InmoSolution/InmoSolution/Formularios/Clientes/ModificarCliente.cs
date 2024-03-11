@@ -125,24 +125,34 @@ namespace InmoSolution.Formularios.Clientes
             c = cambios.Count(x => x == true);
             if (c > 0)
             {
+                Dictionary<string, object> campos = new Dictionary<string, object>();
                 if (cambios[0])
                 {
                     cliente.Nombre = txtbxNombre.Text;
+                    campos.Add("nombre", txtbxNombre.Text);
                 }
                 if (cambios[1])
                 {
                     cliente.Apellidos = txtbxApellidos.Text;
+                    campos.Add("apellidos", txtbxApellidos.Text);
                 }
                 if (cambios[2])
                 {
                     cliente.Telefono = Convert.ToInt32(nudTelefono.Value);
+                    campos.Add("telefono", nudTelefono.Value.ToString());
                 }
                 if (cambios[3])
                 {
                     cliente.Email = txtbxEmail.Text;
+                    campos.Add("email", txtbxEmail.Text);
                 }
-                MessageBox.Show("Cliente modificado correctamente", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ControladorCliente.Cambios = true;
+                if (ControladorCliente.ModificarCliente(cliente, campos))
+                {
+                    MessageBox.Show("Cliente modificado correctamente", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else
+                {
+                    MessageBox.Show("Error al modificar el cliente", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 Close();
             }
             else

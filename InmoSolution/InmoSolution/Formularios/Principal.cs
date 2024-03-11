@@ -5,6 +5,7 @@ using InmoSolution.Formularios.Inmuebles.Alquileres;
 using InmoSolution.Formularios.Inmuebles.EnVenta;
 using InmoSolution.Formularios.Transacciones;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace InmoSolution.Formularios
@@ -19,15 +20,17 @@ namespace InmoSolution.Formularios
             InitializeComponent();
             user = usu;
             ficherosExist.Add(ControladorEmpleado.ExisteFichero());
-            ficherosExist.Add(ControladorCliente.ExisteFichero());
             ficherosExist.Add(ControladorAlquiler.ExisteFichero());
             ficherosExist.Add(ControladorEnVenta.ExisteFichero());
-            ficherosExist.Add(ControladorVisita.ExisteFichero());
             ficherosExist.Add(ControladorTransaccion.ExisteFichero());
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            if (TablaEstaVacia("Cliente"))
+            {
+                CargarClientes();
+            }
             for (int i = 0; i < ficherosExist.Count; i++)
             {
                 if (i == 4)
@@ -50,17 +53,6 @@ namespace InmoSolution.Formularios
                     case 1:
                         if (ficherosExist[i])
                         {
-                            ControladorCliente.LeerClientes();
-                        }
-                        else
-                        {
-                            CargarClientes();
-                            ControladorCliente.EscribirClientes();
-                        }
-                        break;
-                    case 2:
-                        if (ficherosExist[i])
-                        {
                             ControladorAlquiler.LeerAlquileres();
                         }
                         else
@@ -69,7 +61,7 @@ namespace InmoSolution.Formularios
                             ControladorAlquiler.EscribirAlquileres();
                         }
                         break;
-                    case 3:
+                    case 2:
                         if (ficherosExist[i])
                         {
                             ControladorEnVenta.LeerEnVentas();
@@ -80,18 +72,7 @@ namespace InmoSolution.Formularios
                             ControladorEnVenta.EscribirEnVentas();
                         }
                         break;
-                    case 4:
-                        if (ficherosExist[i])
-                        {
-                            ControladorVisita.LeerVisitas();
-                        }
-                        else
-                        {
-                            CargarVisitas();
-                            ControladorVisita.EscribirVisitas();
-                        }
-                        break;
-                    case 5:
+                    case 3:
                         if (ficherosExist[i])
                         {
                             ControladorTransaccion.LeerTransacciones();
@@ -127,6 +108,35 @@ namespace InmoSolution.Formularios
             GenerarColumnas();
             AjustarGrid();
         }
+        private bool TablaEstaVacia(string nombreTabla)
+        {
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
+            string query = $"SELECT COUNT(*) FROM {nombreTabla}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        int rowCount = (int)command.ExecuteScalar();
+                        return rowCount == 0;
+                    }
+                }
+                catch (Exception ex)
+                {   
+                    string mensajeError = $"Error: {ex.Message}\n{ex.StackTrace}";
+                    DialogResult result = MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (result == DialogResult.OK)
+                    {
+                        Clipboard.SetText(mensajeError);
+                    }
+                    return false;
+                }
+            }
+        }
+
         private void GenerarColumnas()
         {
             dgvUltiTransacc.DataSource = ControladorTransaccion.ListaTransacciones.OrderByDescending(t => t.Fecha).Take(5).ToList();
@@ -236,9 +246,11 @@ namespace InmoSolution.Formularios
         private void CargarClientes()
         {
             // Crear clientes
-            for (int i = 0; i < 400; i++)
+            for (int i = 0; i < 20; i++)
             {
-                ControladorCliente.ListaClientes.Add(ControladorCliente.GenerarCliente());
+                Cliente cliente = ControladorCliente.GenerarCliente();
+                ControladorCliente.insertarCliente(cliente);
+                ControladorCliente.ListaClientes.Add(cliente);
             }
         }
         private void CargarEmpleados()
@@ -267,14 +279,6 @@ namespace InmoSolution.Formularios
                 ControladorEnVenta.ListaEnVenta.Add(ControladorEnVenta.GenerarEnVenta());
             }
         }
-        private void CargarVisitas()
-        {
-            // Crear visitas
-            for (int i = 0; i < 500; i++)
-            {
-                ControladorVisita.ListaVisitas.Add(ControladorVisita.GenerarVisita());
-            }
-        }
         private void CargarTransacciones()
         {
             // Crear transacciones
@@ -298,7 +302,6 @@ namespace InmoSolution.Formularios
         {
             cambios.Add("Usuario", ControladorUsuario.Cambios);
             cambios.Add("Empleado", ControladorEmpleado.Cambios);
-            cambios.Add("Cliente", ControladorCliente.Cambios);
             cambios.Add("Alquiler", ControladorAlquiler.Cambios);
             cambios.Add("EnVenta", ControladorEnVenta.Cambios);
             cambios.Add("Transaccion", ControladorTransaccion.Cambios);
@@ -334,12 +337,6 @@ namespace InmoSolution.Formularios
                                     ControladorEmpleado.EscribirEmpleados();
                                 }
                                 break;
-                            case "Cliente":
-                                if (cambio)
-                                {
-                                    ControladorCliente.EscribirClientes();
-                                }
-                                break;
                             case "Alquiler":
                                 if (cambio)
                                 {
@@ -356,12 +353,6 @@ namespace InmoSolution.Formularios
                                 if (cambio)
                                 {
                                     ControladorTransaccion.EscribirTransacciones();
-                                }
-                                break;
-                            case "Visita":
-                                if (cambio)
-                                {
-                                    ControladorVisita.EscribirVisitas();
                                 }
                                 break;
                         }

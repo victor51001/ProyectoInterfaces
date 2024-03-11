@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="protobuf-net" Version="3.2.30" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="System.Text.Json" Version="8.0.0" />
     <PackageReference Include="Tomlyn" Version="0.17.0" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.9.1" />

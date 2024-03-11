@@ -58,18 +58,11 @@ namespace InmoSolution.Formularios
             tsmiEnVenta = new ToolStripMenuItem();
             tsmiListaEnVenta = new ToolStripMenuItem();
             tsmiNuevoEnVenta = new ToolStripMenuItem();
-            tsmiVisitas = new ToolStripMenuItem();
-            tsmiListaVisitas = new ToolStripMenuItem();
-            tsmiNuevaVisita = new ToolStripMenuItem();
             tsmiEmpleados = new ToolStripMenuItem();
             tsmiListaEmpleados = new ToolStripMenuItem();
             tsmiNuevoEmpleado = new ToolStripMenuItem();
             tsmiUsuarios = new ToolStripMenuItem();
             tsmiListaUsuarios = new ToolStripMenuItem();
-            tsmiConfiguracion = new ToolStripMenuItem();
-            tsmiAyuda = new ToolStripMenuItem();
-            tsmiDocumentacion = new ToolStripMenuItem();
-            tsmiAcercaDe = new ToolStripMenuItem();
             msPrincipal = new MenuStrip();
             tsmiTransacciones = new ToolStripMenuItem();
             tsmiListaTransacciones = new ToolStripMenuItem();
@@ -220,14 +213,14 @@ namespace InmoSolution.Formularios
             // tsmiPerfil
             // 
             tsmiPerfil.Name = "tsmiPerfil";
-            tsmiPerfil.Size = new Size(142, 22);
+            tsmiPerfil.Size = new Size(180, 22);
             tsmiPerfil.Text = "Perfil";
             tsmiPerfil.Click += tsmiPerfil_Click;
             // 
             // tsmiCerrar
             // 
             tsmiCerrar.Name = "tsmiCerrar";
-            tsmiCerrar.Size = new Size(142, 22);
+            tsmiCerrar.Size = new Size(180, 22);
             tsmiCerrar.Text = "Cerrar sesion";
             tsmiCerrar.Click += tsmiCerrar_Click;
             // 
@@ -301,27 +294,6 @@ namespace InmoSolution.Formularios
             tsmiNuevoEnVenta.Text = "Nuevo en Venta";
             tsmiNuevoEnVenta.Click += tsmiNuevoEnVenta_Click;
             // 
-            // tsmiVisitas
-            // 
-            tsmiVisitas.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaVisitas, tsmiNuevaVisita });
-            tsmiVisitas.Name = "tsmiVisitas";
-            tsmiVisitas.Size = new Size(52, 20);
-            tsmiVisitas.Text = "Visitas";
-            // 
-            // tsmiListaVisitas
-            // 
-            tsmiListaVisitas.Name = "tsmiListaVisitas";
-            tsmiListaVisitas.Size = new Size(150, 22);
-            tsmiListaVisitas.Text = "Lista de Visitas";
-            tsmiListaVisitas.Click += tsmiListaVisitas_Click;
-            // 
-            // tsmiNuevaVisita
-            // 
-            tsmiNuevaVisita.Name = "tsmiNuevaVisita";
-            tsmiNuevaVisita.Size = new Size(150, 22);
-            tsmiNuevaVisita.Text = "Nueva Visita";
-            tsmiNuevaVisita.Click += tsmiNuevaVisita_Click;
-            // 
             // tsmiEmpleados
             // 
             tsmiEmpleados.DropDownItems.AddRange(new ToolStripItem[] { tsmiListaEmpleados, tsmiNuevoEmpleado });
@@ -359,37 +331,9 @@ namespace InmoSolution.Formularios
             tsmiListaUsuarios.Text = "Listado de Usuarios";
             tsmiListaUsuarios.Click += listadoDeUsuariosToolStripMenuItem_Click;
             // 
-            // tsmiConfiguracion
-            // 
-            tsmiConfiguracion.Name = "tsmiConfiguracion";
-            tsmiConfiguracion.Size = new Size(95, 20);
-            tsmiConfiguracion.Text = "Configuracion";
-            tsmiConfiguracion.Click += tsmiConfiguracion_Click;
-            // 
-            // tsmiAyuda
-            // 
-            tsmiAyuda.DropDownItems.AddRange(new ToolStripItem[] { tsmiDocumentacion, tsmiAcercaDe });
-            tsmiAyuda.Name = "tsmiAyuda";
-            tsmiAyuda.Size = new Size(53, 20);
-            tsmiAyuda.Text = "Ayuda";
-            // 
-            // tsmiDocumentacion
-            // 
-            tsmiDocumentacion.Name = "tsmiDocumentacion";
-            tsmiDocumentacion.Size = new Size(159, 22);
-            tsmiDocumentacion.Text = "Documentación";
-            tsmiDocumentacion.Click += tsmiDocumentacion_Click;
-            // 
-            // tsmiAcercaDe
-            // 
-            tsmiAcercaDe.Name = "tsmiAcercaDe";
-            tsmiAcercaDe.Size = new Size(159, 22);
-            tsmiAcercaDe.Text = "Acerca de";
-            tsmiAcercaDe.Click += tsmiAcercaDe_Click;
-            // 
             // msPrincipal
             // 
-            msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, tsmiTransacciones, tsmiVisitas, tsmiEmpleados, tsmiUsuarios, tsmiConfiguracion, tsmiAyuda });
+            msPrincipal.Items.AddRange(new ToolStripItem[] { tsmiInicio, tsmiClientes, tsmiInmuebles, tsmiTransacciones, tsmiEmpleados, tsmiUsuarios });
             msPrincipal.Location = new Point(0, 0);
             msPrincipal.Name = "msPrincipal";
             msPrincipal.Size = new Size(936, 24);
@@ -471,19 +415,12 @@ namespace InmoSolution.Formularios
         private ToolStripMenuItem tsmiListaEnVenta;
         private ToolStripMenuItem tsmiNuevoEnVenta;
         private ToolStripMenuItem tsmiBuscarInmuebles;
-        private ToolStripMenuItem tsmiVisitas;
-        private ToolStripMenuItem tsmiListaVisitas;
-        private ToolStripMenuItem tsmiNuevaVisita;
         private ToolStripMenuItem tsmiBuscarVisita;
         private ToolStripMenuItem tsmiEmpleados;
         private ToolStripMenuItem tsmiListaEmpleados;
         private ToolStripMenuItem tsmiNuevoEmpleado;
         private ToolStripMenuItem tsmiBuscarEmpleado;
         private ToolStripMenuItem tsmiUsuarios;
-        private ToolStripMenuItem tsmiConfiguracion;
-        private ToolStripMenuItem tsmiAyuda;
-        private ToolStripMenuItem tsmiDocumentacion;
-        private ToolStripMenuItem tsmiAcercaDe;
         private MenuStrip msPrincipal;
         private ToolStripMenuItem tsmiListaUsuarios;
         private ToolStripMenuItem tsmiTransacciones;

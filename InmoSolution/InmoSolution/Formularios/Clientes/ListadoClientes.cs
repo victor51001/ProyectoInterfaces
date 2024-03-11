@@ -1,14 +1,10 @@
 ﻿using InmoSolution.Clases;
 using InmoSolution.Controladores;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Data.SqlClient;
+
 
 namespace InmoSolution.Formularios.Clientes
 {
@@ -21,8 +17,76 @@ namespace InmoSolution.Formularios.Clientes
 
         private void ListadoClientes_Load(object sender, EventArgs e)
         {
-            chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-            chklstbxClientes.DisplayMember = "ToString";
+            CargarDatosEnDataGridView();
+        }
+
+        private void CargarDatosEnDataGridView()
+        {
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
+            string query = "SELECT * FROM Cliente";
+            dgvClientes.Columns.Clear();
+            dgvClientes.Columns.Add("Dni", "DNI");
+            dgvClientes.Columns.Add("Nombre", "Nombre");
+            dgvClientes.Columns.Add("Apellidos", "Apellidos");
+            dgvClientes.Columns.Add("Telefono", "Telefono");
+            dgvClientes.Columns.Add("Email", "Email");
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string dni = reader["Dni"].ToString();
+                                string nombre = reader["Nombre"].ToString();
+                                string apellidos = reader["Apellidos"].ToString();
+                                string telefono = reader["Telefono"].ToString();
+                                string email = reader["Email"].ToString();
+                                dgvClientes.Rows.Add(dni, nombre, apellidos, telefono, email);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al cargar datos: {ex.Message}\n{ex.StackTrace}");
+                }
+            }
+        }                
+
+        private bool eliminarCliente(string dni)
+        {
+            bool resultado = true;
+            try
+            {
+                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
+                using (SqlConnection cnn = new SqlConnection(connectionString))
+                {
+                    cnn.Open();
+                    SqlCommand comando = cnn.CreateCommand();
+                    comando.CommandType = CommandType.Text;
+                    comando.CommandText = "DELETE FROM Cliente WHERE dni = @dni";
+                    comando.Parameters.AddWithValue("dni", dni);
+                    SqlDataAdapter adaptador = new SqlDataAdapter();
+                    adaptador.DeleteCommand = comando;
+                    if (adaptador.DeleteCommand.ExecuteNonQuery() == 0)
+                    {
+                        resultado = false;
+                    }
+                    adaptador.Dispose();
+                    comando.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar " + ex.Message);
+                resultado = false;
+            }
+            return resultado;
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)
@@ -32,35 +96,22 @@ namespace InmoSolution.Formularios.Clientes
 
         private void bttnEliminar_Click(object sender, EventArgs e)
         {
-            if (chklstbxClientes.CheckedItems.Count > 0)
+            foreach (DataGridViewRow fila in dgvClientes.SelectedRows) 
             {
-                DialogResult dialogResult = MessageBox.Show("¿Está seguro de que desea eliminar los clientes seleccionados?", "Eliminar clientes", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (!fila.IsNewRow)
                 {
-                    foreach (Cliente cliente in chklstbxClientes.CheckedItems)
-                    {
-                        ControladorCliente.ListaClientes.Remove(cliente);
-                    }
-                    chklstbxClientes.DataSource = null;
-                    chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-                    chklstbxClientes.DisplayMember = "ToString";
-                    ControladorCliente.Cambios = true;
+                    string dni = fila.Cells[0].Value.ToString();
+                    eliminarCliente(dni);
                 }
             }
-            else
-            {
-                MessageBox.Show("Debe seleccionar al menos un cliente para eliminarlo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            CargarDatosEnDataGridView();
         }
 
         private void rdbttnDni_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbttnDni.Checked)
             {
-                ControladorCliente.ListaClientes.Sort((x, y) => x.Dni.CompareTo(y.Dni));
-                chklstbxClientes.DataSource = null;
-                chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-                chklstbxClientes.DisplayMember = "ToString";
+                dgvClientes.Sort(dgvClientes.Columns[0], ListSortDirection.Ascending);
             }
         }
 
@@ -68,10 +119,7 @@ namespace InmoSolution.Formularios.Clientes
         {
             if (rdbttnNombre.Checked)
             {
-                ControladorCliente.ListaClientes.Sort((x, y) => x.Nombre.CompareTo(y.Nombre));
-                chklstbxClientes.DataSource = null;
-                chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-                chklstbxClientes.DisplayMember = "ToString";
+                dgvClientes.Sort(dgvClientes.Columns[1], ListSortDirection.Ascending);
             }
         }
 
@@ -79,10 +127,7 @@ namespace InmoSolution.Formularios.Clientes
         {
             if (rdbttnApellidos.Checked)
             {
-                ControladorCliente.ListaClientes.Sort((x, y) => x.Apellidos.CompareTo(y.Apellidos));
-                chklstbxClientes.DataSource = null;
-                chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-                chklstbxClientes.DisplayMember = "ToString";
+                dgvClientes.Sort(dgvClientes.Columns[2], ListSortDirection.Ascending);
             }
         }
 
@@ -90,10 +135,7 @@ namespace InmoSolution.Formularios.Clientes
         {
             if (rdbttnTelefono.Checked)
             {
-                ControladorCliente.ListaClientes.Sort((x, y) => x.Telefono.CompareTo(y.Telefono));
-                chklstbxClientes.DataSource = null;
-                chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-                chklstbxClientes.DisplayMember = "ToString";
+                dgvClientes.Sort(dgvClientes.Columns[3], ListSortDirection.Ascending);
             }
         }
 
@@ -101,31 +143,34 @@ namespace InmoSolution.Formularios.Clientes
         {
             if (rdbttnEmail.Checked)
             {
-                ControladorCliente.ListaClientes.Sort((x, y) => x.Email.CompareTo(y.Email));
-                chklstbxClientes.DataSource = null;
-                chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-                chklstbxClientes.DisplayMember = "ToString";
+                dgvClientes.Sort(dgvClientes.Columns[4], ListSortDirection.Ascending);
             }
         }
 
         private void bttnModificar_Click(object sender, EventArgs e)
         {
-            if (chklstbxClientes.CheckedItems.Count == 1)
+            if (dgvClientes.SelectedRows.Count == 1)
             {
-                Cliente cliente = (Cliente)chklstbxClientes.CheckedItems[0];
+                Cliente cliente = sacarCliente();
                 ModificarCliente modificarCliente = new ModificarCliente(cliente);
                 modificarCliente.ShowDialog();
-                if (ControladorCliente.Cambios)
-                {
-                    chklstbxClientes.DataSource = null;
-                    chklstbxClientes.DataSource = ControladorCliente.ListaClientes;
-                    chklstbxClientes.DisplayMember = "ToString";
-                }
+                CargarDatosEnDataGridView();
             }
             else
             {
                 MessageBox.Show("Debe seleccionar solo un cliente para modificarlo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private Cliente sacarCliente()
+        {
+            Cliente cliente = new Cliente();
+            cliente.Dni = dgvClientes.SelectedRows[0].Cells[0].Value.ToString();
+            cliente.Nombre = dgvClientes.SelectedRows[0].Cells[1].Value.ToString();
+            cliente.Apellidos = dgvClientes.SelectedRows[0].Cells[2].Value.ToString();
+            cliente.Telefono = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[3].Value);
+            cliente.Email = dgvClientes.SelectedRows[0].Cells[4].Value.ToString();
+            return cliente;
         }
     }
 }

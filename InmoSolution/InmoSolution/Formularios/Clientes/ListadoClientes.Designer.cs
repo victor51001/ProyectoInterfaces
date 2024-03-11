@@ -33,14 +33,15 @@
             bttnCancelar = new Button();
             bttnModificar = new Button();
             lblClientes = new Label();
-            chklstbxClientes = new CheckedListBox();
             grpbxOrdenar = new GroupBox();
             rdbttnEmail = new RadioButton();
             rdbttnTelefono = new RadioButton();
             rdbttnNombre = new RadioButton();
             rdbttnApellidos = new RadioButton();
             rdbttnDni = new RadioButton();
+            dgvClientes = new DataGridView();
             grpbxOrdenar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             SuspendLayout();
             // 
             // bttnEliminar
@@ -86,16 +87,6 @@
             lblClientes.Size = new Size(111, 37);
             lblClientes.TabIndex = 12;
             lblClientes.Text = "Clientes";
-            // 
-            // chklstbxClientes
-            // 
-            chklstbxClientes.FormattingEnabled = true;
-            chklstbxClientes.HorizontalScrollbar = true;
-            chklstbxClientes.Location = new Point(142, 140);
-            chklstbxClientes.Name = "chklstbxClientes";
-            chklstbxClientes.ScrollAlwaysVisible = true;
-            chklstbxClientes.Size = new Size(500, 256);
-            chklstbxClientes.TabIndex = 11;
             // 
             // grpbxOrdenar
             // 
@@ -176,6 +167,15 @@
             rdbttnDni.UseVisualStyleBackColor = true;
             rdbttnDni.CheckedChanged += rdbttnDni_CheckedChanged;
             // 
+            // dgvClientes
+            // 
+            dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvClientes.Location = new Point(136, 140);
+            dgvClientes.Name = "dgvClientes";
+            dgvClientes.RowTemplate.Height = 25;
+            dgvClientes.Size = new Size(462, 272);
+            dgvClientes.TabIndex = 18;
+            // 
             // ListadoClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -183,12 +183,12 @@
             BackgroundImage = Properties.Resources.fondo_Listas;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(781, 647);
+            Controls.Add(dgvClientes);
             Controls.Add(grpbxOrdenar);
             Controls.Add(bttnEliminar);
             Controls.Add(bttnCancelar);
             Controls.Add(bttnModificar);
             Controls.Add(lblClientes);
-            Controls.Add(chklstbxClientes);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ListadoClientes";
             StartPosition = FormStartPosition.CenterScreen;
@@ -196,6 +196,7 @@
             Load += ListadoClientes_Load;
             grpbxOrdenar.ResumeLayout(false);
             grpbxOrdenar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -206,12 +207,12 @@
         private Button bttnCancelar;
         private Button bttnModificar;
         private Label lblClientes;
-        private CheckedListBox chklstbxClientes;
         private GroupBox grpbxOrdenar;
         private RadioButton rdbttnNombre;
         private RadioButton rdbttnApellidos;
         private RadioButton rdbttnDni;
         private RadioButton rdbttnEmail;
         private RadioButton rdbttnTelefono;
+        private DataGridView dgvClientes;
     }
 }
