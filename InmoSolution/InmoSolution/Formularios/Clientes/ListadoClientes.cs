@@ -56,37 +56,6 @@ namespace InmoSolution.Formularios.Clientes
                     MessageBox.Show($"Error al cargar datos: {ex.Message}\n{ex.StackTrace}");
                 }
             }
-        }                
-
-        private bool eliminarCliente(string dni)
-        {
-            bool resultado = true;
-            try
-            {
-                string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
-                using (SqlConnection cnn = new SqlConnection(connectionString))
-                {
-                    cnn.Open();
-                    SqlCommand comando = cnn.CreateCommand();
-                    comando.CommandType = CommandType.Text;
-                    comando.CommandText = "DELETE FROM Cliente WHERE dni = @dni";
-                    comando.Parameters.AddWithValue("dni", dni);
-                    SqlDataAdapter adaptador = new SqlDataAdapter();
-                    adaptador.DeleteCommand = comando;
-                    if (adaptador.DeleteCommand.ExecuteNonQuery() == 0)
-                    {
-                        resultado = false;
-                    }
-                    adaptador.Dispose();
-                    comando.Dispose();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al eliminar " + ex.Message);
-                resultado = false;
-            }
-            return resultado;
         }
 
         private void bttnCancelar_Click(object sender, EventArgs e)
@@ -101,7 +70,7 @@ namespace InmoSolution.Formularios.Clientes
                 if (!fila.IsNewRow)
                 {
                     string dni = fila.Cells[0].Value.ToString();
-                    eliminarCliente(dni);
+                    ControladorCliente.eliminarCliente(dni);
                 }
             }
             CargarDatosEnDataGridView();

@@ -54,6 +54,7 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
             }
             cmbxPropietario.DataSource = ControladorCliente.ListaClientes;
             cmbxPropietario.DisplayMember = "dni";
+            cmbxPropietario.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void nudHabitaciones_ValueChanged(object sender, EventArgs e)
@@ -82,6 +83,7 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
 
         private void cmbxDisponible_SelectedIndexChanged(object sender, EventArgs e)
         {
+            MessageBox.Show(cmbxDisponible.DropDownStyle.ToString());
             if (cmbxDisponible.SelectedValue == "Si")
             {
                 if (alquiler.Disponible)
@@ -146,6 +148,7 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
                 if (cambios[3])
                 {
                     alquiler.Propietario = (Cliente)cmbxPropietario.SelectedValue;
+                 
                 }
                 ControladorAlquiler.Cambios = true;
                 MessageBox.Show("Alquiler modificado correctamente", "Modificar alquiler", MessageBoxButtons.OK, MessageBoxIcon.Information);

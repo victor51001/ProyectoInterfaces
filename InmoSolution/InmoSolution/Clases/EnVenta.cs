@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using InmoSolution.Controladores;
+using ProtoBuf;
 
 namespace InmoSolution.Clases
 {
@@ -18,6 +19,7 @@ namespace InmoSolution.Clases
             : base(direccion, habitaciones, baños, metrosCuadrados, 
                                    antiguedad, disponible, propietario, localidad)
         {
+            this.Id = ControladorEnVenta.ListaEnVenta.Count + 1;
             this.PrecioMetroCuadrado = precioMetroCuadrado;
             this.Precio = PrecioMetroCuadrado * MetrosCuadrados;
         }

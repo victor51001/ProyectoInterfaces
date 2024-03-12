@@ -86,7 +86,7 @@ namespace InmoSolution.Formularios.Empleados
             {
                 if (!String.IsNullOrEmpty(txtbxNombre.Text))
                 {
-                    string patron = "^[a-zA-Z]+$";
+                    string patron = "^[a-zA-Z\\s]+$";
                     Regex regex = new Regex(patron);
                     return regex.IsMatch(txtbxNombre.Text);
                 }
@@ -97,7 +97,7 @@ namespace InmoSolution.Formularios.Empleados
         {
             if (!String.IsNullOrEmpty(txtbxApellidos.Text) && txtbxApellidos.Text.Length>4)
             {
-                string patron = "^[a-zA-Z]+$";
+                string patron = "^[a-zA-Z\\s]+$";
                 Regex regex = new Regex(patron);
                 return regex.IsMatch(txtbxApellidos.Text);
             }

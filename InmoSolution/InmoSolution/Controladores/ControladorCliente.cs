@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
@@ -43,7 +44,7 @@ namespace InmoSolution.Controladores
         public static bool ModificarCliente(Cliente cliente, Dictionary<string, object> campos)
         {
             bool resultado = true;
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
+            string connectionString = construirCadenaConexión();
 
             try
             {
@@ -96,7 +97,7 @@ namespace InmoSolution.Controladores
             string apellidos = cliente.Apellidos;
             int telefono = cliente.Telefono;
             string email = cliente.Email;
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
+            string connectionString = construirCadenaConexión();
             string query = "INSERT INTO Cliente (Dni, Nombre, Apellidos, Telefono, Email) VALUES (@Dni, @Nombre, @Apellidos, @Telefono, @Email)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -111,7 +112,6 @@ namespace InmoSolution.Controladores
                     try
                     {
                         int registrosAfectados = command.ExecuteNonQuery();
-                        MessageBox.Show($"Se insertó correctamente el registro. Registros afectados: {registrosAfectados}");
                     }
                     catch (Exception ex)
                     {
@@ -120,5 +120,77 @@ namespace InmoSolution.Controladores
                 }
             }
         }
+
+        public static bool eliminarCliente(string dni)
+        {
+            bool resultado = true;
+            try
+            {
+                string connectionString = construirCadenaConexión();
+                using (SqlConnection cnn = new SqlConnection(connectionString))
+                {
+                    cnn.Open();
+                    SqlCommand comando = cnn.CreateCommand();
+                    comando.CommandType = CommandType.Text;
+                    comando.CommandText = "DELETE FROM Cliente WHERE dni = @dni";
+                    comando.Parameters.AddWithValue("dni", dni);
+                    SqlDataAdapter adaptador = new SqlDataAdapter();
+                    adaptador.DeleteCommand = comando;
+                    if (adaptador.DeleteCommand.ExecuteNonQuery() == 0)
+                    {
+                        resultado = false;
+                    }
+                    adaptador.Dispose();
+                    comando.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar " + ex.Message);
+                resultado = false;
+            }
+            return resultado;
+        }
+
+        public static void rellenarListaClientes()
+        {
+            string connectionString = construirCadenaConexión();
+            string query = "SELECT * FROM Cliente";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string dni = reader["Dni"].ToString();
+                                string nombre = reader["Nombre"].ToString();
+                                string apellidos = reader["Apellidos"].ToString();
+                                int telefono = Convert.ToInt32(reader["Telefono"]);
+                                string email = reader["Email"].ToString();
+                                Cliente cliente = new Cliente(dni, nombre, apellidos, telefono, email);
+                                ListaClientes.Add(cliente);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al cargar datos: {ex.Message}\n{ex.StackTrace}");
+                }
+            }
+        }
+
+        public static string construirCadenaConexión()
+        {
+            string databaseFileName = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\InmoDatabase.mdf"));
+            string connectionString = $"Data Source=(LocalDB)\\MSSQLLocalDB; AttachDbFilename ={ databaseFileName}; Integrated Security = True";
+            return connectionString;
+        }
+
     }
 }

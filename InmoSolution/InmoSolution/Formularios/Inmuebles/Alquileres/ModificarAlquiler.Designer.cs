@@ -241,8 +241,8 @@
             // 
             // cmbxPropietario
             // 
+            cmbxPropietario.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbxPropietario.FormattingEnabled = true;
-            cmbxPropietario.Items.AddRange(new object[] { "Si", "No" });
             cmbxPropietario.Location = new Point(550, 165);
             cmbxPropietario.Name = "cmbxPropietario";
             cmbxPropietario.Size = new Size(184, 23);

@@ -30,10 +30,13 @@ namespace InmoSolution.Formularios
             if (TablaEstaVacia("Cliente"))
             {
                 CargarClientes();
+            } else
+            {
+                ControladorCliente.rellenarListaClientes();
             }
             for (int i = 0; i < ficherosExist.Count; i++)
             {
-                if (i == 4)
+                if (i == 3)
                 {
                     ControladorInmueble.RellenarListaInmuebles();
                 }
@@ -110,7 +113,7 @@ namespace InmoSolution.Formularios
         }
         private bool TablaEstaVacia(string nombreTabla)
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
+            string connectionString = ControladorCliente.construirCadenaConexión();
             string query = $"SELECT COUNT(*) FROM {nombreTabla}";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -416,14 +419,6 @@ namespace InmoSolution.Formularios
             InicializarGrafico();
             CargarDataGrid();
         }
-        private void tsmiListaVisitas_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void tsmiNuevaVisita_Click(object sender, EventArgs e)
-        {
-
-        }
         private void tsmiListaEmpleados_Click(object sender, EventArgs e)
         {
             Empleados.ListadoEmpleados frmListado = new Empleados.ListadoEmpleados();
@@ -439,20 +434,6 @@ namespace InmoSolution.Formularios
         {
             Usuarios.ListadoUsuarios frmListado = new Usuarios.ListadoUsuarios();
             frmListado.ShowDialog();
-        }
-        private void tsmiConfiguracion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmiDocumentacion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmiAcercaDe_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

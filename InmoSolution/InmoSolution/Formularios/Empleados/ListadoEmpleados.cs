@@ -41,7 +41,8 @@ namespace InmoSolution.Formularios.Empleados
                     foreach (Empleado empleado in chklstbxEmpleados.CheckedItems)
                     {
                         ControladorEmpleado.ListaEmpleados.Remove(empleado);
-                    }
+                        ControladorUsuario.ListaUsuarios.Remove(empleado.Usuario);
+                    }                    
                     chklstbxEmpleados.DataSource = null;
                     chklstbxEmpleados.DataSource = ControladorEmpleado.ListaEmpleados;
                     ControladorEmpleado.Cambios = true;
