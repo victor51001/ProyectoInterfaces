@@ -22,7 +22,7 @@ namespace InmoSolution.Formularios.Clientes
 
         private void CargarDatosEnDataGridView()
         {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=F:\\Repos\\victor51001\\ProyectoInterfaces\\InmoSolution\\InmoSolution\\InmoDatabase.mdf;Integrated Security=True";
+            string connectionString = ControladorCliente.construirCadenaConexión();
             string query = "SELECT * FROM Cliente";
             dgvClientes.Columns.Clear();
             dgvClientes.Columns.Add("Dni", "DNI");

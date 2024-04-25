@@ -200,6 +200,7 @@
             // 
             // cmbxDisponible
             // 
+            cmbxDisponible.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbxDisponible.FormattingEnabled = true;
             cmbxDisponible.Items.AddRange(new object[] { "Si", "No" });
             cmbxDisponible.Location = new Point(601, 116);

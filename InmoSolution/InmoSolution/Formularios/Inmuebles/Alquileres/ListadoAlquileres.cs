@@ -58,9 +58,9 @@ namespace InmoSolution.Formularios.Inmuebles.Alquileres
         {
             if (chklstbxAlquileres.CheckedItems.Count == 1)
             {
-                Alquiler alquiler = (Alquiler)chklstbxAlquileres.CheckedItems[0];/*
+                Alquiler alquiler = (Alquiler)chklstbxAlquileres.CheckedItems[0];
                 ModificarAlquiler formularioAlquiler = new ModificarAlquiler(alquiler);
-                formularioAlquiler.ShowDialog();*/
+                formularioAlquiler.ShowDialog();
                 if (ControladorAlquiler.Cambios)
                 {
                     chklstbxAlquileres.DataSource = null;

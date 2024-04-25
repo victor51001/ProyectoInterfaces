@@ -192,6 +192,7 @@
             // 
             // cmbxPuesto
             // 
+            cmbxPuesto.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbxPuesto.FormattingEnabled = true;
             cmbxPuesto.Location = new Point(561, 322);
             cmbxPuesto.Name = "cmbxPuesto";
